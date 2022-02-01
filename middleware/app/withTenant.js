@@ -10,12 +10,24 @@ export const withTenant = async ({ req, res }) => {
     let tenantDomain;
     let tenant;
 
-    tenantDomain = host.split('.')[0];
+    // Search database based on custom domain
+    if (host.startsWith('www.')) {
+      const { hostname } = new URL(req.headers.referer);
 
-    // Check if tenant exists in MongoDB
-    tenant = await Tenant.findOne({
-      subdomain: tenantDomain,
-    });
+      // Check if tenant exists in MongoDB
+      tenant = await Tenant.findOne({
+        domain: hostname
+          .replace(/^(?:https?:\/\/)?(?:www\.)?/i, '')
+          .split('/')[0],
+      });
+    } else {
+      tenantDomain = host.split('.')[0];
+
+      // Check if tenant exists in MongoDB
+      tenant = await Tenant.findOne({
+        subdomain: tenantDomain,
+      });
+    }
 
     return JSON.stringify(tenant);
   } catch (error) {
