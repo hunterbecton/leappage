@@ -54,7 +54,6 @@ export const ToolbarImage = ({
             className='focus:ring-blue-500 focus:border-blue-500 block w-full rounded-none rounded-l-md text-xs border-gray-300'
             type='text'
             name={propKey}
-            name={propKey}
             value={value}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {

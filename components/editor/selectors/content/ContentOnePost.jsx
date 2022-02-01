@@ -68,6 +68,7 @@ export const ContentOnePost = ({ post }) => {
             className='relative block w-full h-64 overflow-hidden rounded'
           >
             <img
+              alt={content.title}
               className='object-cover object-center w-full h-full transition duration-500 ease-out transform scale-100 hover:scale-105'
               src={content.feature}
             />
@@ -91,6 +92,7 @@ export const ContentOnePost = ({ post }) => {
         <div className='relative col-span-12 mb-10 space-y-4 md:col-span-6 lg:col-span-4'>
           <div className='relative block w-full h-64 overflow-hidden rounded'>
             <img
+              alt='Image not found'
               className='object-cover object-center w-full h-full transition duration-500 ease-out transform scale-100 hover:scale-105'
               src='/images/not-found.png'
             />

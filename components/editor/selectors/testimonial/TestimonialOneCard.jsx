@@ -76,6 +76,7 @@ export const TestimonialOneCard = ({ testimonial }) => {
         <div className='col-span-12 md:col-span-6 lg:col-span-4'>
           <div className='h-full text-center'>
             <img
+              alt='Image not found'
               src='/images/not-found.png'
               className='w-20 h-20 mb-6 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100'
             />

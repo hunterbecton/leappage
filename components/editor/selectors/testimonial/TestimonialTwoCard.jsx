@@ -112,6 +112,7 @@ export const TestimonialTwoCard = ({ testimonial }) => {
             </p>
             <div className='inline-flex items-center'>
               <img
+                alt='Image not found'
                 src='/images/not-found.png'
                 className='w-12 h-12 rounded-full flex-shrink-0 object-cover object-center border-2 border-gray-200'
               />

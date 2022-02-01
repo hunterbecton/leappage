@@ -82,7 +82,7 @@ export const ComponentPanel = () => {
                               }}
                               className='flex items-center transition-shadow shadow hover:shadow-lg'
                             >
-                              <img src={img} className='w-full' />
+                              <img src={img} alt={title} className='w-full' />
                             </button>
                           )
                         )}
