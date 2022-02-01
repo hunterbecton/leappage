@@ -6,7 +6,6 @@ dbConnect();
 export const withTenant = async ({ req, res }) => {
   try {
     let host = req.headers.host;
-    let tenantDomain;
     let tenant;
 
     // Get Tenant based on subdomain and also handle development
@@ -14,20 +13,18 @@ export const withTenant = async ({ req, res }) => {
       host.includes('leappage.com') ||
       process.env.NODE_ENV === 'development'
     ) {
-      tenantDomain = host.split('.')[0];
+      let subdomain = host.split('.')[0];
 
       // Check if tenant exists in MongoDB
       tenant = await Tenant.findOne({
-        subdomain: tenantDomain,
+        subdomain,
       });
     }
     // Get Tenant based on custom domain
     else {
-      tenantDomain = host.split('.')[0];
-
       // Check if tenant exists in MongoDB
       tenant = await Tenant.findOne({
-        domain: tenantDomain,
+        domain: host,
       });
     }
 
