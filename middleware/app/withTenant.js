@@ -25,14 +25,15 @@ export const withTenant = async ({ req, res }) => {
     }
     // Get Tenant based on custom domain
     else {
-      const { hostname } = new URL(req.headers.referer).replace(/^(?:https?:\/\/)?(?:www\.)?/i, '')
-      .split('/')[0],;
+      let { hostname } = new URL(req.headers.referer);
 
-      console.log(hostname)
+      hostname.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0];
+
+      console.log(hostname);
 
       // Check if tenant exists in MongoDB
       tenant = await Tenant.findOne({
-        domain: hostname
+        domain: hostname,
       });
     }
 
