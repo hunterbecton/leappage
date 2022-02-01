@@ -10,8 +10,21 @@ export const withTenant = async ({ req, res }) => {
     let tenantDomain;
     let tenant;
 
-    // Search database based on custom domain
-    if (host.startsWith('www.')) {
+    // Get Tenant based on subdomain
+    // Also handle for development
+    if (
+      host.includes('leappage.com') ||
+      process.env.NODE_ENV === 'development'
+    ) {
+      tenantDomain = host.split('.')[0];
+
+      // Check if tenant exists in MongoDB
+      tenant = await Tenant.findOne({
+        subdomain: tenantDomain,
+      });
+    }
+    // Get Tenant based on custom domain
+    else {
       const { hostname } = new URL(req.headers.referer);
 
       // Check if tenant exists in MongoDB
@@ -19,13 +32,6 @@ export const withTenant = async ({ req, res }) => {
         domain: hostname
           .replace(/^(?:https?:\/\/)?(?:www\.)?/i, '')
           .split('/')[0],
-      });
-    } else {
-      tenantDomain = host.split('.')[0];
-
-      // Check if tenant exists in MongoDB
-      tenant = await Tenant.findOne({
-        subdomain: tenantDomain,
       });
     }
 
