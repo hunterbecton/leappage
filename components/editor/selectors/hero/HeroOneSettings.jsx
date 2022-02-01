@@ -1,0 +1,79 @@
+import { useNode } from '@craftjs/core';
+
+import {
+  ToolbarSection,
+  ToolbarGroup,
+  ToolbarItem,
+} from 'components/editor/visual/toolbar';
+
+export const HeroOneSettings = () => {
+  const {
+    nodeCtas,
+    nodeLogos,
+    actions: { setProp },
+  } = useNode((node) => ({
+    nodeCtas: node.data.props.ctas,
+    nodeLogos: node.data.props.logos,
+  }));
+
+  return (
+    <>
+      <div className='space-y-2'>
+        <ToolbarSection title='Logo' props={['logos']}>
+          {nodeLogos.map((nodeLogo, i) => (
+            <ToolbarGroup key={nodeLogo.id} bgColor='bg-gray-100' full={true}>
+              <ToolbarItem
+                isGroup={true}
+                groupName='logos'
+                groupIndex={i}
+                propKey='company'
+                type='text'
+                label='Company'
+              />
+              <ToolbarItem
+                isGroup={true}
+                groupName='logos'
+                groupIndex={i}
+                propKey='src'
+                type='image'
+                label='Logo'
+              />
+            </ToolbarGroup>
+          ))}
+        </ToolbarSection>
+        <ToolbarSection title='Text' props={['title']}>
+          <ToolbarGroup full={true}>
+            <ToolbarItem propKey='title' type='text' label='Title' />
+            <ToolbarItem
+              propKey='description'
+              type='text'
+              label='Description'
+            />
+          </ToolbarGroup>
+        </ToolbarSection>
+        <ToolbarSection title='CTA' props={['ctas']}>
+          {nodeCtas.map((nodeCta, i) => (
+            <ToolbarGroup key={nodeCta.id} bgColor='bg-gray-100' full={true}>
+              <ToolbarItem
+                isGroup={true}
+                groupName='ctas'
+                groupIndex={i}
+                propKey='text'
+                type='text'
+                label='Text'
+              />
+              <ToolbarItem
+                isGroup={true}
+                groupName='ctas'
+                groupIndex={i}
+                propKey='link'
+                type='text'
+                label='Link'
+              />
+            </ToolbarGroup>
+          ))}
+        </ToolbarSection>
+      </div>
+    </>
+  );
+};
