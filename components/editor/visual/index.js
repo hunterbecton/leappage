@@ -1,4 +1,3 @@
-import { Resizer } from './Resizer';
 import { Toolbox } from './Toolbox';
 import { ToolboxWide } from './ToolboxWide';
 import { ToolboxButton } from './ToolboxButton';
@@ -12,7 +11,6 @@ import { RenderProps } from './RenderProps';
 import { Sidebar } from './Sidebar';
 
 export {
-  Resizer,
   Toolbox,
   ToolboxWide,
   ToolboxButton,
