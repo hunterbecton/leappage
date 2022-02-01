@@ -10,6 +10,8 @@ export const withTenant = async ({ req, res }) => {
     let tenantDomain;
     let tenant;
 
+    console.log(`Host: ${host}`);
+
     // Get Tenant based on subdomain
     // Also handle for development
     if (
@@ -27,9 +29,9 @@ export const withTenant = async ({ req, res }) => {
     else {
       let { hostname } = new URL(req.headers.referer);
 
-      hostname.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0];
+      console.log(`Hostname: ${hostname}`);
 
-      console.log(hostname);
+      hostname.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0];
 
       // Check if tenant exists in MongoDB
       tenant = await Tenant.findOne({
