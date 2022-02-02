@@ -57,6 +57,7 @@ handler.get(async (req, res, next) => {
     customer: tenant.stripeId,
     success_url: `https://${req.headers.host}/account/subscription`,
     cancel_url: `https://${req.headers.host}/account/subscription`,
+    allow_promotion_codes: true,
   });
 
   return res.status(200).json({
