@@ -29,7 +29,7 @@ handler.get(async (req, res, next) => {
 
   const session = await stripe.billingPortal.sessions.create({
     customer: id,
-    return_url: `https://${process.env.HOST}/account/subscription`,
+    return_url: `https://${req.headers.host}/account/subscription`,
   });
 
   return res.status(200).json({

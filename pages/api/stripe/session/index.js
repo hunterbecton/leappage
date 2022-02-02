@@ -55,8 +55,8 @@ handler.get(async (req, res, next) => {
       },
     ],
     customer: tenant.stripeId,
-    success_url: `https://${process.env.HOST}/account/subscription`,
-    cancel_url: `https://${process.env.HOST}/account/subscription`,
+    success_url: `https://${req.headers.host}/account/subscription`,
+    cancel_url: `https://${req.headers.host}/account/subscription`,
   });
 
   return res.status(200).json({
