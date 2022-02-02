@@ -33,6 +33,8 @@ const handleSubscriptionUpdate = async (event) => {
     quantity,
   } = event.data.object;
 
+  console.log(event.data.object);
+
   // Find tenant from Stripe customer ID
   const tenant = await Tenant.findOne({ stripeId: customer });
 
