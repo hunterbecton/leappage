@@ -65,7 +65,7 @@ handler.get(async (req, res, next) => {
   const tenant = await Tenant.findById(req.user.tenant_mongo_id);
 
   //Send invite email
-  const url = `http://${tenant.subdomain}.${process.env.HOST}/setup?token=${token}`;
+  const url = `http://${req.headers.host}/setup?token=${token}`;
 
   await new Email(user, url, tenant.company).sendInvite();
 
