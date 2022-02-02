@@ -19,9 +19,7 @@ const handler = nc({
   },
 });
 
-const handleSubscriptionUpdate = async (event) => {
-  console.log('Subscription updated');
-
+const handleSubscription = async (event) => {
   const {
     id,
     current_period_end,
@@ -80,11 +78,14 @@ handler.post(async (req, res) => {
   event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
 
   switch (event.type) {
+    case 'customer.subscription.created':
+      await handleSubscription(event);
+      break;
     case 'customer.subscription.updated':
-      await handleSubscriptionUpdate(event);
+      await handleSubscription(event);
       break;
     case 'customer.subscription.deleted':
-      await handleSubscriptionUpdate(event);
+      await handleSubscription(event);
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
