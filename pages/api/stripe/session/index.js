@@ -50,7 +50,7 @@ handler.get(async (req, res, next) => {
     mode: 'subscription',
     line_items: [
       {
-        price: 'price_1KMD0DKCnDQmRy7gZGHBCf2Z',
+        price: process.env.STRIPE_SUB_ID,
         quantity: totalUsers,
       },
     ],
