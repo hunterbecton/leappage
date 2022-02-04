@@ -56,6 +56,7 @@ const tenantSchema = new mongoose.Schema(
     domain: {
       type: String,
       trim: true,
+      unique: true,
     },
     subdomain: {
       type: String,

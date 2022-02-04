@@ -1,3 +1,3 @@
-import { Alert } from './Alert';
+import { DomainAlert } from './DomainAlert';
 
-export { Alert } from './Alert';
+export { DomainAlert } from './DomainAlert';

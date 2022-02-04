@@ -1,4 +1,4 @@
-import { BiCreditCard, BiUser, BiGroup, BiKey } from 'react-icons/bi';
+import { BiCreditCard, BiUser, BiGroup, BiLink } from 'react-icons/bi';
 import { useRouter } from 'next/router';
 
 import Link from 'next/link';
@@ -32,6 +32,13 @@ export const AccountLayout = ({ children }) => {
       icon: BiCreditCard,
       current: router.pathname.includes('/account/subscription'),
     },
+    {
+      name: 'Domain',
+      href: '/account/domain',
+      id: 5,
+      icon: BiLink,
+      current: router.pathname.includes('/account/domain'),
+    },
   ];
 
   return (
@@ -49,8 +56,8 @@ export const AccountLayout = ({ children }) => {
                   <a
                     className={classNames(
                       item.current
-                        ? 'bg-gray-50 text-blue-700 hover:text-blue-700 hover:bg-white'
-                        : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
+                        ? 'bg-gray-100 text-blue-700 hover:text-blue-700 hover:bg-gray-100'
+                        : 'text-gray-900 hover:text-gray-900 hover:bg-gray-100',
                       'group rounded-md px-3 py-2 flex items-center text-sm font-medium'
                     )}
                     aria-current={item.current ? 'page' : undefined}
