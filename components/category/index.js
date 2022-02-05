@@ -1,3 +1,3 @@
-import { CategoryForm } from './CategoryForm';
+import { CategoryForm } from "./CategoryForm";
 
 export { CategoryForm };

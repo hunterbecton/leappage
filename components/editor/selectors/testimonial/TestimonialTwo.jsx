@@ -1,31 +1,31 @@
-import { useNode } from '@craftjs/core';
-import { TestimonialTwoCard } from './TestimonialTwoCard';
+import { useNode } from "@craftjs/core";
+import { TestimonialTwoCard } from "./TestimonialTwoCard";
 
-import { TestimonialTwoSettings } from './TestimonialTwoSettings';
+import { TestimonialTwoSettings } from "./TestimonialTwoSettings";
 
 const defaultProps = {
   testimonials: [
     {
-      arrayId: 'sGGZgEzKH9w8wBi2',
-      id: 'demo-sGGZgEzKH9w8wBi2',
-      title: 'Acme Inc. Testimonial',
+      arrayId: "sGGZgEzKH9w8wBi2",
+      id: "demo-sGGZgEzKH9w8wBi2",
+      title: "Acme Inc. Testimonial",
       quote: `The personalized sales pages we were able to create with LeapPage have made a great first impression on our leads. We've landed more demos and increased sales.`,
-      categoryInfo: [{ title: 'Resource' }],
-      name: 'Collins Lancaster',
-      position: 'Head of Sales',
-      company: 'Acme Inc.',
-      profileImage: 'https://dummyimage.com/300x300/f3f4f6/1f2937.jpg',
+      categoryInfo: [{ title: "Resource" }],
+      name: "Collins Lancaster",
+      position: "Head of Sales",
+      company: "Acme Inc.",
+      profileImage: "https://dummyimage.com/300x300/f3f4f6/1f2937.jpg",
     },
     {
-      arrayId: 'bUc4QeAxaj4sdekn',
-      id: 'demo-bUc4QeAxaj4sdekn',
-      title: 'Acme Inc. Testimonial',
+      arrayId: "bUc4QeAxaj4sdekn",
+      id: "demo-bUc4QeAxaj4sdekn",
+      title: "Acme Inc. Testimonial",
       quote: `The personalized sales pages we were able to create with LeapPage have made a great first impression on our leads. We've landed more demos and increased sales.`,
-      categoryInfo: [{ title: 'Resource' }],
-      name: 'Collins Lancaster',
-      position: 'Head of Sales',
-      company: 'Acme Inc.',
-      profileImage: 'https://dummyimage.com/300x300/f3f4f6/1f2937.jpg',
+      categoryInfo: [{ title: "Resource" }],
+      name: "Collins Lancaster",
+      position: "Head of Sales",
+      company: "Acme Inc.",
+      profileImage: "https://dummyimage.com/300x300/f3f4f6/1f2937.jpg",
     },
   ],
 };
@@ -46,9 +46,9 @@ export const TestimonialTwo = (props) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 md:py-16 px-10 '>
-      <div className='mx-auto max-w-7xl flex flex-wrap'>
-        <div className='grid grid-cols-12 gap-6'>
+    <section ref={connect} className="w-full bg-white py-12 px-10 md:py-16 ">
+      <div className="mx-auto flex max-w-7xl flex-wrap">
+        <div className="grid grid-cols-12 gap-6">
           {testimonials.map((testimonial) => (
             <TestimonialTwoCard
               key={testimonial.arrayId}
@@ -62,7 +62,7 @@ export const TestimonialTwo = (props) => {
 };
 
 TestimonialTwo.craft = {
-  displayName: 'Testimonials',
+  displayName: "Testimonials",
   props: defaultProps,
   rules: {
     canDrag: () => true,

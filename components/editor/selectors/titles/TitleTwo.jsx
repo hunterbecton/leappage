@@ -1,11 +1,11 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
-import { TitleTwoSettings } from './TitleTwoSettings';
+import { TitleTwoSettings } from "./TitleTwoSettings";
 
 const defaultProps = {
-  title: 'Landing Pages for Sales',
+  title: "Landing Pages for Sales",
   description:
-    'Empower your sales team to create personalized landing pages for leads and customers in order to drive more engagement and sales.',
+    "Empower your sales team to create personalized landing pages for leads and customers in order to drive more engagement and sales.",
 };
 
 export const TitleTwo = (props) => {
@@ -24,12 +24,12 @@ export const TitleTwo = (props) => {
   }));
 
   return (
-    <div ref={connect} className='w-full bg-white px-10 py-4'>
-      <div className='flex flex-col text-center mx-auto max-w-3xl'>
-        <h1 className='sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900'>
+    <div ref={connect} className="w-full bg-white px-10 py-4">
+      <div className="mx-auto flex max-w-3xl flex-col text-center">
+        <h1 className="title-font mb-4 text-2xl font-medium text-gray-900 sm:text-3xl">
           {title}
         </h1>
-        <p className='mx-auto leading-relaxed text-base text-gray-500'>
+        <p className="mx-auto text-base leading-relaxed text-gray-500">
           {description}
         </p>
       </div>
@@ -38,7 +38,7 @@ export const TitleTwo = (props) => {
 };
 
 TitleTwo.craft = {
-  displayName: 'Title',
+  displayName: "Title",
   props: defaultProps,
   rules: {
     canDrag: () => true,

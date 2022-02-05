@@ -1,15 +1,15 @@
-import nc from 'next-connect';
-import crypto from 'crypto';
-import Stripe from 'stripe';
+import nc from "next-connect";
+import crypto from "crypto";
+import Stripe from "stripe";
 
-import { dbConnect, filterObject, cloneObject, renameKey } from 'utils';
-import User from 'models/userModel';
-import Tenant from 'models/tenantModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withRestrict } from 'middleware/api/withRestrict';
-import { withSubscription } from 'middleware/api/withSubscription';
-import { firebaseAdmin } from 'services/firebaseAdmin';
-import Email from 'utils/email';
+import { dbConnect, filterObject, cloneObject, renameKey } from "utils";
+import User from "models/userModel";
+import Tenant from "models/tenantModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withRestrict } from "middleware/api/withRestrict";
+import { withSubscription } from "middleware/api/withSubscription";
+import { firebaseAdmin } from "services/firebaseAdmin";
+import Email from "utils/email";
 
 dbConnect();
 
@@ -21,7 +21,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -34,7 +34,7 @@ handler.use(withProtect);
 handler.use(withSubscription);
 
 // Restrict routes
-handler.use(withRestrict('admin', 'editor'));
+handler.use(withRestrict("admin", "editor"));
 
 // Send Invite
 handler.post(async (req, res, next) => {
@@ -44,7 +44,7 @@ handler.post(async (req, res, next) => {
     .authForTenant(req.user.firebase.tenant);
 
   // Get items from req.body
-  const filteredBody = filterObject(req.body, 'name', 'email');
+  const filteredBody = filterObject(req.body, "name", "email");
 
   // Check if user already exists
   const currentUser = await User.findOne({
@@ -53,18 +53,18 @@ handler.post(async (req, res, next) => {
   });
 
   if (currentUser) {
-    throw new Error('User with email already exists.');
+    throw new Error("User with email already exists.");
   }
 
   // Format body for Google Auth
   let googleFilteredBody = cloneObject(filteredBody);
 
-  googleFilteredBody = renameKey(googleFilteredBody, 'name', 'displayName');
+  googleFilteredBody = renameKey(googleFilteredBody, "name", "displayName");
 
   // Generate invite token
-  const token = crypto.randomBytes(32).toString('hex');
+  const token = crypto.randomBytes(32).toString("hex");
 
-  const inviteToken = crypto.createHash('sha256').update(token).digest('hex');
+  const inviteToken = crypto.createHash("sha256").update(token).digest("hex");
 
   const now = new Date();
 
@@ -73,8 +73,8 @@ handler.post(async (req, res, next) => {
   // Create user in MongoDB
   const user = await User.create({
     ...filteredBody,
-    role: 'user',
-    active: 'pending',
+    role: "user",
+    active: "pending",
     tenant: req.user.tenant_mongo_id,
     inviteToken,
     inviteTokenExpires,
@@ -93,7 +93,7 @@ handler.post(async (req, res, next) => {
 
   // Add custom user values in Firebase
   await tenantAuth.setCustomUserClaims(`${user._id}`, {
-    role: 'user',
+    role: "user",
     tenant_mongo_id: req.user.tenant_mongo_id,
   });
 

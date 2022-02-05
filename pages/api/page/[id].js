@@ -1,10 +1,10 @@
-import nc from 'next-connect';
-import slugify from 'slugify';
+import nc from "next-connect";
+import slugify from "slugify";
 
-import { dbConnect, filterObject } from 'utils';
-import Page from 'models/pageModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withSubscription } from 'middleware/api/withSubscription';
+import { dbConnect, filterObject } from "utils";
+import Page from "models/pageModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withSubscription } from "middleware/api/withSubscription";
 
 dbConnect();
 
@@ -14,7 +14,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -36,7 +36,7 @@ handler.get(async (req, res, next) => {
   });
 
   if (!page) {
-    throw new Error('Page not found.');
+    throw new Error("Page not found.");
   }
 
   return res.status(200).json({
@@ -54,10 +54,10 @@ handler.patch(async (req, res, next) => {
   // Get items from req.body
   const filteredBody = filterObject(
     req.body,
-    'title',
-    'status',
-    'slug',
-    'frame'
+    "title",
+    "status",
+    "slug",
+    "frame"
   );
 
   // Format and check slug
@@ -76,7 +76,7 @@ handler.patch(async (req, res, next) => {
 
     // Throw error if more than one page in use with slug
     if (pageWithSlug && pageWithSlug.id != id) {
-      throw new Error('Slug already in use.');
+      throw new Error("Slug already in use.");
     }
   }
 
@@ -92,7 +92,7 @@ handler.patch(async (req, res, next) => {
   );
 
   if (!page) {
-    throw new Error('Page not found.');
+    throw new Error("Page not found.");
   }
 
   return res.status(200).json({
@@ -114,7 +114,7 @@ handler.delete(async (req, res, next) => {
   });
 
   if (!page) {
-    throw new Error('Page not found.');
+    throw new Error("Page not found.");
   }
 
   return res.status(200).json({

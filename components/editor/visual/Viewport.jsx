@@ -1,12 +1,12 @@
-import { useEditor } from '@craftjs/core';
+import { useEditor } from "@craftjs/core";
 
-import { ToolboxWide } from 'components/editor/visual';
-import { Toolbar } from 'components/editor/visual/toolbar';
-import { Nav } from 'components/nav';
-import { ComponentPanel } from 'components/editor/panels';
-import { MediaModal } from 'components/editor/modal/media/MediaModal';
-import { ContentModal } from 'components/editor/modal/content/ContentModal';
-import { TestimonialModal } from 'components/editor/modal/testimonial/TestimonialModal';
+import { ToolboxWide } from "components/editor/visual";
+import { Toolbar } from "components/editor/visual/toolbar";
+import { Nav } from "components/nav";
+import { ComponentPanel } from "components/editor/panels";
+import { MediaModal } from "components/editor/modal/media/MediaModal";
+import { ContentModal } from "components/editor/modal/content/ContentModal";
+import { TestimonialModal } from "components/editor/modal/testimonial/TestimonialModal";
 
 export const Viewport = ({ children }) => {
   const { connectors } = useEditor((state) => ({
@@ -19,23 +19,23 @@ export const Viewport = ({ children }) => {
       <MediaModal />
       <ContentModal />
       <TestimonialModal />
-      <div className='viewport flex flex-col bg-gray-50 h-screen'>
+      <div className="viewport flex h-screen flex-col bg-gray-50">
         <Nav />
-        <div className='flex' style={{ height: `calc(100% - 4rem)` }}>
+        <div className="flex" style={{ height: `calc(100% - 4rem)` }}>
           <ToolboxWide />
-          <div className='page-container flex-1 min-w-0 flex flex-col overflow-hidden'>
-            <main className='flex-1 flex overflow-hidden'>
-              <div className='flex-1 flex overflow-hidden'>
+          <div className="page-container flex min-w-0 flex-1 flex-col overflow-hidden">
+            <main className="flex flex-1 overflow-hidden">
+              <div className="flex flex-1 overflow-hidden">
                 <section
-                  id='cjs'
-                  className='craftjs-renderer flex-1 overflow-scroll'
+                  id="cjs"
+                  className="craftjs-renderer flex-1 overflow-scroll"
                   ref={(ref) => {
                     connectors.select(connectors.hover(ref, null), null);
                   }}
                 >
-                  <div className='p-12'>{children}</div>
+                  <div className="p-12">{children}</div>
                 </section>
-                <aside className='h-full relative flex flex-col w-80 bg-gray-50 border-l border-gray-200 flex-shrink-0'>
+                <aside className="relative flex h-full w-80 flex-shrink-0 flex-col border-l border-gray-200 bg-gray-50">
                   <Toolbar />
                 </aside>
               </div>

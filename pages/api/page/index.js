@@ -1,9 +1,9 @@
-import nc from 'next-connect';
+import nc from "next-connect";
 
-import { dbConnect, filterObject } from 'utils';
-import Page from 'models/pageModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withSubscription } from 'middleware/api/withSubscription';
+import { dbConnect, filterObject } from "utils";
+import Page from "models/pageModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withSubscription } from "middleware/api/withSubscription";
 
 dbConnect();
 
@@ -13,7 +13,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -28,7 +28,7 @@ handler.use(withSubscription);
 // Create Page
 handler.post(async (req, res, next) => {
   // Get items from req.body
-  const filteredBody = filterObject(req.body, 'title', 'frame');
+  const filteredBody = filterObject(req.body, "title", "frame");
 
   // Create Page in MongoDB
   const page = await Page.create({

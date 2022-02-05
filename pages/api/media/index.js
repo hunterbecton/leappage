@@ -1,9 +1,9 @@
-import nc from 'next-connect';
+import nc from "next-connect";
 
-import { dbConnect } from 'utils';
-import Media from 'models/mediaModel';
-import { withProtect } from 'middleware/api/withProtect';
-import APIFeatures from 'utils/APIFeatures';
+import { dbConnect } from "utils";
+import Media from "models/mediaModel";
+import { withProtect } from "middleware/api/withProtect";
+import APIFeatures from "utils/APIFeatures";
 
 dbConnect();
 
@@ -13,7 +13,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },

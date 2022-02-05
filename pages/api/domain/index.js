@@ -1,10 +1,10 @@
-import nc from 'next-connect';
-import fetch from 'node-fetch';
+import nc from "next-connect";
+import fetch from "node-fetch";
 
-import { dbConnect, filterObject } from 'utils';
-import Tenant from 'models/tenantModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withSubscription } from 'middleware/api/withSubscription';
+import { dbConnect, filterObject } from "utils";
+import Tenant from "models/tenantModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withSubscription } from "middleware/api/withSubscription";
 
 dbConnect();
 
@@ -14,7 +14,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -29,7 +29,7 @@ handler.use(withSubscription);
 // Create domain and update Tenant
 handler.patch(async (req, res, next) => {
   // Get items from req.body
-  const filteredBody = filterObject(req.body, 'domain');
+  const filteredBody = filterObject(req.body, "domain");
 
   // Check if domain is in use
   const domainInUse = await Tenant.findOne({
@@ -37,17 +37,17 @@ handler.patch(async (req, res, next) => {
   });
 
   if (domainInUse) {
-    throw new Error('Domain already in use.');
+    throw new Error("Domain already in use.");
   }
 
   // Create domain in Render
   const response = await fetch(
     `https://api.render.com/v1/services/${process.env.RENDER_SERVICE_ID}/custom-domains`,
     {
-      method: 'POST',
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.RENDER_API}`,
       },
       body: JSON.stringify({ name: filteredBody.domain }),

@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Popover } from '@headlessui/react';
-import { usePopper } from 'react-popper';
-import { SketchPicker } from 'react-color';
+import { useState } from "react";
+import { Popover } from "@headlessui/react";
+import { usePopper } from "react-popper";
+import { SketchPicker } from "react-color";
 
 export const ToolbarColorPicker = ({
   propKey,
@@ -14,10 +14,10 @@ export const ToolbarColorPicker = ({
   let [referenceElement, setReferenceElement] = useState();
   let [popperElement, setPopperElement] = useState();
   let { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement: 'right',
+    placement: "right",
     modifiers: [
       {
-        name: 'offset',
+        name: "offset",
         options: {
           offset: [0, 8],
         },
@@ -29,15 +29,15 @@ export const ToolbarColorPicker = ({
     <div>
       <label
         htmlFor={propKey}
-        className='block text-xs font-medium text-gray-700'
+        className="block text-xs font-medium text-gray-700"
       >
         {label}
       </label>
-      <div className='mt-1 relative'>
+      <div className="relative mt-1">
         <Popover>
           <Popover.Button
             ref={setReferenceElement}
-            className='h-8 w-8 relative rounded-md border border-gray-300 drop-shadow'
+            className="relative h-8 w-8 rounded-md border border-gray-300 drop-shadow"
             style={{
               background: `url('/patterns/transparent.png') no-repeat`,
               boxShadow: `inset 0 0 99999px rgba(${value.r},${value.g},${value.b},${value.a})`,
@@ -45,7 +45,7 @@ export const ToolbarColorPicker = ({
           ></Popover.Button>
           <Popover.Panel
             ref={setPopperElement}
-            className='z-30'
+            className="z-30"
             style={styles.popper}
             {...attributes.popper}
           >
@@ -65,25 +65,25 @@ export const ToolbarColorPicker = ({
 };
 
 const presetColors = [
-  'TRANSPARENT',
-  '#F9FAFB',
-  '#f3f4f6',
-  '#E5E7EB',
-  '#D1D5DB',
-  '#9CA3AF',
-  '#6B7280',
-  '#4B5563',
-  '#374151',
-  '#1f2937',
-  '#111827',
-  '#eff6ff',
-  '#dbeafe',
-  '#bfdbfe',
-  '#93c5fd',
-  '#60a5fa',
-  '#3b82f6',
-  '#2563eb',
-  '#1d4ed8',
-  '#1e40af',
-  '#1e3a8a',
+  "TRANSPARENT",
+  "#F9FAFB",
+  "#f3f4f6",
+  "#E5E7EB",
+  "#D1D5DB",
+  "#9CA3AF",
+  "#6B7280",
+  "#4B5563",
+  "#374151",
+  "#1f2937",
+  "#111827",
+  "#eff6ff",
+  "#dbeafe",
+  "#bfdbfe",
+  "#93c5fd",
+  "#60a5fa",
+  "#3b82f6",
+  "#2563eb",
+  "#1d4ed8",
+  "#1e40af",
+  "#1e3a8a",
 ];

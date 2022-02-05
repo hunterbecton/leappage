@@ -1,10 +1,10 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
-import { TitleFourSettings } from './TitleFourSettings';
+import { TitleFourSettings } from "./TitleFourSettings";
 
 const defaultProps = {
-  subtitle: 'Get Started',
-  title: 'Landing Pages for Sales',
+  subtitle: "Get Started",
+  title: "Landing Pages for Sales",
 };
 
 export const TitleFour = (props) => {
@@ -23,12 +23,12 @@ export const TitleFour = (props) => {
   }));
 
   return (
-    <div ref={connect} className='w-full bg-white px-10 py-4'>
-      <div className='flex flex-col text-center mx-auto max-w-3xl'>
-        <h2 className='text-xs text-blue-500 tracking-widest font-bold title-font mb-1 uppercase'>
+    <div ref={connect} className="w-full bg-white px-10 py-4">
+      <div className="mx-auto flex max-w-3xl flex-col text-center">
+        <h2 className="title-font mb-1 text-xs font-bold uppercase tracking-widest text-blue-500">
           {subtitle}
         </h2>
-        <h1 className='sm:text-3xl text-2xl font-medium title-font text-gray-900'>
+        <h1 className="title-font text-2xl font-medium text-gray-900 sm:text-3xl">
           {title}
         </h1>
       </div>
@@ -37,7 +37,7 @@ export const TitleFour = (props) => {
 };
 
 TitleFour.craft = {
-  displayName: 'Title',
+  displayName: "Title",
   props: defaultProps,
   rules: {
     canDrag: () => true,

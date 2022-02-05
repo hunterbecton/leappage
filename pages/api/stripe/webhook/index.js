@@ -1,11 +1,11 @@
-import { buffer } from 'micro';
-import nc from 'next-connect';
-import Stripe from 'stripe';
+import { buffer } from "micro";
+import nc from "next-connect";
+import Stripe from "stripe";
 
-import Subscription from 'models/subscriptionModel';
-import Tenant from 'models/tenantModel';
-import Product from 'models/productModel';
-import { dbConnect } from 'utils';
+import Subscription from "models/subscriptionModel";
+import Tenant from "models/tenantModel";
+import Product from "models/productModel";
+import { dbConnect } from "utils";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const webhookSecret = process.env.STRIPE_WH_SECRET;
@@ -73,18 +73,18 @@ const handleSubscription = async (event) => {
 handler.post(async (req, res) => {
   let event;
   const buf = await buffer(req);
-  const sig = req.headers['stripe-signature'];
+  const sig = req.headers["stripe-signature"];
 
   event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
 
   switch (event.type) {
-    case 'customer.subscription.created':
+    case "customer.subscription.created":
       await handleSubscription(event);
       break;
-    case 'customer.subscription.updated':
+    case "customer.subscription.updated":
       await handleSubscription(event);
       break;
-    case 'customer.subscription.deleted':
+    case "customer.subscription.deleted":
       await handleSubscription(event);
       break;
     default:

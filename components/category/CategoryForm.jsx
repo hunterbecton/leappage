@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
+import { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
-import { useProgressStore } from 'store';
-import { ConfirmDeleteModal } from 'components/modal';
-import { Button } from 'components/button';
-import { Input } from 'components/form';
-import { useAuth } from 'hooks/useAuth';
-import { restrict } from 'utils';
+import { useProgressStore } from "store";
+import { ConfirmDeleteModal } from "components/modal";
+import { Button } from "components/button";
+import { Input } from "components/form";
+import { useAuth } from "hooks/useAuth";
+import { restrict } from "utils";
 
 const validationSchema = yup.object().shape({
-  title: yup.string().required('Title is required'),
+  title: yup.string().required("Title is required"),
 });
 
 export const CategoryForm = ({ category }) => {
@@ -49,11 +49,11 @@ export const CategoryForm = ({ category }) => {
       };
 
       const res = await fetch(`/api/category/${id}`, {
-        method: 'PATCH',
-        credentials: 'include',
+        method: "PATCH",
+        credentials: "include",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
@@ -63,11 +63,11 @@ export const CategoryForm = ({ category }) => {
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success('Category updated.');
+        toast.success("Category updated.");
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error updating category.');
+      toast.error("Error updating category.");
     }
     setIsUpdating(false);
     setIsAnimating(false);
@@ -79,8 +79,8 @@ export const CategoryForm = ({ category }) => {
 
     try {
       const res = await fetch(`/api/category/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
+        method: "DELETE",
+        credentials: "include",
       });
 
       const { success, data } = await res.json();
@@ -88,12 +88,12 @@ export const CategoryForm = ({ category }) => {
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success('Category deleted.');
-        router.push('/categories/1');
+        toast.success("Category deleted.");
+        router.push("/categories/1");
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error deleting category.');
+      toast.error("Error deleting category.");
     }
 
     setIsConfirmDeleteModalOpen(false);
@@ -110,39 +110,39 @@ export const CategoryForm = ({ category }) => {
         handleConfirmDelete={() => handleDelete()}
       />
       <FormProvider {...methods}>
-        <div className='mt-5 md:mt-0 md:col-span-2'>
+        <div className="mt-5 md:col-span-2 md:mt-0">
           <form>
-            <div className='shadow sm:rounded-md sm:overflow-hidden'>
-              <div className='px-4 py-5 bg-white space-y-6 sm:p-6'>
-                <div className='grid grid-cols-6 gap-6'>
-                  <div className='col-span-6'>
+            <div className="shadow sm:overflow-hidden sm:rounded-md">
+              <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+                <div className="grid grid-cols-6 gap-6">
+                  <div className="col-span-6">
                     <Input
-                      name='title'
-                      label='Title'
-                      placeholder={'Enter title'}
+                      name="title"
+                      label="Title"
+                      placeholder={"Enter title"}
                       register={methods.register}
                       formState={methods.formState}
-                      readOnly={!restrict(['admin', 'editor'], user)}
+                      readOnly={!restrict(["admin", "editor"], user)}
                     />
                   </div>
                 </div>
 
-                <div className='grid grid-cols-6 gap-6'></div>
+                <div className="grid grid-cols-6 gap-6"></div>
               </div>
-              {restrict(['admin', 'editor'], user) && (
-                <div className='px-4 py-3 bg-gray-50 text-right space-x-2 sm:px-6'>
+              {restrict(["admin", "editor"], user) && (
+                <div className="space-x-2 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button
-                    type='button'
-                    variant='ghost'
+                    type="button"
+                    variant="ghost"
                     disabled={isUpdating}
                     onClick={() => setIsConfirmDeleteModalOpen(true)}
-                    text='Delete'
+                    text="Delete"
                   />
                   <Button
-                    type='button'
+                    type="button"
                     disabled={isUpdating}
                     onClick={methods.handleSubmit((data) => handleUpdate(data))}
-                    text='Update'
+                    text="Update"
                   />
                 </div>
               )}

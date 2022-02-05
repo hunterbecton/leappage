@@ -1,5 +1,5 @@
-import { Setup } from 'components/auth';
-import { withTenant } from 'middleware/app/withTenant';
+import { Setup } from "components/auth";
+import { withTenant } from "middleware/app/withTenant";
 
 export default function SetupPage({ tenant }) {
   return <Setup tenant={tenant} />;

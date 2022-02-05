@@ -1,22 +1,22 @@
-import { useEditor } from '@craftjs/core';
-import React from 'react';
-import styled from 'styled-components';
-import { useLayer } from '@craftjs/layers';
+import { useEditor } from "@craftjs/core";
+import React from "react";
+import styled from "styled-components";
+import { useLayer } from "@craftjs/layers";
 
-import { ToolbarLayerName } from './ToolbarLayerName';
-import Arrow from './svg/arrow.svg';
-import Eye from './svg/eye.svg';
-import Linked from './svg/linked.svg';
+import { ToolbarLayerName } from "./ToolbarLayerName";
+import Arrow from "./svg/arrow.svg";
+import Eye from "./svg/eye.svg";
+import Linked from "./svg/linked.svg";
 
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 4px 10px;
-  background: ${({ selected }) => (selected ? '#2680eb' : 'transparent')};
-  color: ${({ selected }) => (selected ? '#fff' : 'inherit')};
+  background: ${({ selected }) => (selected ? "#2680eb" : "transparent")};
+  color: ${({ selected }) => (selected ? "#fff" : "inherit")};
   svg {
-    fill: ${({ selected }) => (selected ? '#fff' : '#808184')};
+    fill: ${({ selected }) => (selected ? "#fff" : "#808184")};
     margin-top: 2px;
   }
   .inner {
@@ -32,7 +32,7 @@ const StyledDiv = styled.div`
         p {
           font-size: 15px;
           line-height: 26px;
-          font-family: 'Inter', sans-serif;
+          font-family: "Inter", sans-serif;
           color: rgba(17, 24, 39, 1);
         }
       }
@@ -66,13 +66,13 @@ const Hide = styled.a`
     opacity: ${(props) => (props.isHidden ? 0.2 : 1)};
   }
   &:after {
-    content: ' ';
+    content: " ";
     width: 2px;
     height: ${(props) => (props.isHidden ? 100 : 0)}%;
     position: absolute;
     left: 2px;
     top: 3px;
-    background: ${(props) => (props.selected ? '#fff' : '#808184')};
+    background: ${(props) => (props.selected ? "#fff" : "#808184")};
     transform: rotate(-45deg);
     transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     transform-origin: 0% 0%;
@@ -119,7 +119,7 @@ export const ToolbarLayerHeader = () => {
       >
         <img src={Eye} />
       </Hide>
-      <div className='inner'>
+      <div className="inner">
         <div ref={layerHeader}>
           {topLevel ? (
             <TopLevelIndicator>
@@ -127,7 +127,7 @@ export const ToolbarLayerHeader = () => {
             </TopLevelIndicator>
           ) : null}
 
-          <div className='layer-name s'>
+          <div className="layer-name s">
             <ToolbarLayerName />
           </div>
           <div>

@@ -1,26 +1,26 @@
-import nc from 'next-connect';
-import multer from 'multer';
-import sharp from 'sharp';
-import mongoose from 'mongoose';
-import Stripe from 'stripe';
+import nc from "next-connect";
+import multer from "multer";
+import sharp from "sharp";
+import mongoose from "mongoose";
+import Stripe from "stripe";
 
-import { dbConnect, filterObject, cloneObject, renameKey } from 'utils';
-import User from 'models/userModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withRestrict } from 'middleware/api/withRestrict';
-import { withSubscription } from 'middleware/api/withSubscription';
-import storage from 'services/google';
-import { firebaseAdmin } from 'services/firebaseAdmin';
+import { dbConnect, filterObject, cloneObject, renameKey } from "utils";
+import User from "models/userModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withRestrict } from "middleware/api/withRestrict";
+import { withSubscription } from "middleware/api/withSubscription";
+import storage from "services/google";
+import { firebaseAdmin } from "services/firebaseAdmin";
 
 dbConnect();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
+  if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    throw new Error('Only upload JPG or PNG files.');
+    throw new Error("Only upload JPG or PNG files.");
   }
 };
 
@@ -38,7 +38,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -51,7 +51,7 @@ handler.use(withProtect);
 handler.use(withSubscription);
 
 // Restrict routes
-handler.use(withRestrict('admin', 'editor'));
+handler.use(withRestrict("admin", "editor"));
 
 // Delete Teammate
 handler.delete(async (req, res, next) => {
@@ -71,13 +71,13 @@ handler.delete(async (req, res, next) => {
     {
       $match: {
         tenant: ObjectId(req.user.tenant_mongo_id),
-        role: 'admin',
+        role: "admin",
       },
     },
     {
       $group: {
         _id: {
-          role: '$role',
+          role: "$role",
         },
         total: { $sum: 1 },
       },
@@ -87,12 +87,12 @@ handler.delete(async (req, res, next) => {
   // Ensure account has at least one admin
   if (admins[0].total <= 1) {
     // Check if user being deleted is admin
-    const isAdmin = await User.findOne({ _id: id, role: 'admin' });
+    const isAdmin = await User.findOne({ _id: id, role: "admin" });
 
     // Throw error if only admin is trying to update
     // role to non admin
     if (isAdmin) {
-      throw new Error('Each account needs at least one admin.');
+      throw new Error("Each account needs at least one admin.");
     }
   }
 
@@ -108,7 +108,7 @@ handler.delete(async (req, res, next) => {
   });
 
   if (!user) {
-    throw new Error('Teammate not found.');
+    throw new Error("Teammate not found.");
   }
 
   // Delete user in Google
@@ -126,7 +126,7 @@ handler.delete(async (req, res, next) => {
 });
 
 // Use Multer middleware
-handler.use(upload.single('file'));
+handler.use(upload.single("file"));
 
 // Update Teammate
 handler.patch(async (req, res, next) => {
@@ -140,7 +140,7 @@ handler.patch(async (req, res, next) => {
     .authForTenant(req.user.firebase.tenant);
 
   // Get items from req.body
-  const filteredBody = filterObject(req.body, 'name', 'role');
+  const filteredBody = filterObject(req.body, "name", "role");
 
   // Get account admins
   const admins = await User.aggregate([
@@ -154,13 +154,13 @@ handler.patch(async (req, res, next) => {
     {
       $match: {
         tenant: ObjectId(req.user.tenant_mongo_id),
-        role: 'admin',
+        role: "admin",
       },
     },
     {
       $group: {
         _id: {
-          role: '$role',
+          role: "$role",
         },
         total: { $sum: 1 },
       },
@@ -170,32 +170,32 @@ handler.patch(async (req, res, next) => {
   // Ensure account has at least one admin
   if (admins[0].total <= 1) {
     // Check if user being updated is admin
-    const isAdmin = await User.findOne({ _id: id, role: 'admin' });
+    const isAdmin = await User.findOne({ _id: id, role: "admin" });
 
     // Throw error if only admin is trying to update
     // role to non admin
-    if (isAdmin && filteredBody.role !== 'admin') {
-      throw new Error('Each account needs at least one admin.');
+    if (isAdmin && filteredBody.role !== "admin") {
+      throw new Error("Each account needs at least one admin.");
     }
   }
 
   // Format body for Google Auth
   let googleFilteredBody = cloneObject(filteredBody);
 
-  googleFilteredBody = renameKey(googleFilteredBody, 'name', 'displayName');
+  googleFilteredBody = renameKey(googleFilteredBody, "name", "displayName");
 
   if (req.file) {
     // Format image
     const formmatedImage = await sharp(req.file.buffer)
       .resize(100, 100)
-      .toFormat('jpeg')
+      .toFormat("jpeg")
       .jpeg({ quality: 80 })
       .toBuffer();
 
-    let ext = req.file.mimetype.split('/')[1];
+    let ext = req.file.mimetype.split("/")[1];
     // Upload preview file to Google
     const path = `${req.user.tenant_mongo_id}-${new Date().getTime()}`;
-    const bucketName = 'ace-case-336816.appspot.com';
+    const bucketName = "ace-case-336816.appspot.com";
     const bucket = storage.bucket(bucketName);
     const file = bucket.file(
       `tenants/${req.user.firebase.tenant}/account/${path}.${ext}`

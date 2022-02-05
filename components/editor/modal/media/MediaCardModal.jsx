@@ -1,5 +1,5 @@
-import { useEditorStore } from 'store';
-import { useEditor } from '@craftjs/core';
+import { useEditorStore } from "store";
+import { useEditor } from "@craftjs/core";
 
 export const MediaCardModal = ({ item }) => {
   const { actions } = useEditor();
@@ -28,23 +28,23 @@ export const MediaCardModal = ({ item }) => {
   };
 
   return (
-    <li className='relative'>
-      <div className='group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-blue-500 overflow-hidden'>
+    <li className="relative">
+      <div className="group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
         <img
           src={item.url}
           alt={item.title}
-          loading='lazy'
-          className='p-4 object-contain pointer-events-none group-hover:opacity-75'
+          loading="lazy"
+          className="pointer-events-none object-contain p-4 group-hover:opacity-75"
         />
         <button
-          type='button'
+          type="button"
           onClick={handleSelect}
-          className='absolute inset-0 focus:outline-none'
+          className="absolute inset-0 focus:outline-none"
         >
-          <span className='sr-only'>View details for image</span>
+          <span className="sr-only">View details for image</span>
         </button>
       </div>
-      <p className='mt-2 block text-xs font-medium text-gray-900 truncate pointer-events-none'>
+      <p className="pointer-events-none mt-2 block truncate text-xs font-medium text-gray-900">
         {item.title}
       </p>
     </li>

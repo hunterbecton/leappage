@@ -1,10 +1,10 @@
-import nc from 'next-connect';
+import nc from "next-connect";
 
-import { dbConnect } from 'utils';
-import Media from 'models/mediaModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withRestrict } from 'middleware/api/withRestrict';
-import { withSubscription } from 'middleware/api/withSubscription';
+import { dbConnect } from "utils";
+import Media from "models/mediaModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withRestrict } from "middleware/api/withRestrict";
+import { withSubscription } from "middleware/api/withSubscription";
 
 dbConnect();
 
@@ -14,7 +14,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -27,7 +27,7 @@ handler.use(withProtect);
 handler.use(withSubscription);
 
 // Restrict routes
-handler.use(withRestrict('admin', 'editor'));
+handler.use(withRestrict("admin", "editor"));
 
 handler.delete(async (req, res, next) => {
   const { id } = req.query;
@@ -39,7 +39,7 @@ handler.delete(async (req, res, next) => {
   });
 
   if (!media) {
-    throw new Error('Media not found.');
+    throw new Error("Media not found.");
   }
 
   return res.status(200).json({

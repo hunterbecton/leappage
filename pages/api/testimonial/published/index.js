@@ -1,8 +1,8 @@
-import nc from 'next-connect';
+import nc from "next-connect";
 
-import { dbConnect } from 'utils';
-import Testimonial from 'models/testimonialModel';
-import APIFeatures from 'utils/APIFeatures';
+import { dbConnect } from "utils";
+import Testimonial from "models/testimonialModel";
+import APIFeatures from "utils/APIFeatures";
 
 dbConnect();
 
@@ -15,14 +15,14 @@ const handler = nc({
 
 // Get all published Testimonials
 handler.get(async (req, res, next) => {
-  let filter = { status: 'published' };
+  let filter = { status: "published" };
 
   const totalTestimonials = await Testimonial.countDocuments(filter);
 
   const features = new APIFeatures(
     Testimonial.find(filter).populate({
-      path: 'categoryInfo',
-      select: 'title',
+      path: "categoryInfo",
+      select: "title",
     }),
     req.query,
     req.url

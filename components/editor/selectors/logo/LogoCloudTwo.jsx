@@ -1,38 +1,38 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
-import { LogoCloudTwoSettings } from './LogoCloudTwoSettings';
+import { LogoCloudTwoSettings } from "./LogoCloudTwoSettings";
 
 const defaultProps = {
   subtitle: `Trusted by`,
   logos: [
     {
-      id: 'kGKk4cRXVHAnYpU7',
-      company: 'Company',
-      src: '/demo/demo-logo-1.svg',
+      id: "kGKk4cRXVHAnYpU7",
+      company: "Company",
+      src: "/demo/demo-logo-1.svg",
       height: 1.75,
     },
     {
-      id: 'UZXzhxeDgYnhCWg6',
-      company: 'Company',
-      src: '/demo/demo-logo-2.svg',
+      id: "UZXzhxeDgYnhCWg6",
+      company: "Company",
+      src: "/demo/demo-logo-2.svg",
       height: 1.75,
     },
     {
-      id: 'wzaaKDivX9A6d7TT',
-      company: 'Company',
-      src: '/demo/demo-logo-3.svg',
+      id: "wzaaKDivX9A6d7TT",
+      company: "Company",
+      src: "/demo/demo-logo-3.svg",
       height: 2.25,
     },
     {
-      id: '4TrrPH7pW2ss27Py',
-      company: 'Company',
-      src: '/demo/demo-logo-4.svg',
+      id: "4TrrPH7pW2ss27Py",
+      company: "Company",
+      src: "/demo/demo-logo-4.svg",
       height: 2.5,
     },
     {
-      id: 'axs4QNzKGpnHfw49',
-      company: 'Company',
-      src: '/demo/demo-logo-5.svg',
+      id: "axs4QNzKGpnHfw49",
+      company: "Company",
+      src: "/demo/demo-logo-5.svg",
       height: 1.5,
     },
   ],
@@ -56,19 +56,19 @@ export const LogoCloudTwo = (props) => {
   return (
     <section
       ref={connect}
-      className='box-border px-5 py-12 text-gray-800 bg-white xl:my-0'
+      className="box-border bg-white px-5 py-12 text-gray-800 xl:my-0"
     >
-      <div className='flex flex-wrap items-center justify-center px-5 mx-auto md:px-12 md:flex-wrap lg:justify-between max-w-7xl'>
-        <span className='box-border block w-full mb-5 text-xs font-bold text-center text-gray-400 uppercase lg:w-auto lg:inline lg:mb-0'>
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center px-5 md:flex-wrap md:px-12 lg:justify-between">
+        <span className="mb-5 box-border block w-full text-center text-xs font-bold uppercase text-gray-400 lg:mb-0 lg:inline lg:w-auto">
           {subtitle}
         </span>
         {logos.map((logo) => (
           <div
             key={logo.id}
-            className='box-border inline-flex items-center px-5 py-0 my-2 text-center text-gray-800'
+            className="my-2 box-border inline-flex items-center px-5 py-0 text-center text-gray-800"
           >
             <img
-              className='w-auto fill-current'
+              className="w-auto fill-current"
               style={{ height: `${logo.height}rem` }}
               src={logo.src}
               alt={logo.company}
@@ -81,7 +81,7 @@ export const LogoCloudTwo = (props) => {
 };
 
 LogoCloudTwo.craft = {
-  displayName: 'Logos',
+  displayName: "Logos",
   props: defaultProps,
   rules: {
     canDrag: () => true,

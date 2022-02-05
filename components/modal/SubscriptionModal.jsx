@@ -1,8 +1,8 @@
-import { Fragment, useRef } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { BiCreditCard } from 'react-icons/bi';
+import { Fragment, useRef } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { BiCreditCard } from "react-icons/bi";
 
-import { classNames, formatPrice } from 'utils';
+import { classNames, formatPrice } from "utils";
 
 export const SubscriptionModal = ({
   isOpen,
@@ -22,57 +22,57 @@ export const SubscriptionModal = ({
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
         static
-        as='div'
-        className='fixed z-10 inset-0 overflow-y-auto'
+        as="div"
+        className="fixed inset-0 z-10 overflow-y-auto"
         initialFocus={cancelButtonRef}
         onClose={setIsOpen}
       >
-        <div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
+        <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
-            enter='ease-out duration-300'
-            enterFrom='opacity-0'
-            enterTo='opacity-100'
-            leave='ease-in duration-200'
-            leaveFrom='opacity-100'
-            leaveTo='opacity-0'
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            <Dialog.Overlay className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity' />
+            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
           <span
-            className='hidden sm:inline-block sm:align-middle sm:h-screen'
-            aria-hidden='true'
+            className="hidden sm:inline-block sm:h-screen sm:align-middle"
+            aria-hidden="true"
           >
             &#8203;
           </span>
           <Transition.Child
             as={Fragment}
-            enter='ease-out duration-300'
-            enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
-            enterTo='opacity-100 translate-y-0 sm:scale-100'
-            leave='ease-in duration-200'
-            leaveFrom='opacity-100 translate-y-0 sm:scale-100'
-            leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            enterTo="opacity-100 translate-y-0 sm:scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className='inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6'>
+            <div className="inline-block overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle">
               <div>
-                <div className='mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100'>
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
                   <BiCreditCard
-                    className='h-6 w-6 text-green-600'
-                    aria-hidden='true'
+                    className="h-6 w-6 text-green-600"
+                    aria-hidden="true"
                   />
                 </div>
-                <div className='mt-3 text-center sm:mt-5'>
+                <div className="mt-3 text-center sm:mt-5">
                   <Dialog.Title
-                    as='h3'
-                    className='text-lg leading-6 font-medium text-gray-900'
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
                   >
                     Complete subscription
                   </Dialog.Title>
-                  <div className='mt-2'>
-                    <p className='text-sm text-gray-500'>
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-500">
                       You are subscribing to {product.title} for $
                       {formatPrice(paymentMonthly)} per month. This subscription
                       allows up to {product.exportAmount} exports per month. You
@@ -82,30 +82,30 @@ export const SubscriptionModal = ({
                   <div>
                     {cardElement}
                     {error && (
-                      <p className='mt-2 text-left text-sm text-red-600'>
+                      <p className="mt-2 text-left text-sm text-red-600">
                         {error}
                       </p>
                     )}
                   </div>
                 </div>
               </div>
-              <div className='mt-10 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense'>
+              <div className="mt-10 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                 <button
-                  type='button'
+                  type="button"
                   disabled={processing || disabled || succeeded}
                   className={classNames(
                     processing
-                      ? 'disabled:opacity-50 disabled:cursor-wait'
-                      : '',
-                    'w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:col-start-2 sm:text-sm'
+                      ? "disabled:cursor-wait disabled:opacity-50"
+                      : "",
+                    "inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
                   )}
                   onClick={onClick}
                 >
                   Subscribe
                 </button>
                 <button
-                  type='button'
-                  className='mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:col-start-1 sm:text-sm'
+                  type="button"
+                  className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
                   onClick={() => setIsOpen(false)}
                   ref={cancelButtonRef}
                 >

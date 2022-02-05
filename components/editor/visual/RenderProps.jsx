@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import { useEditor } from '@craftjs/core';
+import { useEditor } from "@craftjs/core";
 
 export const RenderProps = ({ children }) => {
   const [customProps, setCustomProps] = useState(null);
@@ -11,7 +11,7 @@ export const RenderProps = ({ children }) => {
 
   // Get custom props from localstorage
   useEffect(() => {
-    const customProps = localStorage.getItem('props');
+    const customProps = localStorage.getItem("props");
 
     if (customProps) {
       setCustomProps(JSON.parse(customProps));

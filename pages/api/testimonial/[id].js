@@ -1,11 +1,11 @@
-import nc from 'next-connect';
-import mongoose from 'mongoose';
+import nc from "next-connect";
+import mongoose from "mongoose";
 
-import { dbConnect, filterObject } from 'utils';
-import Testimonial from 'models/testimonialModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withSubscription } from 'middleware/api/withSubscription';
-import { withRestrict } from 'middleware/api/withRestrict';
+import { dbConnect, filterObject } from "utils";
+import Testimonial from "models/testimonialModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withSubscription } from "middleware/api/withSubscription";
+import { withRestrict } from "middleware/api/withRestrict";
 
 dbConnect();
 
@@ -23,7 +23,7 @@ handler.use(withProtect);
 handler.use(withSubscription);
 
 // Restrict routes
-handler.use(withRestrict('admin', 'editor'));
+handler.use(withRestrict("admin", "editor"));
 
 // Update Testimonial
 handler.patch(async (req, res, next) => {
@@ -32,14 +32,14 @@ handler.patch(async (req, res, next) => {
   // Get items from req.body
   const filteredBody = filterObject(
     req.body,
-    'title',
-    'quote',
-    'profileImage',
-    'name',
-    'company',
-    'position',
-    'category',
-    'status'
+    "title",
+    "quote",
+    "profileImage",
+    "name",
+    "company",
+    "position",
+    "category",
+    "status"
   );
 
   // Remove category if not valid Mongoose Object ID
@@ -58,7 +58,7 @@ handler.patch(async (req, res, next) => {
   );
 
   if (!testimonial) {
-    throw new Error('Testimonial not found.');
+    throw new Error("Testimonial not found.");
   }
 
   return res.status(200).json({
@@ -79,7 +79,7 @@ handler.delete(async (req, res, next) => {
   });
 
   if (!testimonial) {
-    throw new Error('Testimonial not found.');
+    throw new Error("Testimonial not found.");
   }
 
   return res.status(200).json({

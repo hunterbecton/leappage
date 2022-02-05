@@ -1,46 +1,46 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
-import { StepTwoSettings } from './StepTwoSettings';
-import { Icon } from 'components/icon';
+import { StepTwoSettings } from "./StepTwoSettings";
+import { Icon } from "components/icon";
 
 const defaultProps = {
-  iconClass: '',
+  iconClass: "",
   steps: [
     {
-      id: 'fuaYf8xEYFwQyAuw',
-      title: 'Configure',
+      id: "fuaYf8xEYFwQyAuw",
+      title: "Configure",
       description:
-        'Configure your contact details and notification preferences.',
+        "Configure your contact details and notification preferences.",
       icon: {
-        id: 'friTr1zgaALbd6JuCd8d4w',
-        name: 'Notification',
+        id: "friTr1zgaALbd6JuCd8d4w",
+        name: "Notification",
       },
     },
     {
-      id: 'nxP2ghLBa8Tm6oGj',
-      title: 'Import',
+      id: "nxP2ghLBa8Tm6oGj",
+      title: "Import",
       description: `Don't start empty. Import your data and start right away.`,
       icon: {
-        id: 'bMyTcfvVLTsZ29emP7BQCN',
-        name: 'Import',
+        id: "bMyTcfvVLTsZ29emP7BQCN",
+        name: "Import",
       },
     },
     {
-      id: 'sVqZY8NWWNNCB9Dm',
-      title: 'Invite',
-      description: 'Invite team members to join and start collaborating.',
+      id: "sVqZY8NWWNNCB9Dm",
+      title: "Invite",
+      description: "Invite team members to join and start collaborating.",
       icon: {
-        id: '1spUQ1q2oaqR1wFkKhX96d',
-        name: 'Group',
+        id: "1spUQ1q2oaqR1wFkKhX96d",
+        name: "Group",
       },
     },
     {
-      id: 's7YnLFiDL7kme2X2',
-      title: 'Integrate',
-      description: 'Integrate with your favorite apps and get more done.',
+      id: "s7YnLFiDL7kme2X2",
+      title: "Integrate",
+      description: "Integrate with your favorite apps and get more done.",
       icon: {
-        id: 'biou2LvQzWiAPZCVYwfo5U',
-        name: 'Link Alt',
+        id: "biou2LvQzWiAPZCVYwfo5U",
+        name: "Link Alt",
       },
     },
   ],
@@ -62,28 +62,28 @@ export const StepTwo = (props) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 md:py-16 px-10'>
-      <div className='mx-auto max-w-7xl flex flex-wrap'>
+    <section ref={connect} className="w-full bg-white py-12 px-10 md:py-16">
+      <div className="mx-auto flex max-w-7xl flex-wrap">
         {steps.map((step, i) => (
           <div
             key={step.id}
-            className='flex relative pt-10 pb-20 sm:items-center md:w-2/3 mx-auto'
+            className="relative mx-auto flex pt-10 pb-20 sm:items-center md:w-2/3"
           >
-            <div className='h-full w-6 absolute inset-0 flex items-center justify-center'>
-              <div className='h-full w-1 bg-gray-200 pointer-events-none'></div>
+            <div className="absolute inset-0 flex h-full w-6 items-center justify-center">
+              <div className="pointer-events-none h-full w-1 bg-gray-200"></div>
             </div>
-            <div className='flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-blue-500 text-white relative z-10 title-font font-medium text-sm'>
+            <div className="title-font relative z-10 mt-10 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 text-sm font-medium text-white sm:mt-0">
               {i + 1}
             </div>
-            <div className='flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row'>
-              <div className='flex-shrink-0 w-16 h-16 bg-blue-100 text-blue-500 rounded-full inline-flex items-center justify-center'>
-                <Icon id={step.icon.id} renderStyle='w-8 h-8 text-blue-500' />
+            <div className="flex flex-grow flex-col items-start pl-6 sm:flex-row sm:items-center md:pl-8">
+              <div className="inline-flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-500">
+                <Icon id={step.icon.id} renderStyle="w-8 h-8 text-blue-500" />
               </div>
-              <div className='flex-grow sm:pl-6 mt-6 sm:mt-0'>
-                <h2 className='font-medium title-font text-gray-900 mb-1 text-xl'>
+              <div className="mt-6 flex-grow sm:mt-0 sm:pl-6">
+                <h2 className="title-font mb-1 text-xl font-medium text-gray-900">
                   {step.title}
                 </h2>
-                <p className='leading-relaxed text-gray-500'>
+                <p className="leading-relaxed text-gray-500">
                   {step.description}
                 </p>
               </div>
@@ -96,7 +96,7 @@ export const StepTwo = (props) => {
 };
 
 StepTwo.craft = {
-  displayName: 'Steps',
+  displayName: "Steps",
   props: defaultProps,
   rules: {
     canDrag: () => true,

@@ -1,10 +1,10 @@
 import {
   CreateSubscriptionForm,
   ManageSubscriptionForm,
-} from 'components/account';
-import { AccountLayout } from 'components/layout';
-import { withProtect } from 'middleware/app/withProtect';
-import { withSubscription } from 'middleware/app/withSubscription';
+} from "components/account";
+import { AccountLayout } from "components/layout";
+import { withProtect } from "middleware/app/withProtect";
+import { withSubscription } from "middleware/app/withSubscription";
 
 export default function AccountSubscription({ subscription }) {
   return (
@@ -21,7 +21,7 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };

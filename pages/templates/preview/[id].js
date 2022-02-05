@@ -1,18 +1,18 @@
-import lz from 'lzutf8';
-import { NextSeo } from 'next-seo';
-import ReactDOMServer from 'react-dom/server';
-import parse from 'html-react-parser';
+import lz from "lzutf8";
+import { NextSeo } from "next-seo";
+import ReactDOMServer from "react-dom/server";
+import parse from "html-react-parser";
 
-import { withProtect } from 'middleware/app/withProtect';
-import { withTemplate } from 'middleware/app/withTemplate';
-import { deserializeNodes, renderNodesToJSX } from 'craft/utils';
+import { withProtect } from "middleware/app/withProtect";
+import { withTemplate } from "middleware/app/withTemplate";
+import { deserializeNodes, renderNodesToJSX } from "craft/utils";
 
 export default function PreviewTemplate({ html, template }) {
   return (
     <>
       <NextSeo
-        title={template.title ? template.title : 'Untitled Template'}
-        description='Your custom content hub created by LeapPage.'
+        title={template.title ? template.title : "Untitled Template"}
+        description="Your custom content hub created by LeapPage."
         noindex={true}
         nofollow={true}
       />
@@ -27,7 +27,7 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };

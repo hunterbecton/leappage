@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useEditor } from '@craftjs/core';
-import ReactTooltip from 'react-tooltip';
+import { useState } from "react";
+import { useEditor } from "@craftjs/core";
+import ReactTooltip from "react-tooltip";
 
 export const ToolboxButton = (props) => {
   const { component, icon, toolTip } = props;
@@ -18,17 +18,17 @@ export const ToolboxButton = (props) => {
         create(ref, component);
         setToolTipRef(ref);
       }}
-      className='flex items-center p-4 rounded-lg text-gray-200 hover:bg-gray-800 cursor-move'
+      className="flex cursor-move items-center rounded-lg p-4 text-gray-200 hover:bg-gray-800"
       onMouseEnter={() => ReactTooltip.show(toolTipRef)}
       onMouseLeave={() => ReactTooltip.hide(toolTipRef)}
     >
       {icon}
-      <span className='sr-only'>{toolTip}</span>
+      <span className="sr-only">{toolTip}</span>
       <ReactTooltip
-        place='right'
-        padding='0.5rem 1rem'
-        backgroundColor='#1f2937'
-        textColor='#E5E7EB'
+        place="right"
+        padding="0.5rem 1rem"
+        backgroundColor="#1f2937"
+        textColor="#E5E7EB"
       />
     </div>
   );

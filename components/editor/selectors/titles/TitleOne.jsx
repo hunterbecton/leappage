@@ -1,9 +1,9 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
-import { TitleOneSettings } from './TitleOneSettings';
+import { TitleOneSettings } from "./TitleOneSettings";
 
 const defaultProps = {
-  title: 'Landing Pages for Sales',
+  title: "Landing Pages for Sales",
 };
 
 export const TitleOne = (props) => {
@@ -22,9 +22,9 @@ export const TitleOne = (props) => {
   }));
 
   return (
-    <div ref={connect} className='w-full bg-white px-10 py-4'>
-      <div className='flex flex-col text-center mx-auto max-w-3xl'>
-        <h1 className='sm:text-3xl text-2xl font-medium title-font text-gray-900'>
+    <div ref={connect} className="w-full bg-white px-10 py-4">
+      <div className="mx-auto flex max-w-3xl flex-col text-center">
+        <h1 className="title-font text-2xl font-medium text-gray-900 sm:text-3xl">
           {title}
         </h1>
       </div>
@@ -33,7 +33,7 @@ export const TitleOne = (props) => {
 };
 
 TitleOne.craft = {
-  displayName: 'Title',
+  displayName: "Title",
   props: defaultProps,
   rules: {
     canDrag: () => true,

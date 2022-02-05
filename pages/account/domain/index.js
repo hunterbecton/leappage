@@ -1,8 +1,8 @@
-import { CreateDomainForm, ManageDomainForm } from 'components/account';
-import { AccountLayout } from 'components/layout';
-import { withProtect } from 'middleware/app/withProtect';
-import { withTenant } from 'middleware/app/withTenant';
-import { withDomain } from 'middleware/app/withDomain';
+import { CreateDomainForm, ManageDomainForm } from "components/account";
+import { AccountLayout } from "components/layout";
+import { withProtect } from "middleware/app/withProtect";
+import { withTenant } from "middleware/app/withTenant";
+import { withDomain } from "middleware/app/withDomain";
 
 export default function AccountDomain({ tenant, domainStatus }) {
   return (
@@ -21,7 +21,7 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };
@@ -38,7 +38,7 @@ export async function getServerSideProps(ctx) {
     };
   }
 
-  let domainStatus = 'Unverified';
+  let domainStatus = "Unverified";
 
   if (tenant.domain) {
     domainStatus = await withDomain(tenant.domain);

@@ -1,9 +1,9 @@
-import { MediaModal } from 'components/modal/media';
-import { BiErrorCircle, BiImage } from 'react-icons/bi';
+import { MediaModal } from "components/modal/media";
+import { BiErrorCircle, BiImage } from "react-icons/bi";
 
-import { classNames } from 'utils';
-import { useMediaModalStore } from 'store';
-import { Button } from 'components/button';
+import { classNames } from "utils";
+import { useMediaModalStore } from "store";
+import { Button } from "components/button";
 
 export const ImageInput = ({
   name,
@@ -38,34 +38,34 @@ export const ImageInput = ({
       <div>
         <label
           htmlFor={name}
-          className='block text-sm font-medium text-gray-700'
+          className="block text-sm font-medium text-gray-700"
         >
           {label}
         </label>
-        <div className='w-full'>
-          <div className='relative max-w-sm mt-1'>
-            <div className='relative block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden'>
+        <div className="w-full">
+          <div className="relative mt-1 max-w-sm">
+            <div className="aspect-w-10 aspect-h-7 relative block w-full overflow-hidden rounded-lg bg-gray-100">
               <img
                 src={src}
-                alt='Image input source'
-                className='p-4 object-contain'
+                alt="Image input source"
+                className="object-contain p-4"
               />
             </div>
           </div>
         </div>
         {!readOnly && (
           <Button
-            customClassName='mt-4'
-            text='Select Image'
-            variant='ghost'
+            customClassName="mt-4"
+            text="Select Image"
+            variant="ghost"
             onClick={handleSelect}
           />
         )}
         {errors[name] && (
-          <p className='mt-2 text-sm text-red-600'>{errors[name].message}</p>
+          <p className="mt-2 text-sm text-red-600">{errors[name].message}</p>
         )}
         {helpText && (
-          <p className='mt-2 text-sm text-gray-500' id='email-description'>
+          <p className="mt-2 text-sm text-gray-500" id="email-description">
             {helpText}
           </p>
         )}
@@ -76,10 +76,10 @@ export const ImageInput = ({
 
 ImageInput.defaultProps = {
   helpText: false,
-  variant: 'default',
-  placeholder: '',
+  variant: "default",
+  placeholder: "",
   readOnly: false,
-  type: 'text',
+  type: "text",
   register: () => null,
   formState: {
     errors: [],

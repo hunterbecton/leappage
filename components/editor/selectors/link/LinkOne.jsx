@@ -1,41 +1,41 @@
-import { useNode } from '@craftjs/core';
-import { Icon } from 'components/icon/Icon';
+import { useNode } from "@craftjs/core";
+import { Icon } from "components/icon/Icon";
 
-import { LinkOneSettings } from './LinkOneSettings';
+import { LinkOneSettings } from "./LinkOneSettings";
 
 const defaultProps = {
   links: [
     {
-      id: 'MyEvPm4XtMxVQtYM',
-      title: 'Custom Link',
-      description: 'View your custom link for discussed service plan.',
-      ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      id: "MyEvPm4XtMxVQtYM",
+      title: "Custom Link",
+      description: "View your custom link for discussed service plan.",
+      ctaText: "Custom Link",
+      ctaLink: "https://leappage.com",
       icon: {
-        id: 'biou2LvQzWiAPZCVYwfo5U',
-        name: 'Link Alt',
+        id: "biou2LvQzWiAPZCVYwfo5U",
+        name: "Link Alt",
       },
     },
     {
-      id: 'HJZMiNte3TfvPtyB',
-      title: 'Custom Link',
-      description: 'View your custom link for discussed service plan.',
-      ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      id: "HJZMiNte3TfvPtyB",
+      title: "Custom Link",
+      description: "View your custom link for discussed service plan.",
+      ctaText: "Custom Link",
+      ctaLink: "https://leappage.com",
       icon: {
-        id: 'biou2LvQzWiAPZCVYwfo5U',
-        name: 'Link Alt',
+        id: "biou2LvQzWiAPZCVYwfo5U",
+        name: "Link Alt",
       },
     },
     {
-      id: 'UGeoR7XeGd9NuQoX',
-      title: 'Custom Link',
-      description: 'View your custom link for discussed service plan.',
-      ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      id: "UGeoR7XeGd9NuQoX",
+      title: "Custom Link",
+      description: "View your custom link for discussed service plan.",
+      ctaText: "Custom Link",
+      ctaLink: "https://leappage.com",
       icon: {
-        id: 'biou2LvQzWiAPZCVYwfo5U',
-        name: 'Link Alt',
+        id: "biou2LvQzWiAPZCVYwfo5U",
+        name: "Link Alt",
       },
     },
   ],
@@ -57,46 +57,46 @@ export const LinkOne = (props) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 md:py-16 px-10'>
-      <div className='mx-auto max-w-7xl flex flex-wrap'>
-        <div className='grid grid-cols-12 gap-6 w-full'>
+    <section ref={connect} className="w-full bg-white py-12 px-10 md:py-16">
+      <div className="mx-auto flex max-w-7xl flex-wrap">
+        <div className="grid w-full grid-cols-12 gap-6">
           {links.map((link) => (
             <div
               key={link.id}
-              className='col-span-12 md:col-span-6 lg:col-span-4'
+              className="col-span-12 md:col-span-6 lg:col-span-4"
             >
-              <div className='flex rounded-lg h-full bg-gray-100 p-8 flex-col'>
-                <div className='flex items-center mb-3'>
-                  <div className='w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0'>
+              <div className="flex h-full flex-col rounded-lg bg-gray-100 p-8">
+                <div className="mb-3 flex items-center">
+                  <div className="mr-3 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 text-white">
                     <Icon id={link.icon.id} />
                   </div>
-                  <h2 className='text-gray-900 text-lg title-font font-medium'>
+                  <h2 className="title-font text-lg font-medium text-gray-900">
                     {link.title}
                   </h2>
                 </div>
-                <div className='flex-grow'>
-                  <p className='leading-relaxed text-gray-500'>
+                <div className="flex-grow">
+                  <p className="leading-relaxed text-gray-500">
                     {link.description}
                   </p>
                   <a
                     href={link.ctaLink}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='inline-flex items-center mt-3 text-blue-500 transition hover:text-blue-600 group'
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group mt-3 inline-flex items-center text-blue-500 transition hover:text-blue-600"
                   >
                     {link.ctaText}
                     <svg
-                      className='w-4 h-4 mt-0.5 ml-1'
-                      fill='none'
-                      stroke='currentColor'
-                      viewBox='0 0 24 24'
-                      xmlns='http://www.w3.org/2000/svg'
+                      className="mt-0.5 ml-1 h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth='2'
-                        d='M9 5l7 7-7 7'
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5l7 7-7 7"
                       ></path>
                     </svg>
                   </a>
@@ -111,7 +111,7 @@ export const LinkOne = (props) => {
 };
 
 LinkOne.craft = {
-  displayName: 'Links',
+  displayName: "Links",
   props: defaultProps,
   rules: {
     canDrag: () => true,

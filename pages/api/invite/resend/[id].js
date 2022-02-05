@@ -1,13 +1,13 @@
-import nc from 'next-connect';
-import crypto from 'crypto';
+import nc from "next-connect";
+import crypto from "crypto";
 
-import { dbConnect } from 'utils';
-import User from 'models/userModel';
-import Tenant from 'models/tenantModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withRestrict } from 'middleware/api/withRestrict';
-import { withSubscription } from 'middleware/api/withSubscription';
-import Email from 'utils/email';
+import { dbConnect } from "utils";
+import User from "models/userModel";
+import Tenant from "models/tenantModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withRestrict } from "middleware/api/withRestrict";
+import { withSubscription } from "middleware/api/withSubscription";
+import Email from "utils/email";
 
 dbConnect();
 
@@ -17,7 +17,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -30,7 +30,7 @@ handler.use(withProtect);
 handler.use(withSubscription);
 
 // Restrict routes
-handler.use(withRestrict('admin', 'editor'));
+handler.use(withRestrict("admin", "editor"));
 
 // Resend Invite
 handler.get(async (req, res, next) => {
@@ -39,17 +39,17 @@ handler.get(async (req, res, next) => {
   const user = await User.findOne({
     tenant: req.user.tenant_mongo_id,
     _id: id,
-    status: 'pending',
+    status: "pending",
   });
 
   if (!user) {
-    throw new Error('User not found.');
+    throw new Error("User not found.");
   }
 
   // Generate invite token
-  const token = crypto.randomBytes(32).toString('hex');
+  const token = crypto.randomBytes(32).toString("hex");
 
-  const inviteToken = crypto.createHash('sha256').update(token).digest('hex');
+  const inviteToken = crypto.createHash("sha256").update(token).digest("hex");
 
   const now = new Date();
 

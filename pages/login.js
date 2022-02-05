@@ -1,5 +1,5 @@
-import { Login } from 'components/auth';
-import { withTenant } from 'middleware/app/withTenant';
+import { Login } from "components/auth";
+import { withTenant } from "middleware/app/withTenant";
 
 export default function LoginPage({ tenant }) {
   return <Login tenant={tenant} />;

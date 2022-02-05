@@ -1,8 +1,8 @@
-import nc from 'next-connect';
-import Stripe from 'stripe';
+import nc from "next-connect";
+import Stripe from "stripe";
 
-import { dbConnect } from 'utils';
-import { withProtect } from 'middleware/api/withProtect';
+import { dbConnect } from "utils";
+import { withProtect } from "middleware/api/withProtect";
 
 dbConnect();
 
@@ -14,7 +14,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },

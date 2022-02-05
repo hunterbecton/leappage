@@ -1,13 +1,13 @@
-import { useNode } from '@craftjs/core';
-import short from 'short-uuid';
-import { BiNotification } from 'react-icons/bi';
+import { useNode } from "@craftjs/core";
+import short from "short-uuid";
+import { BiNotification } from "react-icons/bi";
 
 import {
   ToolbarSection,
   ToolbarGroup,
   ToolbarItem,
-} from 'components/editor/visual/toolbar';
-import { Button } from 'components/button';
+} from "components/editor/visual/toolbar";
+import { Button } from "components/button";
 
 export const StepTwoSettings = () => {
   const {
@@ -26,14 +26,14 @@ export const StepTwoSettings = () => {
   const handleAddStep = () => {
     const newStep = {
       id: short.generate(),
-      title: 'Step 1',
+      title: "Step 1",
       description:
-        'Configure your contact details and notification preferences.',
+        "Configure your contact details and notification preferences.",
       icon: {
-        id: 'friTr1zgaALbd6JuCd8d4w',
-        name: 'Notification',
-        component: <BiNotification className='w-5 h-5 text-gray-900' />,
-        render: <BiNotification className='w-8 h-8 text-blue-500' />,
+        id: "friTr1zgaALbd6JuCd8d4w",
+        name: "Notification",
+        component: <BiNotification className="h-5 w-5 text-gray-900" />,
+        render: <BiNotification className="h-8 w-8 text-blue-500" />,
       },
     };
 
@@ -44,51 +44,51 @@ export const StepTwoSettings = () => {
 
   return (
     <>
-      <div className='space-y-2'>
-        <ToolbarSection title='Steps' props={['steps']}>
+      <div className="space-y-2">
+        <ToolbarSection title="Steps" props={["steps"]}>
           {nodeSteps.map((nodeStep, i) => (
-            <ToolbarGroup key={nodeStep.id} bgColor='bg-gray-100' full={true}>
+            <ToolbarGroup key={nodeStep.id} bgColor="bg-gray-100" full={true}>
               <ToolbarItem
                 isGroup={true}
-                groupName='steps'
+                groupName="steps"
                 groupIndex={i}
-                propKey='title'
-                type='text'
-                label='Title'
+                propKey="title"
+                type="text"
+                label="Title"
               />
               <ToolbarItem
                 isGroup={true}
-                groupName='steps'
+                groupName="steps"
                 groupIndex={i}
-                propKey='description'
-                type='text'
-                label='Description'
+                propKey="description"
+                type="text"
+                label="Description"
               />
               <ToolbarItem
                 isGroup={true}
-                groupName='steps'
+                groupName="steps"
                 groupIndex={i}
-                propKey='icon'
-                type='icon'
-                label='Icon'
-                renderStyle='w-8 h-8 text-blue-500'
+                propKey="icon"
+                type="icon"
+                label="Icon"
+                renderStyle="w-8 h-8 text-blue-500"
               />
               {nodeSteps.length > 1 && (
                 <Button
-                  size='sm'
-                  variant='ghost'
-                  customClassName='justify-center'
-                  text='Remove'
+                  size="sm"
+                  variant="ghost"
+                  customClassName="justify-center"
+                  text="Remove"
                   onClick={() => handleRemoveStep(nodeStep.id)}
                 />
               )}
             </ToolbarGroup>
           ))}
           <Button
-            size='sm'
-            variant='ghost'
-            customClassName='justify-center w-full mt-2 mb-1'
-            text='Add'
+            size="sm"
+            variant="ghost"
+            customClassName="justify-center w-full mt-2 mb-1"
+            text="Add"
             onClick={() => handleAddStep()}
           />
         </ToolbarSection>

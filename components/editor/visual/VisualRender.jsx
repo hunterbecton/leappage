@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Frame, Editor } from '@craftjs/core';
-import lz from 'lzutf8';
-import WebFont from 'webfontloader';
+import { useState, useEffect } from "react";
+import { Frame, Editor } from "@craftjs/core";
+import lz from "lzutf8";
+import WebFont from "webfontloader";
 
-import { Text } from 'components/editor/selectors/text';
-import { Container } from 'components/editor/selectors/container';
-import { Image } from 'components/editor/selectors/image';
-import { RenderProps } from 'components/editor/visual';
+import { Text } from "components/editor/selectors/text";
+import { Container } from "components/editor/selectors/container";
+import { Image } from "components/editor/selectors/image";
+import { RenderProps } from "components/editor/visual";
 
 export const VisualRender = () => {
   const [json, setJson] = useState();
@@ -15,8 +15,8 @@ export const VisualRender = () => {
 
   useEffect(() => {
     // Get frame data for template
-    const frame = localStorage.getItem('frame');
-    const fonts = localStorage.getItem('fonts');
+    const frame = localStorage.getItem("frame");
+    const fonts = localStorage.getItem("fonts");
 
     let loadFonts = [];
 

@@ -1,11 +1,11 @@
-import nc from 'next-connect';
-import Stripe from 'stripe';
+import nc from "next-connect";
+import Stripe from "stripe";
 
-import { dbConnect } from 'utils';
-import { withProtect } from 'middleware/api/withProtect';
-import User from 'models/userModel';
-import Subscription from 'models/subscriptionModel';
-import Tenant from 'models/tenantModel';
+import { dbConnect } from "utils";
+import { withProtect } from "middleware/api/withProtect";
+import User from "models/userModel";
+import Subscription from "models/subscriptionModel";
+import Tenant from "models/tenantModel";
 
 dbConnect();
 
@@ -17,7 +17,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -34,11 +34,11 @@ handler.get(async (req, res, next) => {
   // Check if tenant has active subscription
   const activeSubscription = await Subscription.findOne({
     tenant: tenant._id,
-    status: 'active',
+    status: "active",
   });
 
   if (activeSubscription) {
-    throw new Error('Your team already has an active subscription.');
+    throw new Error("Your team already has an active subscription.");
   }
 
   // Count number of users
@@ -47,7 +47,7 @@ handler.get(async (req, res, next) => {
   });
 
   const session = await stripe.checkout.sessions.create({
-    mode: 'subscription',
+    mode: "subscription",
     line_items: [
       {
         price: process.env.STRIPE_SUB_ID,

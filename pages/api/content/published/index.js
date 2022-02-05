@@ -1,8 +1,8 @@
-import nc from 'next-connect';
+import nc from "next-connect";
 
-import { dbConnect } from 'utils';
-import Content from 'models/contentModel';
-import APIFeatures from 'utils/APIFeatures';
+import { dbConnect } from "utils";
+import Content from "models/contentModel";
+import APIFeatures from "utils/APIFeatures";
 
 dbConnect();
 
@@ -12,7 +12,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -20,14 +20,14 @@ const handler = nc({
 
 // Get all published Content
 handler.get(async (req, res, next) => {
-  let filter = { status: 'published' };
+  let filter = { status: "published" };
 
   const totalContent = await Content.countDocuments(filter);
 
   const features = new APIFeatures(
     Content.find(filter).populate({
-      path: 'categoryInfo',
-      select: 'title',
+      path: "categoryInfo",
+      select: "title",
     }),
     req.query,
     req.url

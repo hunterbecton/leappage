@@ -1,10 +1,10 @@
-import { SkeletonActivityCard } from 'components/card';
+import { SkeletonActivityCard } from "components/card";
 
 export const SkeletonActivityList = () => {
   const items = Array.from(Array(12).keys());
 
   return (
-    <ul className='divide-y divide-gray-200 -mt-12'>
+    <ul className="-mt-12 divide-y divide-gray-200">
       {items.map((item) => (
         <SkeletonActivityCard key={`activity-${item}`} />
       ))}

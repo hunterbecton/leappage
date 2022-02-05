@@ -1,4 +1,4 @@
-import { useComponentPanelStore } from 'store';
+import { useComponentPanelStore } from "store";
 
 export const ToolboxPanelTextButton = (props) => {
   const { title, text, component } = props;
@@ -21,8 +21,8 @@ export const ToolboxPanelTextButton = (props) => {
 
   return (
     <button
-      type='button'
-      className='w-full text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+      type="button"
+      className="group flex w-full items-center rounded-md px-2 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
       onClick={handleClick}
     >
       {text}

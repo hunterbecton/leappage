@@ -1,23 +1,23 @@
-import { NextSeo } from 'next-seo';
+import { NextSeo } from "next-seo";
 
-import { withProtect } from 'middleware/app/withProtect';
-import { withTestimonial } from 'middleware/app/withTestimonial';
-import { MainLayout, ContentLayout } from 'components/layout';
-import { withCategories } from 'middleware/app/withCategories';
-import { TestimonialForm } from 'components/testimonial';
+import { withProtect } from "middleware/app/withProtect";
+import { withTestimonial } from "middleware/app/withTestimonial";
+import { MainLayout, ContentLayout } from "components/layout";
+import { withCategories } from "middleware/app/withCategories";
+import { TestimonialForm } from "components/testimonial";
 
 export default function TestimonialPage({ testimonial, categoryOptions }) {
   return (
     <>
       <NextSeo
-        title='LeapPage | Edit Testimonial'
+        title="LeapPage | Edit Testimonial"
         noindex={true}
         nofollow={true}
       />
       <MainLayout>
         <ContentLayout
-          title='Testimonial Details'
-          description='Update or delete testimonial'
+          title="Testimonial Details"
+          description="Update or delete testimonial"
         >
           <TestimonialForm
             testimonial={testimonial}
@@ -35,7 +35,7 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };

@@ -1,5 +1,5 @@
-import { ForgotPassword } from 'components/auth';
-import { withTenant } from 'middleware/app/withTenant';
+import { ForgotPassword } from "components/auth";
+import { withTenant } from "middleware/app/withTenant";
 
 export default function ForgotPasswordPage({ tenant }) {
   return <ForgotPassword tenant={tenant} />;

@@ -1,6 +1,6 @@
-import { BiImage } from 'react-icons/bi';
+import { BiImage } from "react-icons/bi";
 
-import { useEditorStore } from 'store';
+import { useEditorStore } from "store";
 
 export const ToolbarImage = ({
   propKey,
@@ -44,19 +44,19 @@ export const ToolbarImage = ({
     <div>
       <label
         htmlFor={propKey}
-        className='block text-xs font-medium text-gray-700'
+        className="block text-xs font-medium text-gray-700"
       >
         {label}
       </label>
-      <div className='mt-1 flex rounded-md shadow-sm'>
-        <div className='relative flex items-stretch flex-grow focus-within:z-10'>
+      <div className="mt-1 flex rounded-md shadow-sm">
+        <div className="relative flex flex-grow items-stretch focus-within:z-10">
           <input
-            className='focus:ring-blue-500 focus:border-blue-500 block w-full rounded-none rounded-l-md text-xs border-gray-300'
-            type='text'
+            className="block w-full rounded-none rounded-l-md border-gray-300 text-xs focus:border-blue-500 focus:ring-blue-500"
+            type="text"
             name={propKey}
             value={value}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 onChange(e.target.value);
               }
             }}
@@ -70,11 +70,11 @@ export const ToolbarImage = ({
           />
         </div>
         <button
-          type='button'
-          className='-ml-px relative inline-flex items-center p-2 border border-gray-300 text-xs font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500'
+          type="button"
+          className="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-gray-50 p-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
           onClick={handleSelect}
         >
-          <BiImage className='h-5 w-5 text-gray-400' aria-hidden='true' />
+          <BiImage className="h-5 w-5 text-gray-400" aria-hidden="true" />
         </button>
       </div>
     </div>

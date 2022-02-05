@@ -1,4 +1,4 @@
-import { Body } from './Body';
-import { BodySettings } from './BodySettings';
+import { Body } from "./Body";
+import { BodySettings } from "./BodySettings";
 
 export { Body, BodySettings };

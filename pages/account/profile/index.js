@@ -1,7 +1,7 @@
-import { ProfileForm } from 'components/account';
-import { AccountLayout } from 'components/layout';
-import { withProtect } from 'middleware/app/withProtect';
-import { withUser } from 'middleware/app/withUser';
+import { ProfileForm } from "components/account";
+import { AccountLayout } from "components/layout";
+import { withProtect } from "middleware/app/withProtect";
+import { withUser } from "middleware/app/withUser";
 
 export default function AccountProfile({ user }) {
   return (
@@ -17,7 +17,7 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };

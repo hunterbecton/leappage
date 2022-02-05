@@ -1,7 +1,7 @@
-import { forwardRef } from 'react';
-import { BiErrorCircle } from 'react-icons/bi';
+import { forwardRef } from "react";
+import { BiErrorCircle } from "react-icons/bi";
 
-import { classNames } from 'utils';
+import { classNames } from "utils";
 
 export const InputRef = forwardRef(
   (
@@ -26,11 +26,11 @@ export const InputRef = forwardRef(
       <div>
         <label
           htmlFor={name}
-          className='block text-sm font-medium text-gray-700'
+          className="block text-sm font-medium text-gray-700"
         >
           {label}
         </label>
-        <div className='mt-1 relative rounded-md shadow-sm'>
+        <div className="relative mt-1 rounded-md shadow-sm">
           <input
             {...rest}
             ref={(e) => {
@@ -41,27 +41,27 @@ export const InputRef = forwardRef(
             type={type}
             className={classNames(
               errors[name]
-                ? 'border-red-300 text-red-900 placeholder-red-300 focus-visible:ring-red-500 focus-visible:border-red-500'
-                : 'focus-visible:ring-blue-500 focus-visible:border-blue-500 border-gray-300',
-              'block w-full pr-10  focus:outline-none  sm:text-sm rounded-md'
+                ? "border-red-300 text-red-900 placeholder-red-300 focus-visible:border-red-500 focus-visible:ring-red-500"
+                : "border-gray-300 focus-visible:border-blue-500 focus-visible:ring-blue-500",
+              "block w-full rounded-md  pr-10  focus:outline-none sm:text-sm"
             )}
             placeholder={placeholder}
             readOnly={readOnly ? true : false}
           />
           {errors[name] && (
-            <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
               <BiErrorCircle
-                className='h-5 w-5 text-red-500'
-                aria-hidden='true'
+                className="h-5 w-5 text-red-500"
+                aria-hidden="true"
               />
             </div>
           )}
         </div>
         {errors[name] && (
-          <p className='mt-2 text-sm text-red-600'>{errors[name].message}</p>
+          <p className="mt-2 text-sm text-red-600">{errors[name].message}</p>
         )}
         {helpText && (
-          <p className='mt-2 text-sm text-gray-500' id='email-description'>
+          <p className="mt-2 text-sm text-gray-500" id="email-description">
             {helpText}
           </p>
         )}
@@ -72,7 +72,7 @@ export const InputRef = forwardRef(
 
 InputRef.defaultProps = {
   helpText: false,
-  placeholder: '',
+  placeholder: "",
   readOnly: false,
-  type: 'text',
+  type: "text",
 };

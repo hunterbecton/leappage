@@ -1,9 +1,9 @@
-import { useEditor } from '@craftjs/core';
-import React from 'react';
-import { useLayer } from '@craftjs/layers';
+import { useEditor } from "@craftjs/core";
+import React from "react";
+import { useLayer } from "@craftjs/layers";
 
-import { ToolbarLayerHeader } from './ToolbarLayerHeader';
-import { classNames } from 'utils';
+import { ToolbarLayerHeader } from "./ToolbarLayerHeader";
+import { classNames } from "utils";
 
 export const ToolbarLayer = ({ children }) => {
   const {
@@ -25,9 +25,9 @@ export const ToolbarLayer = ({ children }) => {
     <div
       ref={layer}
       className={classNames(
-        hovered ? 'bg-gray-200' : 'bg-transparent',
-        hasChildCanvases && expanded ? 'pb-1' : 'pb-0',
-        'block text-gray-900 text-sm border-t border-gray-200'
+        hovered ? "bg-gray-200" : "bg-transparent",
+        hasChildCanvases && expanded ? "pb-1" : "pb-0",
+        "block border-t border-gray-200 text-sm text-gray-900"
       )}
     >
       <ToolbarLayerHeader />
@@ -36,9 +36,9 @@ export const ToolbarLayer = ({ children }) => {
           hasCanvases={hasChildCanvases}
           className={classNames(
             hasChildCanvases
-              ? 'bg-white bg-opacity-5 mb-8'
-              : 'bg-transparent mb-0',
-            'relative'
+              ? "mb-8 bg-white bg-opacity-5"
+              : "mb-0 bg-transparent",
+            "relative"
           )}
         >
           {children}

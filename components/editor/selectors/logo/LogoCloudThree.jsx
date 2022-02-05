@@ -1,38 +1,38 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
-import { LogoCloudThreeSettings } from './LogoCloudThreeSettings';
+import { LogoCloudThreeSettings } from "./LogoCloudThreeSettings";
 
 const defaultProps = {
   subtitle: `Trusted by these leading companies`,
   logos: [
     {
-      id: 'vYMs3VqisvHAhX8n',
-      company: 'Company',
-      src: '/demo/demo-logo-1.svg',
+      id: "vYMs3VqisvHAhX8n",
+      company: "Company",
+      src: "/demo/demo-logo-1.svg",
       height: 2.25,
     },
     {
-      id: 'mxusg64BGVaZktFu',
-      company: 'Company',
-      src: '/demo/demo-logo-2.svg',
+      id: "mxusg64BGVaZktFu",
+      company: "Company",
+      src: "/demo/demo-logo-2.svg",
       height: 2.25,
     },
     {
-      id: 'k2qQEo6KvEdwFVj3',
-      company: 'Company',
-      src: '/demo/demo-logo-3.svg',
+      id: "k2qQEo6KvEdwFVj3",
+      company: "Company",
+      src: "/demo/demo-logo-3.svg",
       height: 2.75,
     },
     {
-      id: 'ZajJBXGmDMp4nR3E',
-      company: 'Company',
-      src: '/demo/demo-logo-4.svg',
+      id: "ZajJBXGmDMp4nR3E",
+      company: "Company",
+      src: "/demo/demo-logo-4.svg",
       height: 3,
     },
     {
-      id: 'u6AGtw4jqZkwMGqw',
-      company: 'Company',
-      src: '/demo/demo-logo-5.svg',
+      id: "u6AGtw4jqZkwMGqw",
+      company: "Company",
+      src: "/demo/demo-logo-5.svg",
       height: 2,
     },
   ],
@@ -56,21 +56,21 @@ export const LogoCloudThree = (props) => {
   return (
     <section
       ref={connect}
-      className='relative pb-12 overflow-x-hidden bg-white pt-7'
+      className="relative overflow-x-hidden bg-white pb-12 pt-7"
     >
-      <p className='w-full text-xs font-bold tracking-wider text-center text-gray-900 pb-7 uppercase'>
+      <p className="w-full pb-7 text-center text-xs font-bold uppercase tracking-wider text-gray-900">
         {subtitle}
       </p>
-      <div className='px-8 mx-auto max-w-7xl-xl'>
-        <div className='max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8'>
-          <div className='grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5'>
+      <div className="max-w-7xl-xl mx-auto px-8">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
             {logos.map((logo) => (
               <div
                 key={logo.id}
-                className='flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1'
+                className="col-span-1 flex items-center justify-center md:col-span-2 lg:col-span-1"
               >
                 <img
-                  className='w-auto fill-current'
+                  className="w-auto fill-current"
                   style={{ height: `${logo.height}rem` }}
                   src={logo.src}
                   alt={logo.company}
@@ -85,7 +85,7 @@ export const LogoCloudThree = (props) => {
 };
 
 LogoCloudThree.craft = {
-  displayName: 'Logos',
+  displayName: "Logos",
   props: defaultProps,
   rules: {
     canDrag: () => true,

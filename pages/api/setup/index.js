@@ -1,10 +1,10 @@
-import nc from 'next-connect';
-import crypto from 'crypto';
+import nc from "next-connect";
+import crypto from "crypto";
 
-import { dbConnect, filterObject } from 'utils';
-import User from 'models/userModel';
-import { firebaseAdmin } from 'services/firebaseAdmin';
-import Email from 'utils/email';
+import { dbConnect, filterObject } from "utils";
+import User from "models/userModel";
+import { firebaseAdmin } from "services/firebaseAdmin";
+import Email from "utils/email";
 
 dbConnect();
 
@@ -14,7 +14,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -30,23 +30,23 @@ handler.post(async (req, res, next) => {
   // Get items from req.body
   const filteredBody = filterObject(
     req.body,
-    'email',
-    'password',
-    'token',
-    'tenant_mongo_id',
-    'tenant_google_id'
+    "email",
+    "password",
+    "token",
+    "tenant_mongo_id",
+    "tenant_google_id"
   );
 
   // Throw error if no token
   if (!filteredBody.token) {
-    throw new Error('Please provide a valid token.');
+    throw new Error("Please provide a valid token.");
   }
 
   // Hash token
   const hashedToken = crypto
-    .createHash('sha256')
+    .createHash("sha256")
     .update(filteredBody.token)
-    .digest('hex');
+    .digest("hex");
 
   const user = await User.findOne({
     inviteToken: hashedToken,
@@ -56,7 +56,7 @@ handler.post(async (req, res, next) => {
   });
 
   if (!user) {
-    throw new Error('Token is invalid or has expired.');
+    throw new Error("Token is invalid or has expired.");
   }
 
   // Update user in Google
@@ -68,7 +68,7 @@ handler.post(async (req, res, next) => {
   // and set to active
   user.inviteToken = undefined;
   user.inviteTokenExpires = undefined;
-  user.status = 'active';
+  user.status = "active";
 
   await user.save();
 

@@ -1,8 +1,8 @@
-import { useNode, useEditor } from '@craftjs/core';
-import { ROOT_NODE } from '@craftjs/utils';
-import React, { useEffect, useRef, useCallback } from 'react';
-import ReactDOM from 'react-dom';
-import { BiArrowFromBottom, BiTrashAlt, BiMove } from 'react-icons/bi';
+import { useNode, useEditor } from "@craftjs/core";
+import { ROOT_NODE } from "@craftjs/utils";
+import React, { useEffect, useRef, useCallback } from "react";
+import ReactDOM from "react-dom";
+import { BiArrowFromBottom, BiTrashAlt, BiMove } from "react-icons/bi";
 
 export const QuickBox = ({ render }) => {
   const { id } = useNode();
@@ -33,9 +33,9 @@ export const QuickBox = ({ render }) => {
   useEffect(() => {
     if (dom) {
       if (isActive || isHover) {
-        dom.classList.add('component-selected');
+        dom.classList.add("component-selected");
       } else {
-        dom.classList.remove('component-selected');
+        dom.classList.remove("component-selected");
       }
     }
   }, [dom, isActive, isHover]);
@@ -60,17 +60,17 @@ export const QuickBox = ({ render }) => {
   }, [dom, getPos]);
 
   useEffect(() => {
-    if (document.querySelector('.craftjs-renderer')) {
+    if (document.querySelector(".craftjs-renderer")) {
       document
-        .querySelector('.craftjs-renderer')
-        .addEventListener('scroll', scroll);
+        .querySelector(".craftjs-renderer")
+        .addEventListener("scroll", scroll);
     }
 
     return () => {
-      if (document.querySelector('.craftjs-renderer')) {
+      if (document.querySelector(".craftjs-renderer")) {
         document
-          .querySelector('.craftjs-renderer')
-          .removeEventListener('scroll', scroll);
+          .querySelector(".craftjs-renderer")
+          .removeEventListener("scroll", scroll);
       }
     };
   }, [scroll]);
@@ -81,44 +81,44 @@ export const QuickBox = ({ render }) => {
         ? ReactDOM.createPortal(
             <div
               ref={currentRef}
-              className='z-10 p-2 h-8 -mt-8 text-xs text-white bg-blue-600 fixed flex items-center opacity-90'
+              className="fixed z-10 -mt-8 flex h-8 items-center bg-blue-600 p-2 text-xs text-white opacity-90"
               style={{
                 left: getPos(dom).left,
                 top: getPos(dom).top,
               }}
             >
-              <h2 className='flex-1 mr-4'>{name}</h2>
+              <h2 className="mr-4 flex-1">{name}</h2>
               {moveable ? (
                 <a
-                  className='opacity-90 flex items-center mr-2 cursor-move'
+                  className="mr-2 flex cursor-move items-center opacity-90"
                   ref={drag}
                 >
-                  <BiMove className='h-3.5 w-3.5 text-white' />
+                  <BiMove className="h-3.5 w-3.5 text-white" />
                 </a>
               ) : null}
               {id !== ROOT_NODE && (
                 <a
-                  className='opacity-90 flex items-center mr-2 cursor-pointer'
+                  className="mr-2 flex cursor-pointer items-center opacity-90"
                   onClick={() => {
                     actions.selectNode(parent);
                   }}
                 >
-                  <BiArrowFromBottom className='h-3.5 w-3.5 text-white' />
+                  <BiArrowFromBottom className="h-3.5 w-3.5 text-white" />
                 </a>
               )}
               {deletable ? (
                 <a
-                  className='opacity-90 flex items-center cursor-pointer'
+                  className="flex cursor-pointer items-center opacity-90"
                   onMouseDown={(e) => {
                     e.stopPropagation();
                     actions.delete(id);
                   }}
                 >
-                  <BiTrashAlt className='h-3.5 w-3.5 text-white' />
+                  <BiTrashAlt className="h-3.5 w-3.5 text-white" />
                 </a>
               ) : null}
             </div>,
-            document.querySelector('.page-container')
+            document.querySelector(".page-container")
           )
         : null}
       {render}

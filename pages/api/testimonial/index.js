@@ -1,10 +1,10 @@
-import nc from 'next-connect';
+import nc from "next-connect";
 
-import { dbConnect, filterObject } from 'utils';
-import Testimonial from 'models/testimonialModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withSubscription } from 'middleware/api/withSubscription';
-import { withRestrict } from 'middleware/api/withRestrict';
+import { dbConnect, filterObject } from "utils";
+import Testimonial from "models/testimonialModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withSubscription } from "middleware/api/withSubscription";
+import { withRestrict } from "middleware/api/withRestrict";
 
 dbConnect();
 
@@ -22,20 +22,20 @@ handler.use(withProtect);
 handler.use(withSubscription);
 
 // Restrict routes
-handler.use(withRestrict('admin', 'editor'));
+handler.use(withRestrict("admin", "editor"));
 
 // Create Testimonial
 handler.post(async (req, res, next) => {
   // Get items from req.body
   const filteredBody = filterObject(
     req.body,
-    'title',
-    'quote',
-    'profileImage',
-    'name',
-    'company',
-    'position',
-    'category'
+    "title",
+    "quote",
+    "profileImage",
+    "name",
+    "company",
+    "position",
+    "category"
   );
 
   // Create Testimonial in MongoDB

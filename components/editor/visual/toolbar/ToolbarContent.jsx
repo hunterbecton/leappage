@@ -1,5 +1,5 @@
-import { useEditorStore } from 'store';
-import { Button } from 'components/button';
+import { useEditorStore } from "store";
+import { Button } from "components/button";
 
 export const ToolbarContent = ({
   onChange,
@@ -35,32 +35,32 @@ export const ToolbarContent = ({
 
   return (
     <div>
-      <div className='flex flex-col shadow rounded border-1 border-gray-300 overflow-hidden'>
-        <div className='flex-shrink-0'>
+      <div className="border-1 flex flex-col overflow-hidden rounded border-gray-300 shadow">
+        <div className="flex-shrink-0">
           <img
-            className='h-48 w-full object-cover'
+            className="h-48 w-full object-cover"
             src={content.feature}
             alt={content.title}
           />
         </div>
-        <div className='flex-1 bg-white p-4 flex flex-col justify-between'>
-          <div className='flex-1'>
-            <p className='text-xs font-bold text-gray-400 uppercase'>
+        <div className="flex flex-1 flex-col justify-between bg-white p-4">
+          <div className="flex-1">
+            <p className="text-xs font-bold uppercase text-gray-400">
               {content.categoryInfo && content.categoryInfo.length > 0
                 ? content.categoryInfo[0].title
-                : 'Uncategorized'}
+                : "Uncategorized"}
             </p>
-            <p className='text-sm font-medium text-gray-700 block mt-2'>
+            <p className="mt-2 block text-sm font-medium text-gray-700">
               {content.title}
             </p>
           </div>
         </div>
       </div>
       <Button
-        size='sm'
-        variant='ghost'
-        customClassName='justify-center w-full mt-2'
-        text='Change'
+        size="sm"
+        variant="ghost"
+        customClassName="justify-center w-full mt-2"
+        text="Change"
         onClick={() => handleSelect()}
       />
     </div>

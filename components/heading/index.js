@@ -1,3 +1,3 @@
-import { PageHeading } from './PageHeading';
+import { PageHeading } from "./PageHeading";
 
 export { PageHeading };

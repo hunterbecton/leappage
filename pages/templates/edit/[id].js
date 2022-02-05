@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import lz from 'lzutf8';
-import { useForm, FormProvider } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
+import { useEffect } from "react";
+import lz from "lzutf8";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 
-import { VisualEditor } from 'components/editor/visual';
-import { withProtect } from 'middleware/app/withProtect';
-import { withTemplate } from 'middleware/app/withTemplate';
-import { useEditorStore } from 'store';
+import { VisualEditor } from "components/editor/visual";
+import { withProtect } from "middleware/app/withProtect";
+import { withTemplate } from "middleware/app/withTemplate";
+import { useEditorStore } from "store";
 
 const validationSchema = yup.object().shape({
   title: yup.string(),
@@ -27,19 +27,19 @@ export default function EditTemplate({ json, template }) {
 
   // Set Template type on mount
   useEffect(() => {
-    setTemplateType('template');
+    setTemplateType("template");
   }, []);
 
   // Set form values on mount
   useEffect(() => {
-    methods.setValue('title', template.title);
-    methods.setValue('status', template.status);
+    methods.setValue("title", template.title);
+    methods.setValue("status", template.status);
   }, [router]);
 
   return (
     <>
       <NextSeo
-        title='LeapPage | Edit Template'
+        title="LeapPage | Edit Template"
         noindex={true}
         nofollow={true}
       />
@@ -56,7 +56,7 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };

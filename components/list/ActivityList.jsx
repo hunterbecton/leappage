@@ -1,8 +1,8 @@
-import { ActivityCard } from 'components/card';
+import { ActivityCard } from "components/card";
 
 export const ActivityList = ({ items }) => {
   return (
-    <ul className='divide-y divide-gray-200 -mt-12'>
+    <ul className="-mt-12 divide-y divide-gray-200">
       {items?.map((item) => (
         <ActivityCard item={item} key={item._id} />
       ))}

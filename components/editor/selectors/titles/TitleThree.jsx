@@ -1,12 +1,12 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
-import { TitleThreeSettings } from './TitleThreeSettings';
+import { TitleThreeSettings } from "./TitleThreeSettings";
 
 const defaultProps = {
-  subtitle: 'Get Started',
-  title: 'Landing Pages for Sales',
+  subtitle: "Get Started",
+  title: "Landing Pages for Sales",
   description:
-    'Empower your sales team to create personalized landing pages for leads and customers in order to drive more engagement and sales.',
+    "Empower your sales team to create personalized landing pages for leads and customers in order to drive more engagement and sales.",
 };
 
 export const TitleThree = (props) => {
@@ -25,15 +25,15 @@ export const TitleThree = (props) => {
   }));
 
   return (
-    <div ref={connect} className='w-full bg-white px-10 py-4'>
-      <div className='flex flex-col text-center mx-auto max-w-3xl'>
-        <h2 className='text-xs text-blue-500 tracking-widest font-bold title-font mb-1 uppercase'>
+    <div ref={connect} className="w-full bg-white px-10 py-4">
+      <div className="mx-auto flex max-w-3xl flex-col text-center">
+        <h2 className="title-font mb-1 text-xs font-bold uppercase tracking-widest text-blue-500">
           {subtitle}
         </h2>
-        <h1 className='sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900'>
+        <h1 className="title-font mb-4 text-2xl font-medium text-gray-900 sm:text-3xl">
           {title}
         </h1>
-        <p className='mx-auto leading-relaxed text-base text-gray-500'>
+        <p className="mx-auto text-base leading-relaxed text-gray-500">
           {description}
         </p>
       </div>
@@ -42,7 +42,7 @@ export const TitleThree = (props) => {
 };
 
 TitleThree.craft = {
-  displayName: 'Title',
+  displayName: "Title",
   props: defaultProps,
   rules: {
     canDrag: () => true,

@@ -1,6 +1,6 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
-import { DividerOneSettings } from './DividerOneSettings';
+import { DividerOneSettings } from "./DividerOneSettings";
 
 const defaultProps = {
   paddingY: 3,
@@ -25,17 +25,17 @@ export const DividerOne = (props) => {
   return (
     <div
       ref={connect}
-      className='w-full bg-white px-10'
+      className="w-full bg-white px-10"
       style={{ paddingTop: `${paddingY}rem`, paddingBottom: `${paddingY}rem` }}
     >
-      <div className='mx-auto max-w-2xl'>
-        <div className='relative'>
+      <div className="mx-auto max-w-2xl">
+        <div className="relative">
           <div
-            className='absolute inset-0 flex items-center'
-            aria-hidden='true'
+            className="absolute inset-0 flex items-center"
+            aria-hidden="true"
           >
             {enabled ? (
-              <div className='w-full border-t border-gray-300' />
+              <div className="w-full border-t border-gray-300" />
             ) : null}
           </div>
         </div>
@@ -45,7 +45,7 @@ export const DividerOne = (props) => {
 };
 
 DividerOne.craft = {
-  displayName: 'Divider',
+  displayName: "Divider",
   props: defaultProps,
   rules: {
     canDrag: () => true,

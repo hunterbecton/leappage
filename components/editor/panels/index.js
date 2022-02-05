@@ -1,3 +1,3 @@
-import { ComponentPanel } from './ComponentPanel';
+import { ComponentPanel } from "./ComponentPanel";
 
 export { ComponentPanel };

@@ -1,10 +1,10 @@
-import nc from 'next-connect';
+import nc from "next-connect";
 
-import { dbConnect, filterObject } from 'utils';
-import Category from 'models/categoryModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withRestrict } from 'middleware/api/withRestrict';
-import { withSubscription } from 'middleware/api/withSubscription';
+import { dbConnect, filterObject } from "utils";
+import Category from "models/categoryModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withRestrict } from "middleware/api/withRestrict";
+import { withSubscription } from "middleware/api/withSubscription";
 
 dbConnect();
 
@@ -22,14 +22,14 @@ handler.use(withProtect);
 handler.use(withSubscription);
 
 // Restrict routes
-handler.use(withRestrict('admin', 'editor'));
+handler.use(withRestrict("admin", "editor"));
 
 // Update Category
 handler.patch(async (req, res, next) => {
   const { id } = req.query;
 
   // Get items from req.body
-  const filteredBody = filterObject(req.body, 'title');
+  const filteredBody = filterObject(req.body, "title");
 
   // Update Category in MongoDB
   const category = await Category.findOneAndUpdate(
@@ -42,7 +42,7 @@ handler.patch(async (req, res, next) => {
   );
 
   if (!category) {
-    throw new Error('Category not found.');
+    throw new Error("Category not found.");
   }
 
   return res.status(200).json({
@@ -63,7 +63,7 @@ handler.delete(async (req, res, next) => {
   });
 
   if (!category) {
-    throw new Error('Category not found.');
+    throw new Error("Category not found.");
   }
 
   return res.status(200).json({

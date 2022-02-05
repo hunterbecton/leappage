@@ -1,8 +1,8 @@
-import { useEditor } from '@craftjs/core';
-import { useState } from 'react';
+import { useEditor } from "@craftjs/core";
+import { useState } from "react";
 
-import { classNames } from 'utils';
-import { Toolbar } from 'components/editor/visual/toolbar';
+import { classNames } from "utils";
+import { Toolbar } from "components/editor/visual/toolbar";
 
 export const Sidebar = () => {
   const [toolbarVisible, setToolbarVisible] = useState(true);
@@ -14,8 +14,8 @@ export const Sidebar = () => {
   return (
     <div
       className={classNames(
-        enabled ? 'opacity-100' : 'opacity-0',
-        'sidebar w-full h-full'
+        enabled ? "opacity-100" : "opacity-0",
+        "sidebar h-full w-full"
       )}
     >
       <Toolbar />

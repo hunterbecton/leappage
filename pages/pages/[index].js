@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
-import { toast } from 'react-toastify';
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
+import { toast } from "react-toastify";
 
-import { Empty } from 'components/empty';
-import { PageHeading } from 'components/heading';
-import { MainLayout } from 'components/layout';
-import { PageTable } from 'components/table';
-import { Pagination } from 'components/pagination';
-import { useProgressStore } from 'store';
-import { withProtect } from 'middleware/app/withProtect';
-import { withPages } from 'middleware/app/withPages';
+import { Empty } from "components/empty";
+import { PageHeading } from "components/heading";
+import { MainLayout } from "components/layout";
+import { PageTable } from "components/table";
+import { Pagination } from "components/pagination";
+import { useProgressStore } from "store";
+import { withProtect } from "middleware/app/withProtect";
+import { withPages } from "middleware/app/withPages";
 
 export default function AllPages({
   totalPages,
@@ -30,15 +30,15 @@ export default function AllPages({
 
     try {
       const body = {
-        title: 'Untitled Page',
+        title: "Untitled Page",
       };
 
       const res = await fetch(`/api/page`, {
-        method: 'POST',
-        credentials: 'include',
+        method: "POST",
+        credentials: "include",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
@@ -48,12 +48,12 @@ export default function AllPages({
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success('Page created.');
+        toast.success("Page created.");
         router.push(`/pages/edit/${data.page.id}`);
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error creating page.');
+      toast.error("Error creating page.");
     }
 
     setIsAnimating(false);
@@ -62,21 +62,21 @@ export default function AllPages({
 
   return (
     <>
-      <NextSeo title='LeapPage | Pages' noindex={true} nofollow={true} />
+      <NextSeo title="LeapPage | Pages" noindex={true} nofollow={true} />
       <MainLayout>
         <PageHeading
-          title='Pages'
+          title="Pages"
           withSubtitle={false}
           withCta={true}
-          ctaText='Create Page'
+          ctaText="Create Page"
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewPage()}
         />
         {pages.length === 0 && (
           <Empty
-            title='No Pages'
-            subtitle='Create a new page below to get started'
-            ctaOneText='Create Page'
+            title="No Pages"
+            subtitle="Create a new page below to get started"
+            ctaOneText="Create Page"
             ctaOneOnClick={() => createNewPage()}
             ctaOneIcon={null}
             withCtaTwo={false}
@@ -107,7 +107,7 @@ export async function getServerSideProps(ctx) {
   if (!parsedIndex) {
     return {
       redirect: {
-        destination: '/pages/1',
+        destination: "/pages/1",
         permanent: false,
       },
     };
@@ -118,7 +118,7 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };
@@ -141,7 +141,7 @@ export async function getServerSideProps(ctx) {
   if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
     return {
       redirect: {
-        destination: '/pages/1',
+        destination: "/pages/1",
         permanent: false,
       },
     };
@@ -150,7 +150,7 @@ export async function getServerSideProps(ctx) {
   if (totalPages === 0 && parsedIndex > 1) {
     return {
       redirect: {
-        destination: '/pages/1',
+        destination: "/pages/1",
         permanent: false,
       },
     };

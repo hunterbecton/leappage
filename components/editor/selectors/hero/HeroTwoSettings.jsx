@@ -1,10 +1,10 @@
-import { useNode } from '@craftjs/core';
+import { useNode } from "@craftjs/core";
 
 import {
   ToolbarSection,
   ToolbarGroup,
   ToolbarItem,
-} from 'components/editor/visual/toolbar';
+} from "components/editor/visual/toolbar";
 
 export const HeroTwoSettings = () => {
   const {
@@ -16,42 +16,42 @@ export const HeroTwoSettings = () => {
 
   return (
     <>
-      <div className='space-y-2'>
-        <ToolbarSection title='Text' props={['title']}>
+      <div className="space-y-2">
+        <ToolbarSection title="Text" props={["title"]}>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='title' type='text' label='Title' />
+            <ToolbarItem propKey="title" type="text" label="Title" />
             <ToolbarItem
-              propKey='description'
-              type='text'
-              label='Description'
+              propKey="description"
+              type="text"
+              label="Description"
             />
           </ToolbarGroup>
         </ToolbarSection>
-        <ToolbarSection title='CTA' props={['ctas']}>
+        <ToolbarSection title="CTA" props={["ctas"]}>
           {nodeCtas.map((nodeCta, i) => (
-            <ToolbarGroup key={nodeCta.id} bgColor='bg-gray-100' full={true}>
+            <ToolbarGroup key={nodeCta.id} bgColor="bg-gray-100" full={true}>
               <ToolbarItem
                 isGroup={true}
-                groupName='ctas'
+                groupName="ctas"
                 groupIndex={i}
-                propKey='text'
-                type='text'
-                label='Text'
+                propKey="text"
+                type="text"
+                label="Text"
               />
               <ToolbarItem
                 isGroup={true}
-                groupName='ctas'
+                groupName="ctas"
                 groupIndex={i}
-                propKey='link'
-                type='text'
-                label='Link'
+                propKey="link"
+                type="text"
+                label="Link"
               />
             </ToolbarGroup>
           ))}
         </ToolbarSection>
-        <ToolbarSection title='Video' props={['videoUrl']}>
+        <ToolbarSection title="Video" props={["videoUrl"]}>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='videoUrl' type='text' label='Link' />
+            <ToolbarItem propKey="videoUrl" type="text" label="Link" />
           </ToolbarGroup>
         </ToolbarSection>
       </div>

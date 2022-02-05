@@ -1,116 +1,116 @@
 export const Badge = ({ type, text }) => {
   switch (type) {
-    case 'pending':
+    case "pending":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-yellow-100 px-2 py-0.5 text-xs font-medium capitalize text-yellow-800">
           {text}
         </span>
       );
-    case 'incomplete':
+    case "incomplete":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-yellow-100 px-2 py-0.5 text-xs font-medium capitalize text-yellow-800">
           {text}
         </span>
       );
-    case 'incomplete_expired':
+    case "incomplete_expired":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-gray-100 px-2 py-0.5 text-xs font-medium capitalize text-gray-800">
           {text}
         </span>
       );
-    case 'all':
+    case "all":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-gray-100 px-2 py-0.5 text-xs font-medium capitalize text-gray-800">
           {text}
         </span>
       );
-    case 'past_due':
+    case "past_due":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-yellow-100 px-2 py-0.5 text-xs font-medium capitalize text-yellow-800">
           {text}
         </span>
       );
-    case 'active':
+    case "active":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-green-100 px-2 py-0.5 text-xs font-medium capitalize text-green-800">
           {text}
         </span>
       );
-    case 'trialing':
+    case "trialing":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-green-100 px-2 py-0.5 text-xs font-medium capitalize text-green-800">
           {text}
         </span>
       );
-    case 'inactive':
+    case "inactive":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-gray-100 px-2 py-0.5 text-xs font-medium capitalize text-gray-800">
           {text}
         </span>
       );
-    case 'canceled':
+    case "canceled":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-gray-100 px-2 py-0.5 text-xs font-medium capitalize text-gray-800">
           {text}
         </span>
       );
-    case 'ended':
+    case "ended":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-gray-100 px-2 py-0.5 text-xs font-medium capitalize text-gray-800">
           {text}
         </span>
       );
-    case 'unpaid':
+    case "unpaid":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium capitalize text-red-800">
           {text}
         </span>
       );
-    case 'loading':
+    case "loading":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-200 text-gray-200 capitalize'>
+        <span className="inline-flex items-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium capitalize text-gray-200">
           {text}
         </span>
       );
-    case 'drafted':
+    case "drafted":
       return (
-        <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize'>
+        <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium capitalize text-blue-800">
           {text}
         </span>
       );
-    case 'preview':
+    case "preview":
       return (
-        <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 capitalize'>
+        <span className="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium capitalize text-purple-800">
           {text}
         </span>
       );
-    case 'published':
+    case "published":
       return (
-        <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 capitalize'>
+        <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium capitalize text-green-800">
           {text}
         </span>
       );
-    case 'categorized':
+    case "categorized":
       return (
-        <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize'>
+        <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium capitalize text-blue-800">
           {text}
         </span>
       );
-    case 'uncategorized':
+    case "uncategorized":
       return (
-        <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 capitalize'>
+        <span className="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium capitalize text-yellow-800">
           {text}
         </span>
       );
-    case 'verified':
+    case "verified":
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-green-100 px-2 py-0.5 text-xs font-medium capitalize text-green-800">
           {text}
         </span>
       );
     default:
       return (
-        <span className='inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 capitalize'>
+        <span className="inline-flex items-center rounded bg-gray-100 px-2 py-0.5 text-xs font-medium capitalize text-gray-800">
           {text}
         </span>
       );
@@ -118,6 +118,6 @@ export const Badge = ({ type, text }) => {
 };
 
 Badge.defaultProps = {
-  type: 'inactive',
-  text: 'Badge',
+  type: "inactive",
+  text: "Badge",
 };

@@ -1,10 +1,10 @@
-import { useNode, useEditor } from '@craftjs/core';
+import { useNode, useEditor } from "@craftjs/core";
 
-import { fontFamilyItems } from 'components/editor/visual/toolbar/defaultFonts';
-import { BodySettings } from './BodySettings';
+import { fontFamilyItems } from "components/editor/visual/toolbar/defaultFonts";
+import { BodySettings } from "./BodySettings";
 
 const interFontFamilyIndex = fontFamilyItems.findIndex(
-  (fontFamily) => fontFamily.name === 'Inter'
+  (fontFamily) => fontFamily.name === "Inter"
 );
 
 const defaultProps = {};
@@ -33,9 +33,9 @@ export const Body = (props) => {
 
   return (
     <div
-      id='root-node'
+      id="root-node"
       ref={connect}
-      className='w-full bg-white h-full min-h-editor'
+      className="h-full min-h-editor w-full bg-white"
     >
       {children}
     </div>
@@ -43,7 +43,7 @@ export const Body = (props) => {
 };
 
 Body.craft = {
-  displayName: 'Body',
+  displayName: "Body",
   props: defaultProps,
   rules: {
     canDrag: () => true,

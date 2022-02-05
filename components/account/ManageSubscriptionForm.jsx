@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { BiCreditCard } from 'react-icons/bi';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from "react";
+import { BiCreditCard } from "react-icons/bi";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
-import { useProgressStore } from 'store';
-import { Badge } from 'components/badge';
-import { formatStatus, restrict } from 'utils';
-import { useAuth } from 'hooks/useAuth';
-import { Button } from 'components/button';
+import { useProgressStore } from "store";
+import { Badge } from "components/badge";
+import { formatStatus, restrict } from "utils";
+import { useAuth } from "hooks/useAuth";
+import { Button } from "components/button";
 
 export const ManageSubscriptionForm = ({ subscription }) => {
   const [isSending, setIsSending] = useState(false);
@@ -23,7 +23,7 @@ export const ManageSubscriptionForm = ({ subscription }) => {
   };
 
   const canSubscribe = () => {
-    if (subscription && subscription.status === 'canceled') {
+    if (subscription && subscription.status === "canceled") {
       return true;
     } else if (!subscription) {
       return true;
@@ -46,8 +46,8 @@ export const ManageSubscriptionForm = ({ subscription }) => {
 
     try {
       const res = await fetch(`/api/stripe/session`, {
-        method: 'GET',
-        credentials: 'include',
+        method: "GET",
+        credentials: "include",
       });
 
       const { success, data } = await res.json();
@@ -59,7 +59,7 @@ export const ManageSubscriptionForm = ({ subscription }) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error('Server Error');
+      toast.error("Server Error");
     }
 
     setIsSending(false);
@@ -74,8 +74,8 @@ export const ManageSubscriptionForm = ({ subscription }) => {
       const res = await fetch(
         `/api/stripe/portal/${subscription.tenantInfo[0].stripeId}`,
         {
-          method: 'GET',
-          credentials: 'include',
+          method: "GET",
+          credentials: "include",
         }
       );
 
@@ -88,7 +88,7 @@ export const ManageSubscriptionForm = ({ subscription }) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error('Server Error');
+      toast.error("Server Error");
     }
 
     setIsSending(false);
@@ -96,33 +96,33 @@ export const ManageSubscriptionForm = ({ subscription }) => {
   };
 
   return (
-    <div className='space-y-6 lg:col-span-9'>
+    <div className="space-y-6 lg:col-span-9">
       <form>
-        <div className='shadow sm:rounded-md sm:overflow-hidden'>
-          <div className='bg-white px-4 space-y-6 py-6 sm:p-6'>
+        <div className="shadow sm:overflow-hidden sm:rounded-md">
+          <div className="space-y-6 bg-white px-4 py-6 sm:p-6">
             <div>
-              <h3 className='text-lg leading-6 font-medium text-gray-900'>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
                 Manage Subscription
               </h3>
-              <p className='mt-1 max-w-2xl text-sm text-gray-500'>
+              <p className="mt-1 max-w-2xl text-sm text-gray-500">
                 Managing subscription is restricted to team admins.
               </p>
             </div>
-            <div className='grid grid-cols-3 gap-6'>
-              <div className='col-span-3'>
-                <ul className='-my-5 divide-y divide-gray-200'>
-                  <li key={subscription.id} className='py-4'>
-                    <div className='flex items-center space-x-4'>
-                      <div className='flex-shrink-0'>
-                        <span className='mx-auto flex items-center justify-center h-8 w-8 rounded-full bg-gray-100'>
-                          <BiCreditCard className='h-4 w-4 text-gray-600' />
+            <div className="grid grid-cols-3 gap-6">
+              <div className="col-span-3">
+                <ul className="-my-5 divide-y divide-gray-200">
+                  <li key={subscription.id} className="py-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-shrink-0">
+                        <span className="mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
+                          <BiCreditCard className="h-4 w-4 text-gray-600" />
                         </span>
                       </div>
-                      <div className='flex-1 min-w-0'>
-                        <p className='text-sm font-medium text-gray-900 truncate'>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-medium text-gray-900">
                           {subscription.productInfo[0].title}
                         </p>
-                        <div className='flex space-x-2 mt-1'>
+                        <div className="mt-1 flex space-x-2">
                           <Badge
                             type={subscription.status}
                             text={formatStatus(subscription.status)}
@@ -135,21 +135,21 @@ export const ManageSubscriptionForm = ({ subscription }) => {
               </div>
             </div>
           </div>
-          {restrict(['admin'], user) && (
-            <div className='px-4 py-3 bg-gray-50 text-right sm:px-6 space-x-4'>
+          {restrict(["admin"], user) && (
+            <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
               <Button
-                type='button'
+                type="button"
                 disabled={isSending}
                 onClick={() => handlePortal()}
-                variant='ghost'
-                text='Manage'
+                variant="ghost"
+                text="Manage"
               />
               {canSubscribe() && (
                 <Button
-                  type='button'
+                  type="button"
                   disabled={isSending}
                   onClick={() => redirectToCheckout()}
-                  text='Subscribe'
+                  text="Subscribe"
                 />
               )}
             </div>

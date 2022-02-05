@@ -1,42 +1,42 @@
 export const Container = ({ size, customClassName, children, ...other }) => {
   switch (size) {
-    case 'bottom-0':
+    case "bottom-0":
       return (
         <div className={`px-4 pt-12 pb-0 ${customClassName}`} {...other}>
           {children}
         </div>
       );
-    case 'top-0':
+    case "top-0":
       return (
         <div className={`px-4 pt-0 pb-12 ${customClassName}`} {...other}>
           {children}
         </div>
       );
-    case '0':
+    case "0":
       return (
         <div className={`px-4 py-0 ${customClassName}`} {...other}>
           {children}
         </div>
       );
-    case 'xs':
+    case "xs":
       return (
         <div className={`px-4 py-4 ${customClassName}`} {...other}>
           {children}
         </div>
       );
-    case 'sm':
+    case "sm":
       return (
         <div className={`px-4 py-6 ${customClassName}`} {...other}>
           {children}
         </div>
       );
-    case 'md':
+    case "md":
       return (
         <div className={`px-4 py-8 ${customClassName}`} {...other}>
           {children}
         </div>
       );
-    case 'lg':
+    case "lg":
       return (
         <div className={`px-4 py-12 ${customClassName}`} {...other}>
           {children}
@@ -52,6 +52,6 @@ export const Container = ({ size, customClassName, children, ...other }) => {
 };
 
 Container.defaultProps = {
-  size: '',
-  customClassName: 'bg-white',
+  size: "",
+  customClassName: "bg-white",
 };

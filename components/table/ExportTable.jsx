@@ -1,54 +1,54 @@
 const people = [
   {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'jane.cooper@example.com',
+    name: "Jane Cooper",
+    title: "Regional Paradigm Technician",
+    role: "Admin",
+    email: "jane.cooper@example.com",
   },
   {
-    name: 'Cody Fisher',
-    title: 'Product Directives Officer',
-    role: 'Owner',
-    email: 'cody.fisher@example.com',
+    name: "Cody Fisher",
+    title: "Product Directives Officer",
+    role: "Owner",
+    email: "cody.fisher@example.com",
   },
   // More people...
 ];
 
 export const ExportTable = () => {
   return (
-    <div className='flex flex-col'>
-      <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-        <div className='py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8'>
-          <div className='shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
-            <table className='min-w-full divide-y divide-gray-200'>
-              <thead className='bg-gray-50'>
+    <div className="flex flex-col">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
                 <tr>
                   <th
-                    scope='col'
-                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                   >
                     Name
                   </th>
                   <th
-                    scope='col'
-                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                   >
                     Title
                   </th>
                   <th
-                    scope='col'
-                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                   >
                     Email
                   </th>
                   <th
-                    scope='col'
-                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                   >
                     Role
                   </th>
-                  <th scope='col' className='relative px-6 py-3'>
-                    <span className='sr-only'>Edit</span>
+                  <th scope="col" className="relative px-6 py-3">
+                    <span className="sr-only">Edit</span>
                   </th>
                 </tr>
               </thead>
@@ -56,22 +56,22 @@ export const ExportTable = () => {
                 {people.map((person, personIdx) => (
                   <tr
                     key={person.email}
-                    className={personIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                    className={personIdx % 2 === 0 ? "bg-white" : "bg-gray-50"}
                   >
-                    <td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900'>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
                       {person.name}
                     </td>
-                    <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                       {person.title}
                     </td>
-                    <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                       {person.email}
                     </td>
-                    <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                       {person.role}
                     </td>
-                    <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-                      <a href='#' className='text-blue-600 hover:text-blue-900'>
+                    <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                      <a href="#" className="text-blue-600 hover:text-blue-900">
                         Edit
                       </a>
                     </td>

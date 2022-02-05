@@ -1,7 +1,7 @@
-import { useEditor } from '@craftjs/core';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import ContentEditable from 'react-contenteditable';
-import { useLayer } from '@craftjs/layers';
+import { useEditor } from "@craftjs/core";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import ContentEditable from "react-contenteditable";
+import { useLayer } from "@craftjs/layers";
 
 export const ToolbarLayerName = () => {
   const { id } = useLayer();
@@ -25,7 +25,7 @@ export const ToolbarLayerName = () => {
 
   useEffect(() => {
     return () => {
-      window.removeEventListener('click', clickOutside);
+      window.removeEventListener("click", clickOutside);
     };
   }, [clickOutside]);
 
@@ -36,8 +36,8 @@ export const ToolbarLayerName = () => {
       ref={(ref) => {
         if (ref) {
           nameDOM.current = ref.el.current;
-          window.removeEventListener('click', clickOutside);
-          window.addEventListener('click', clickOutside);
+          window.removeEventListener("click", clickOutside);
+          window.addEventListener("click", clickOutside);
         }
       }}
       onChange={(e) => {
@@ -46,7 +46,7 @@ export const ToolbarLayerName = () => {
           (custom) => (custom.displayName = e.target.value)
         );
       }}
-      tagName='h2'
+      tagName="h2"
       onDoubleClick={() => {
         if (!editingName) setEditingName(true);
       }}

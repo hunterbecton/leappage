@@ -1,38 +1,38 @@
-import { BiCalendar, BiChevronRight } from 'react-icons/bi';
-import Link from 'next/link';
+import { BiCalendar, BiChevronRight } from "react-icons/bi";
+import Link from "next/link";
 
-import { convertTime } from 'utils';
+import { convertTime } from "utils";
 
 export const ActivityCard = ({ item }) => {
   return (
     <li>
       <Link
         href={
-          item.type === 'project'
+          item.type === "project"
             ? `/projects/${item._id}`
             : `/templates/${item._id}`
         }
       >
-        <a className='block hover:bg-gray-50'>
-          <div className='px-4 py-4 flex items-center'>
-            <div className='min-w-0 flex-1 sm:flex sm:items-center sm:justify-between'>
-              <div className='truncate'>
-                <div className='flex text-sm'>
-                  <p className='font-medium text-blue-600 truncate'>
+        <a className="block hover:bg-gray-50">
+          <div className="flex items-center px-4 py-4">
+            <div className="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
+              <div className="truncate">
+                <div className="flex text-sm">
+                  <p className="truncate font-medium text-blue-600">
                     {item.title}
                   </p>
-                  <p className='ml-1 flex-shrink-0 font-normal text-gray-500 capitalize'>
+                  <p className="ml-1 flex-shrink-0 font-normal capitalize text-gray-500">
                     in {item.type}s
                   </p>
                 </div>
-                <div className='mt-2 flex'>
-                  <div className='flex items-center text-sm text-gray-500'>
+                <div className="mt-2 flex">
+                  <div className="flex items-center text-sm text-gray-500">
                     <BiCalendar
-                      className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400'
-                      aria-hidden='true'
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+                      aria-hidden="true"
                     />
                     <p>
-                      Updated on{' '}
+                      Updated on{" "}
                       <time dateTime={item.updatedAt}>
                         {convertTime(item.updatedAt)}
                       </time>
@@ -41,10 +41,10 @@ export const ActivityCard = ({ item }) => {
                 </div>
               </div>
             </div>
-            <div className='ml-5 flex-shrink-0'>
+            <div className="ml-5 flex-shrink-0">
               <BiChevronRight
-                className='h-5 w-5 text-gray-400'
-                aria-hidden='true'
+                className="h-5 w-5 text-gray-400"
+                aria-hidden="true"
               />
             </div>
           </div>

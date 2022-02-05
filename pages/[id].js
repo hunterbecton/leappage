@@ -1,17 +1,17 @@
-import lz from 'lzutf8';
-import { NextSeo } from 'next-seo';
-import ReactDOMServer from 'react-dom/server';
-import parse from 'html-react-parser';
+import lz from "lzutf8";
+import { NextSeo } from "next-seo";
+import ReactDOMServer from "react-dom/server";
+import parse from "html-react-parser";
 
-import { withPublishedPage } from 'middleware/app/withPublishedPage';
-import { deserializeNodes, renderNodesToJSX } from 'craft/utils';
+import { withPublishedPage } from "middleware/app/withPublishedPage";
+import { deserializeNodes, renderNodesToJSX } from "craft/utils";
 
 export default function Page({ html, page }) {
   return (
     <>
       <NextSeo
-        title={page.title ? page.title : 'Untitled Page'}
-        description='Your custom content hub created by LeapPage.'
+        title={page.title ? page.title : "Untitled Page"}
+        description="Your custom content hub created by LeapPage."
         noindex={true}
         nofollow={true}
       />

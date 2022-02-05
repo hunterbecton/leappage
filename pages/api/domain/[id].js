@@ -1,10 +1,10 @@
-import nc from 'next-connect';
-import fetch from 'node-fetch';
+import nc from "next-connect";
+import fetch from "node-fetch";
 
-import { dbConnect } from 'utils';
-import Tenant from 'models/tenantModel';
-import { withProtect } from 'middleware/api/withProtect';
-import { withSubscription } from 'middleware/api/withSubscription';
+import { dbConnect } from "utils";
+import Tenant from "models/tenantModel";
+import { withProtect } from "middleware/api/withProtect";
+import { withSubscription } from "middleware/api/withSubscription";
 
 dbConnect();
 
@@ -14,7 +14,7 @@ const handler = nc({
     return res.status(500).json({
       success: false,
       data: {
-        message: err.message || 'Server Error',
+        message: err.message || "Server Error",
       },
     });
   },
@@ -34,10 +34,10 @@ handler.patch(async (req, res, next) => {
   const response = await fetch(
     `https://api.render.com/v1/services/${process.env.RENDER_SERVICE_ID}/custom-domains/${id}`,
     {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.RENDER_API}`,
       },
     }
@@ -49,7 +49,7 @@ handler.patch(async (req, res, next) => {
       {
         tenant: req.user.tenant_mongo_id,
       },
-      { domain: '' },
+      { domain: "" },
       { new: true, runValidators: true }
     );
 
