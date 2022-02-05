@@ -41,12 +41,18 @@ export const AuthProvider = ({ children }, props) => {
       setUser(user);
       setToken(tokenResult.token);
       setCookie(null, 'lptoken', tokenResult.token, {
+        maxAge: 3600,
+        secure: true,
+        sameSite: 'strict',
         path: '/',
       });
     } else {
       setUser(null);
       setToken(null);
       destroyCookie(null, 'lptoken', {
+        path: '/',
+      });
+      destroyCookie(null, 'lprefresh', {
         path: '/',
       });
     }
@@ -68,6 +74,9 @@ export const AuthProvider = ({ children }, props) => {
         const token = await user.getIdToken(true);
         setToken(token);
         setCookie(null, 'lptoken', token, {
+          maxAge: 3600,
+          secure: true,
+          sameSite: 'strict',
           path: '/',
         });
       }
@@ -78,6 +87,18 @@ export const AuthProvider = ({ children }, props) => {
   const login = async (email, password, tenantId, redirect) => {
     auth.tenantId = tenantId;
     const response = await signInWithEmailAndPassword(auth, email, password);
+
+    // Set refresh token cookie
+    if (response._tokenResponse.refreshToken) {
+      setCookie(null, 'lprefresh', response._tokenResponse.refreshToken, {
+        maxAge: 604800, // 7 days
+        secure: true,
+        sameSite: 'strict',
+        path: '/',
+      });
+    }
+
+    // Set user
     if (response.user) {
       await handleUser(response.user);
       if (redirect) {
