@@ -66,23 +66,23 @@ export const AuthProvider = ({ children }, props) => {
     return () => unsubscribe();
   }, []);
 
-  // // Refresh the token every 10 minutes
-  // useEffect(() => {
-  //   const handle = setInterval(async () => {
-  //     const user = auth.currentUser;
-  //     if (user) {
-  //       const token = await user.getIdToken(true);
-  //       setToken(token);
-  //       setCookie(null, 'lptoken', token, {
-  //         maxAge: 3600,
-  //         secure: true,
-  //         sameSite: 'strict',
-  //         path: '/',
-  //       });
-  //     }
-  //   }, 10 * 60 * 1000);
-  //   return () => clearInterval(handle);
-  // }, []);
+  // Refresh the token every 10 minutes
+  useEffect(() => {
+    const handle = setInterval(async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const token = await user.getIdToken(true);
+        setToken(token);
+        setCookie(null, 'lptoken', token, {
+          maxAge: 3600,
+          secure: true,
+          sameSite: 'strict',
+          path: '/',
+        });
+      }
+    }, 10 * 60 * 1000);
+    return () => clearInterval(handle);
+  }, []);
 
   const login = async (email, password, tenantId, redirect) => {
     auth.tenantId = tenantId;
