@@ -1,10 +1,10 @@
-import { useNode } from "@craftjs/core";
+import { useNode } from '@craftjs/core';
 
 import {
   ToolbarSection,
   ToolbarGroup,
   ToolbarItem,
-} from "components/editor/visual/toolbar";
+} from 'components/editor/visual/toolbar';
 
 export const HeroOneSettings = () => {
   const {
@@ -18,57 +18,57 @@ export const HeroOneSettings = () => {
 
   return (
     <>
-      <div className="space-y-2">
-        <ToolbarSection title="Logo" props={["logos"]}>
+      <div className='space-y-2'>
+        <ToolbarSection title='Logo' props={['logos']}>
           {nodeLogos.map((nodeLogo, i) => (
-            <ToolbarGroup key={nodeLogo.id} bgColor="bg-gray-100" full={true}>
+            <ToolbarGroup key={nodeLogo.id} full={true}>
               <ToolbarItem
                 isGroup={true}
-                groupName="logos"
+                groupName='logos'
                 groupIndex={i}
-                propKey="company"
-                type="text"
-                label="Company"
+                propKey='company'
+                type='text'
+                label='Company'
               />
               <ToolbarItem
                 isGroup={true}
-                groupName="logos"
+                groupName='logos'
                 groupIndex={i}
-                propKey="src"
-                type="image"
-                label="Logo"
+                propKey='src'
+                type='image'
+                label='Logo'
               />
             </ToolbarGroup>
           ))}
         </ToolbarSection>
-        <ToolbarSection title="Text" props={["title"]}>
+        <ToolbarSection title='Text' props={['title']}>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey="title" type="text" label="Title" />
+            <ToolbarItem propKey='title' type='text' label='Title' />
             <ToolbarItem
-              propKey="description"
-              type="text"
-              label="Description"
+              propKey='description'
+              type='text'
+              label='Description'
             />
           </ToolbarGroup>
         </ToolbarSection>
-        <ToolbarSection title="CTA" props={["ctas"]}>
+        <ToolbarSection title='CTA' props={['ctas']}>
           {nodeCtas.map((nodeCta, i) => (
-            <ToolbarGroup key={nodeCta.id} bgColor="bg-gray-100" full={true}>
+            <ToolbarGroup key={nodeCta.id} full={true}>
               <ToolbarItem
                 isGroup={true}
-                groupName="ctas"
+                groupName='ctas'
                 groupIndex={i}
-                propKey="text"
-                type="text"
-                label="Text"
+                propKey='text'
+                type='text'
+                label='Text'
               />
               <ToolbarItem
                 isGroup={true}
-                groupName="ctas"
+                groupName='ctas'
                 groupIndex={i}
-                propKey="link"
-                type="text"
-                label="Link"
+                propKey='link'
+                type='text'
+                label='Link'
               />
             </ToolbarGroup>
           ))}

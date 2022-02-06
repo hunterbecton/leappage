@@ -23,4 +23,6 @@ export const useEditorStore = create((set) => ({
   isTestimonialModalOpen: false,
   setIsTestimonialModalOpen: (isTestimonialModalOpen) =>
     set(() => ({ isTestimonialModalOpen })),
+  shouldSave: false,
+  setShouldSave: (shouldSave) => set(() => ({ shouldSave })),
 }));
