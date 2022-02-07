@@ -40,6 +40,13 @@ export const VisualEditor = ({ json }) => {
     setIsEnabled(true);
   }, []);
 
+  // Set shouldSave to true on mount and cleanup
+  useEffect(() => {
+    setShouldSave(true);
+
+    return () => setShouldSave(true);
+  }, []);
+
   // Throw prompt when changes not saved
   useLeavePageConfirm(shouldSave);
 
