@@ -42,7 +42,7 @@ export const VisualEditor = ({ json }) => {
 
   // Set shouldSave to true on mount and cleanup
   useEffect(() => {
-    setShouldSave(true);
+    setShouldSave(false);
 
     return () => setShouldSave(false);
   }, []);
