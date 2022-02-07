@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema(
       ref: Tenant,
       required: [true, 'Tenant is required.'],
     },
+    getMarketingEmails: {
+      type: Boolean,
+      default: false,
+    },
     inviteToken: String,
     inviteTokenExpires: Date,
   },
