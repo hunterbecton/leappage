@@ -44,7 +44,7 @@ export const VisualEditor = ({ json }) => {
   useEffect(() => {
     setShouldSave(true);
 
-    return () => setShouldSave(true);
+    return () => setShouldSave(false);
   }, []);
 
   // Throw prompt when changes not saved
