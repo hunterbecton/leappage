@@ -1,18 +1,17 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { NextSeo } from "next-seo";
-import { toast } from "react-toastify";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
+import { toast } from 'react-toastify';
 
-import { Empty } from "components/empty";
-import { PageHeading } from "components/heading";
-import { MainLayout } from "components/layout";
-import { Pagination } from "components/pagination";
-import { useProgressStore } from "store";
-import { withProtect } from "middleware/app/withProtect";
-import { withTestimonials } from "middleware/app/withTestimonials";
-import { TestimonialTable } from "components/table";
-import { useAuth } from "hooks/useAuth";
-import { restrict } from "utils";
+import { Empty } from 'components/empty';
+import { PageHeading } from 'components/heading';
+import { MainLayout } from 'components/layout';
+import { Pagination } from 'components/pagination';
+import { useProgressStore } from 'store';
+import { withProtect } from 'middleware/app/withProtect';
+import { withRestrict } from 'middleware/app/withRestrict';
+import { withTestimonials } from 'middleware/app/withTestimonials';
+import { TestimonialTable } from 'components/table';
 
 export default function AllTestimonials({
   totalTestimonials,
@@ -21,8 +20,6 @@ export default function AllTestimonials({
   parsedIndex,
 }) {
   const [isCreating, setIsCreating] = useState(false);
-
-  const { user } = useAuth();
 
   const router = useRouter();
 
@@ -34,15 +31,15 @@ export default function AllTestimonials({
 
     try {
       const body = {
-        title: "Untitled Testimonial",
+        title: 'Untitled Testimonial',
       };
 
       const res = await fetch(`/api/testimonial`, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
       });
@@ -52,11 +49,11 @@ export default function AllTestimonials({
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success("Testimonial created.");
+        toast.success('Testimonial created.');
         router.push(`/testimonials/edit/${data.testimonial.id}`);
       }
     } catch (error) {
-      toast.error("Error creating testimonial.");
+      toast.error('Error creating testimonial.');
       console.log(error);
     }
 
@@ -66,26 +63,22 @@ export default function AllTestimonials({
 
   return (
     <>
-      <NextSeo title="LeapPage | Testimonials" noindex={true} nofollow={true} />
+      <NextSeo title='LeapPage | Testimonials' noindex={true} nofollow={true} />
       <MainLayout>
         <PageHeading
-          title="Testimonials"
+          title='Testimonials'
           withSubtitle={false}
-          withCta={restrict(["admin", "editor"], user)}
-          ctaText="Create Testimonial"
+          withCta={true}
+          ctaText='Create Testimonial'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewTestimonial()}
         />
         {totalTestimonials === 0 && (
           <Empty
-            title="No Testimonials"
-            subtitle={
-              restrict(["admin", "editor"], user)
-                ? "Create new testimonial below to get started"
-                : "Creation is restricted to team admins and editors"
-            }
-            withCta={restrict(["admin", "editor"], user)}
-            ctaOneText="Create Testimonial"
+            title='No Testimonials'
+            subtitle='Create new testimonial below to get started'
+            withCta={true}
+            ctaOneText='Create Testimonial'
             ctaOneOnClick={() => createNewTestimonial()}
             ctaOneIcon={null}
             withCtaTwo={false}
@@ -116,7 +109,7 @@ export async function getServerSideProps(ctx) {
   if (!parsedIndex) {
     return {
       redirect: {
-        destination: "/testimonials/1",
+        destination: '/testimonials/1',
         permanent: false,
       },
     };
@@ -127,7 +120,18 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: "/login",
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  const isPermitted = await withRestrict(ctx, 'admin', 'editor');
+
+  if (!isPermitted) {
+    return {
+      redirect: {
+        destination: '/pages/1',
         permanent: false,
       },
     };
@@ -150,7 +154,7 @@ export async function getServerSideProps(ctx) {
   if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
     return {
       redirect: {
-        destination: "/testimonials/1",
+        destination: '/testimonials/1',
         permanent: false,
       },
     };
@@ -159,7 +163,7 @@ export async function getServerSideProps(ctx) {
   if (totalTestimonials === 0 && parsedIndex > 1) {
     return {
       redirect: {
-        destination: "/testimonials/1",
+        destination: '/testimonials/1',
         permanent: false,
       },
     };

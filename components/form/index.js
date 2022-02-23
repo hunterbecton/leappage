@@ -5,6 +5,8 @@ import { Dropdown } from './Dropdown';
 import { TextArea } from './TextArea';
 import { ImageInput } from './ImageInput';
 import { Checkbox } from './Checkbox';
+import { ColorPicker } from './ColorPicker';
+import { FontPicker } from './FontPicker';
 
 export {
   Input,
@@ -14,4 +16,6 @@ export {
   TextArea,
   ImageInput,
   Checkbox,
+  ColorPicker,
+  FontPicker,
 };

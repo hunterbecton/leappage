@@ -67,7 +67,7 @@ export const TestimonialOneCard = ({ testimonial }) => {
               className='mb-6 inline-block h-20 w-20 rounded-full border-2 border-gray-200 bg-gray-100 object-cover object-center'
             />
             <p className='leading-relaxed text-gray-900'>{content.quote}</p>
-            <span className='mt-6 mb-4 inline-block h-1 w-10 rounded bg-blue-500'></span>
+            <span className='bg-primary mt-6 mb-4 inline-block h-1 w-10 rounded'></span>
             <h2 className='title-font text-sm font-medium uppercase tracking-wider text-gray-900'>
               {content.name}
             </h2>
@@ -86,7 +86,7 @@ export const TestimonialOneCard = ({ testimonial }) => {
               className='mb-6 inline-block h-20 w-20 rounded-full border-2 border-gray-200 bg-gray-100 object-cover object-center'
             />
             <p className='leading-relaxed text-gray-900'>Quote not found.</p>
-            <span className='mt-6 mb-4 inline-block h-1 w-10 rounded bg-blue-500'></span>
+            <span className='bg-primary mt-6 mb-4 inline-block h-1 w-10 rounded'></span>
             <h2 className='title-font text-sm font-medium uppercase tracking-wider text-gray-900'>
               Not Found
             </h2>

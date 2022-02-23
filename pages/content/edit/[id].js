@@ -1,19 +1,20 @@
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo';
 
-import { withProtect } from "middleware/app/withProtect";
-import { withContent } from "middleware/app/withContent";
-import { MainLayout, ContentLayout } from "components/layout";
-import { ContentForm } from "components/content";
-import { withCategories } from "middleware/app/withCategories";
+import { withProtect } from 'middleware/app/withProtect';
+import { withContent } from 'middleware/app/withContent';
+import { withRestrict } from 'middleware/app/withRestrict';
+import { MainLayout, ContentLayout } from 'components/layout';
+import { ContentForm } from 'components/content';
+import { withCategories } from 'middleware/app/withCategories';
 
 export default function ContentPage({ content, categoryOptions }) {
   return (
     <>
-      <NextSeo title="LeapPage | Edit Content" noindex={true} nofollow={true} />
+      <NextSeo title='LeapPage | Edit Content' noindex={true} nofollow={true} />
       <MainLayout>
         <ContentLayout
-          title="Content Details"
-          description="Update or delete content"
+          title='Content Details'
+          description='Update or delete content'
         >
           <ContentForm content={content} categoryOptions={categoryOptions} />
         </ContentLayout>
@@ -28,7 +29,18 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: "/login",
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  const isPermitted = await withRestrict(ctx, 'admin', 'editor');
+
+  if (!isPermitted) {
+    return {
+      redirect: {
+        destination: '/pages/1',
         permanent: false,
       },
     };
@@ -48,7 +60,7 @@ export async function getServerSideProps(ctx) {
 
   allCategoriesInfo = JSON.parse(allCategoriesInfo);
 
-  const { totalCategories, categories } = allCategoriesInfo;
+  const { categories } = allCategoriesInfo;
 
   let categoryOptions = [];
 

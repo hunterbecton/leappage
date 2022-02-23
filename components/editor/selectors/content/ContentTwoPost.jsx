@@ -106,7 +106,7 @@ export const ContentTwoPost = ({ post }) => {
                 href={content.url}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='group mt-4 inline-flex items-center text-blue-500 transition hover:text-blue-600'
+                className='group text-primary hover:text-primary-hover mt-4 inline-flex items-center transition'
               >
                 Read More
                 <svg
@@ -143,7 +143,7 @@ export const ContentTwoPost = ({ post }) => {
               <p className='leading-relaxed text-gray-500'>
                 Content descrition unavailable.
               </p>
-              <p className='group mt-4 inline-flex items-center text-blue-500 transition hover:text-blue-600'>
+              <p className='group text-primary hover:text-primary-hover mt-4 inline-flex items-center transition'>
                 Not Found
                 <svg
                   className='mt-0.5 ml-1 h-4 w-4'

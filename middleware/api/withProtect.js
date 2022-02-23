@@ -39,7 +39,6 @@ export const withProtect = async (req, res, next) => {
         nookies.set(ctx, 'lptoken', data.access_token, {
           maxAge: 3600,
           secure: true,
-          sameSite: 'strict',
           path: '/',
         });
 

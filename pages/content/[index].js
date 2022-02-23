@@ -1,18 +1,17 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { NextSeo } from "next-seo";
-import { toast } from "react-toastify";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
+import { toast } from 'react-toastify';
 
-import { Empty } from "components/empty";
-import { PageHeading } from "components/heading";
-import { MainLayout } from "components/layout";
-import { ContentTable } from "components/table";
-import { Pagination } from "components/pagination";
-import { useProgressStore } from "store";
-import { withProtect } from "middleware/app/withProtect";
-import { withContents } from "middleware/app/withContents";
-import { useAuth } from "hooks/useAuth";
-import { restrict } from "utils";
+import { Empty } from 'components/empty';
+import { PageHeading } from 'components/heading';
+import { MainLayout } from 'components/layout';
+import { ContentTable } from 'components/table';
+import { Pagination } from 'components/pagination';
+import { useProgressStore } from 'store';
+import { withProtect } from 'middleware/app/withProtect';
+import { withRestrict } from 'middleware/app/withRestrict';
+import { withContents } from 'middleware/app/withContents';
 
 export default function AllContent({
   totalContents,
@@ -21,8 +20,6 @@ export default function AllContent({
   parsedIndex,
 }) {
   const [isCreating, setIsCreating] = useState(false);
-
-  const { user } = useAuth();
 
   const router = useRouter();
 
@@ -34,15 +31,15 @@ export default function AllContent({
 
     try {
       const body = {
-        title: "Untitled Content",
+        title: 'Untitled Content',
       };
 
       const res = await fetch(`/api/content`, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
       });
@@ -52,11 +49,11 @@ export default function AllContent({
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success("Content created.");
+        toast.success('Content created.');
         router.push(`/content/edit/${data.content.id}`);
       }
     } catch (error) {
-      toast.error("Error creating content.");
+      toast.error('Error creating content.');
       console.log(error);
     }
 
@@ -66,26 +63,22 @@ export default function AllContent({
 
   return (
     <>
-      <NextSeo title="LeapPage | Content" noindex={true} nofollow={true} />
+      <NextSeo title='LeapPage | Content' noindex={true} nofollow={true} />
       <MainLayout>
         <PageHeading
-          title="Content"
+          title='Content'
           withSubtitle={false}
-          withCta={restrict(["admin", "editor"], user)}
-          ctaText="Create Content"
+          withCta={true}
+          ctaText='Create Content'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewContent()}
         />
         {contents.length === 0 && (
           <Empty
-            title="No Content"
-            subtitle={
-              restrict(["admin", "editor"], user)
-                ? "Create new content below to get started"
-                : "Creation is restricted to team admins and editors"
-            }
-            withCta={restrict(["admin", "editor"], user)}
-            ctaOneText="Create Content"
+            title='No Content'
+            subtitle='Create new content below to get started'
+            withCta={true}
+            ctaOneText='Create Content'
             ctaOneOnClick={() => createNewContent()}
             ctaOneIcon={null}
             withCtaTwo={false}
@@ -116,7 +109,7 @@ export async function getServerSideProps(ctx) {
   if (!parsedIndex) {
     return {
       redirect: {
-        destination: "/content/1",
+        destination: '/content/1',
         permanent: false,
       },
     };
@@ -127,7 +120,17 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: "/login",
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+  const isPermitted = await withRestrict(ctx, 'admin', 'editor');
+
+  if (!isPermitted) {
+    return {
+      redirect: {
+        destination: '/pages/1',
         permanent: false,
       },
     };
@@ -150,7 +153,7 @@ export async function getServerSideProps(ctx) {
   if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
     return {
       redirect: {
-        destination: "/content/1",
+        destination: '/content/1',
         permanent: false,
       },
     };
@@ -159,7 +162,7 @@ export async function getServerSideProps(ctx) {
   if (totalContents === 0 && parsedIndex > 1) {
     return {
       redirect: {
-        destination: "/content/1",
+        destination: '/content/1',
         permanent: false,
       },
     };

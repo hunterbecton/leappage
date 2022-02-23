@@ -5,22 +5,29 @@
 @layer components {
   /* Stripe styles */
   .stripe-element {
-    @apply mt-6 shadow-sm rounded-md py-2 px-3 border border-gray-300;
+    @apply mt-6 rounded-md border border-gray-300 py-2 px-3 shadow-sm;
   }
   .stripe-element__focus {
-    @apply outline-none ring-1 ring-blue-500 border-blue-500;
+    @apply border-blue-500 outline-none ring-1 ring-blue-500;
   }
   .stripe-element__invalid {
-    @apply outline-none ring-1 ring-red-500 border-red-500;
+    @apply border-red-500 outline-none ring-1 ring-red-500;
   }
   .stripe-element__complete {
-    @apply outline-none ring-1 ring-green-500 border-green-500;
+    @apply border-green-500 outline-none ring-1 ring-green-500;
   }
 }
 
 @layer utilities {
+  /* Theme variables */
+  :root {
+    --primary: #3b82f6;
+    --primary-light: #dbeafe;
+    --primary-hover: #2563eb;
+  }
+
   .component-selected {
-    @apply outline-2 outline-offset-selected outline-dotted outline-blue-400;
+    @apply outline-offset-selected outline-dotted outline-2 outline-blue-400;
   }
 
   @media screen and (-webkit-min-device-pixel-ratio: 0) {

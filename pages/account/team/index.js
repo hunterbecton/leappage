@@ -1,7 +1,8 @@
-import { TeamForm } from "components/account";
-import { AccountLayout } from "components/layout";
-import { withProtect } from "middleware/app/withProtect";
-import { withTeam } from "middleware/app/withTeam";
+import { TeamForm } from 'components/account';
+import { AccountLayout } from 'components/layout';
+import { withProtect } from 'middleware/app/withProtect';
+import { withRestrict } from 'middleware/app/withRestrict';
+import { withTeam } from 'middleware/app/withTeam';
 
 export default function AccountTeam({ team }) {
   return (
@@ -17,7 +18,18 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: "/login",
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  const isPermitted = await withRestrict(ctx, 'admin');
+
+  if (!isPermitted) {
+    return {
+      redirect: {
+        destination: '/account/profile',
         permanent: false,
       },
     };

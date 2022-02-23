@@ -7,6 +7,7 @@ import { Frame, Editor } from '@craftjs/core';
 
 import { withProtect } from 'middleware/app/withProtect';
 import { withPage } from 'middleware/app/withPage';
+import { withTheme } from 'middleware/app/withTheme';
 import { Body } from 'components/editor/selectors/body';
 import {
   LogoCloudOne,
@@ -29,9 +30,10 @@ import { LinkOne, LinkTwo } from 'components/editor/selectors/link';
 import { HeroOne, HeroTwo } from 'components/editor/selectors/hero';
 import { DividerOne } from 'components/editor/selectors/divider';
 import { useEditorStore } from 'store';
+import { Theme } from 'components/theme';
 // import { deserializeNodes, renderNodesToJSX } from 'craft/utils';
 
-export default function PreviewPage({ json, page }) {
+export default function PreviewPage({ json, page, theme }) {
   const isEnabled = useEditorStore((state) => state.isEnabled);
   const setIsEnabled = useEditorStore((state) => state.setIsEnabled);
 
@@ -47,6 +49,7 @@ export default function PreviewPage({ json, page }) {
         noindex={true}
         nofollow={true}
       />
+      <Theme theme={theme} />
       <Editor
         resolver={{
           Body,
@@ -105,7 +108,11 @@ export async function getServerSideProps(ctx) {
   // const jsx = renderNodesToJSX(nodes);
   // const html = ReactDOMServer.renderToString(jsx);
 
+  let theme = await withTheme(ctx.req.user.tenant_mongo_id);
+
+  theme = JSON.parse(theme);
+
   return {
-    props: { json, page },
+    props: { json, page, theme },
   };
 }

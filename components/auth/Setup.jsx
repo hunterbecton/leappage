@@ -9,6 +9,7 @@ import { Container } from 'components/container';
 import { Checkbox, Input, InputRef } from 'components/form';
 import { Button } from 'components/button';
 import { useProgressStore } from 'store';
+import { useAuth } from 'hooks/useAuth';
 
 const validationSchema = yup.object().shape({
   email: yup.string().required('Email is required'),
@@ -32,6 +33,8 @@ export const Setup = ({ tenant }) => {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(validationSchema),
   });
+
+  const { login } = useAuth();
 
   const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
 
@@ -77,8 +80,10 @@ export const Setup = ({ tenant }) => {
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success('Account set up.');
-        router.push('/login');
+        setIsSending(false);
+        setIsAnimating(false);
+        toast.success('Account activated.');
+        await login(formData.email, formData.password, tenant.tenantId, '/');
       }
     } catch (error) {
       console.log(error);

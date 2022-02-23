@@ -1,11 +1,12 @@
-import nc from "next-connect";
+import nc from 'next-connect';
 
-import { dbConnect, filterObject } from "utils";
-import { firebaseAdmin } from "services/firebaseAdmin";
-import Tenant from "models/tenantModel";
-import User from "models/userModel";
-import Stripe from "stripe";
-import Email from "utils/email";
+import { dbConnect, filterObject } from 'utils';
+import { firebaseAdmin } from 'services/firebaseAdmin';
+import Tenant from 'models/tenantModel';
+import User from 'models/userModel';
+import Theme from 'models/themeModel';
+import Stripe from 'stripe';
+import Email from 'utils/email';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -23,11 +24,11 @@ handler.post(async (req, res, next) => {
   // Get items from req.body
   const filteredBody = filterObject(
     req.body,
-    "email",
-    "name",
-    "password",
-    "company",
-    "subdomain"
+    'email',
+    'name',
+    'password',
+    'company',
+    'subdomain'
     // 'inviteCode'
   );
 
@@ -55,19 +56,19 @@ handler.post(async (req, res, next) => {
   const tenantManager = firebaseAdmin.auth().tenantManager();
 
   const restrictedSubdomain =
-    filteredBody.subdomain === "cdn" ||
-    filteredBody.subdomain === "www" ||
-    filteredBody.subdomain === "webhook" ||
-    filteredBody.subdomain === "webhooks" ||
-    filteredBody.subdomain === "staging" ||
-    filteredBody.subdomain === "admin" ||
-    filteredBody.subdomain === "tuna" ||
-    filteredBody.subdomain === "docs" ||
-    filteredBody.subdomain === "render" ||
-    filteredBody.subdomain === "api" ||
-    filteredBody.subdomain === "demo" ||
-    filteredBody.subdomain === "app" ||
-    filteredBody.subdomain === "leappage";
+    filteredBody.subdomain === 'cdn' ||
+    filteredBody.subdomain === 'www' ||
+    filteredBody.subdomain === 'webhook' ||
+    filteredBody.subdomain === 'webhooks' ||
+    filteredBody.subdomain === 'staging' ||
+    filteredBody.subdomain === 'admin' ||
+    filteredBody.subdomain === 'tuna' ||
+    filteredBody.subdomain === 'docs' ||
+    filteredBody.subdomain === 'render' ||
+    filteredBody.subdomain === 'api' ||
+    filteredBody.subdomain === 'demo' ||
+    filteredBody.subdomain === 'app' ||
+    filteredBody.subdomain === 'leappage';
 
   // Check if tenant with subdomain already exists
   const currentTenant = await Tenant.findOne({
@@ -75,7 +76,7 @@ handler.post(async (req, res, next) => {
   });
 
   if (currentTenant || restrictedSubdomain) {
-    throw new Error("Subdomain already in use.");
+    throw new Error('Subdomain already in use.');
   }
 
   // Create a new tenant in Google
@@ -106,8 +107,13 @@ handler.post(async (req, res, next) => {
   const newAdmin = await User.create({
     name: filteredBody.name,
     email: filteredBody.email,
-    role: "admin",
-    status: "active",
+    role: 'admin',
+    status: 'active',
+    tenant: newTenant._id,
+  });
+
+  // Create new theme in MongoDB
+  const theme = await Theme.create({
     tenant: newTenant._id,
   });
 
@@ -128,7 +134,7 @@ handler.post(async (req, res, next) => {
 
   // Set user claims in Google
   await tenantAuth.setCustomUserClaims(newGoogleUser.uid, {
-    role: "admin",
+    role: 'admin',
     tenant_mongo_id: newTenant._id,
   });
 

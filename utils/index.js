@@ -15,3 +15,4 @@ export * from './formatDate';
 export * from './restrict';
 export * from './cloneObject';
 export * from './renameKey';
+export * from './loadFont';

@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }, props) => {
       setCookie(null, 'lptoken', tokenResult.token, {
         maxAge: 3600,
         secure: true,
-        sameSite: 'strict',
         path: '/',
       });
     } else {
@@ -76,7 +75,6 @@ export const AuthProvider = ({ children }, props) => {
         setCookie(null, 'lptoken', token, {
           maxAge: 3600,
           secure: true,
-          sameSite: 'strict',
           path: '/',
         });
       }
@@ -93,7 +91,6 @@ export const AuthProvider = ({ children }, props) => {
       setCookie(null, 'lprefresh', response._tokenResponse.refreshToken, {
         maxAge: 604800, // 7 days
         secure: true,
-        sameSite: 'strict',
         path: '/',
       });
     }

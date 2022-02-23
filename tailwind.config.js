@@ -10,6 +10,11 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...fontFamily.sans],
       },
+      colors: {
+        primary: 'var(--primary)',
+        'primary-light': 'var(--primary-light)',
+        'primary-hover': 'var(--primary-hover)',
+      },
       outlineOffset: {
         selected: '-2px',
       },

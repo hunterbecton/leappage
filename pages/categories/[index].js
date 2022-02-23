@@ -1,18 +1,17 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { NextSeo } from "next-seo";
-import { toast } from "react-toastify";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
+import { toast } from 'react-toastify';
 
-import { Empty } from "components/empty";
-import { PageHeading } from "components/heading";
-import { MainLayout } from "components/layout";
-import { CategoryTable } from "components/table";
-import { Pagination } from "components/pagination";
-import { useProgressStore } from "store";
-import { withProtect } from "middleware/app/withProtect";
-import { withCategories } from "middleware/app/withCategories";
-import { useAuth } from "hooks/useAuth";
-import { restrict } from "utils";
+import { Empty } from 'components/empty';
+import { PageHeading } from 'components/heading';
+import { MainLayout } from 'components/layout';
+import { CategoryTable } from 'components/table';
+import { Pagination } from 'components/pagination';
+import { useProgressStore } from 'store';
+import { withProtect } from 'middleware/app/withProtect';
+import { withRestrict } from 'middleware/app/withRestrict';
+import { withCategories } from 'middleware/app/withCategories';
 
 export default function AllCategories({
   totalCategories,
@@ -21,8 +20,6 @@ export default function AllCategories({
   parsedIndex,
 }) {
   const [isCreating, setIsCreating] = useState(false);
-
-  const { user } = useAuth();
 
   const router = useRouter();
 
@@ -34,15 +31,15 @@ export default function AllCategories({
 
     try {
       const body = {
-        title: "Untitled Category",
+        title: 'Untitled Category',
       };
 
       const res = await fetch(`/api/category`, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
       });
@@ -52,11 +49,11 @@ export default function AllCategories({
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success("Category created.");
+        toast.success('Category created.');
         router.push(`/categories/edit/${data.category.id}`);
       }
     } catch (error) {
-      toast.error("Error creating category.");
+      toast.error('Error creating category.');
       console.log(error);
     }
 
@@ -66,26 +63,22 @@ export default function AllCategories({
 
   return (
     <>
-      <NextSeo title="LeapPage | Categories" noindex={true} nofollow={true} />
+      <NextSeo title='LeapPage | Categories' noindex={true} nofollow={true} />
       <MainLayout>
         <PageHeading
-          title="Categories"
+          title='Categories'
           withSubtitle={false}
-          withCta={restrict(["admin", "editor"], user)}
-          ctaText="Create Category"
+          withCta={true}
+          ctaText='Create Category'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewCategory()}
         />
         {totalCategories === 0 && (
           <Empty
-            title="No Categories"
-            subtitle={
-              restrict(["admin", "editor"], user)
-                ? "Create new category below to get started"
-                : "Creation is restricted to team admins and editors"
-            }
-            withCta={restrict(["admin", "editor"], user)}
-            ctaOneText="Create Category"
+            title='No Categories'
+            subtitle='Create new category below to get startedv'
+            withCta={true}
+            ctaOneText='Create Category'
             ctaOneOnClick={() => createNewCategory()}
             ctaOneIcon={null}
             withCtaTwo={false}
@@ -116,7 +109,7 @@ export async function getServerSideProps(ctx) {
   if (!parsedIndex) {
     return {
       redirect: {
-        destination: "/categories/1",
+        destination: '/categories/1',
         permanent: false,
       },
     };
@@ -127,7 +120,18 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: "/login",
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  const isPermitted = await withRestrict(ctx, 'admin', 'editor');
+
+  if (!isPermitted) {
+    return {
+      redirect: {
+        destination: '/pages/1',
         permanent: false,
       },
     };
@@ -150,7 +154,7 @@ export async function getServerSideProps(ctx) {
   if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
     return {
       redirect: {
-        destination: "/categories/1",
+        destination: '/categories/1',
         permanent: false,
       },
     };
@@ -159,7 +163,7 @@ export async function getServerSideProps(ctx) {
   if (totalCategories === 0 && parsedIndex > 1) {
     return {
       redirect: {
-        destination: "/categories/1",
+        destination: '/categories/1',
         permanent: false,
       },
     };

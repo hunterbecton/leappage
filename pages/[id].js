@@ -6,6 +6,8 @@ import { Frame, Editor } from '@craftjs/core';
 // import parse from 'html-react-parser';
 
 import { withPublishedPage } from 'middleware/app/withPublishedPage';
+import { withTenant } from 'middleware/app/withTenant';
+import { withTheme } from 'middleware/app/withTheme';
 import { Body } from 'components/editor/selectors/body';
 import {
   LogoCloudOne,
@@ -27,10 +29,11 @@ import {
 import { LinkOne, LinkTwo } from 'components/editor/selectors/link';
 import { HeroOne, HeroTwo } from 'components/editor/selectors/hero';
 import { DividerOne } from 'components/editor/selectors/divider';
+import { Theme } from 'components/theme';
 import { useEditorStore } from 'store';
 // import { deserializeNodes, renderNodesToJSX } from 'craft/utils';
 
-export default function Page({ json, page }) {
+export default function Page({ json, page, theme }) {
   const isEnabled = useEditorStore((state) => state.isEnabled);
   const setIsEnabled = useEditorStore((state) => state.setIsEnabled);
 
@@ -46,6 +49,7 @@ export default function Page({ json, page }) {
         noindex={true}
         nofollow={true}
       />
+      <Theme theme={theme} />
       <Editor
         resolver={{
           Body,
@@ -77,6 +81,17 @@ export default function Page({ json, page }) {
 }
 
 export async function getServerSideProps(ctx) {
+  let tenant = await withTenant(ctx);
+
+  // Return 404 page if no tenant
+  if (!tenant) {
+    return {
+      notFound: true,
+    };
+  }
+
+  tenant = JSON.parse(tenant);
+
   let page = await withPublishedPage(ctx);
 
   if (!page) {
@@ -93,7 +108,11 @@ export async function getServerSideProps(ctx) {
   // const jsx = renderNodesToJSX(nodes);
   // const html = ReactDOMServer.renderToString(jsx);
 
+  let theme = await withTheme(tenant.id);
+
+  theme = JSON.parse(theme);
+
   return {
-    props: { json, page },
+    props: { json, page, theme },
   };
 }

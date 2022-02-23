@@ -343,6 +343,14 @@ export const Toolbar = () => {
                         formState={formState}
                         options={statusOptions}
                       />
+                      <ToolbarTextDefault
+                        name='slug'
+                        label='Slug'
+                        placeholder='Enter slug'
+                        register={register}
+                        formState={formState}
+                        onBlur={(e) => handleSlugify(e.target.value, 'slug')}
+                      />
                     </ToolbarGroupDefault>
                   </ToolbarSectionDefault>
                 </div>
@@ -630,51 +638,13 @@ export const Toolbar = () => {
             </>
           ) : null}
           {restrict(['user'], user) && templateType === 'template' ? (
-            <>
-              <Menu as='div' className='relative inline-block text-left'>
-                <div>
-                  <Menu.Button className='inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100'>
-                    Options
-                    <BiChevronDown
-                      className='-mr-1 ml-2 h-4 w-4'
-                      aria-hidden='true'
-                    />
-                  </Menu.Button>
-                </div>
-
-                <Transition
-                  as={Fragment}
-                  enter='transition ease-out duration-100'
-                  enterFrom='transform opacity-0 scale-95'
-                  enterTo='transform opacity-100 scale-100'
-                  leave='transition ease-in duration-75'
-                  leaveFrom='transform opacity-100 scale-100'
-                  leaveTo='transform opacity-0 scale-95'
-                >
-                  <Menu.Items className='absolute right-0 bottom-0 mt-2 w-56 origin-bottom-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                    <div className='py-1'>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <ToolbarMenuItem
-                            text={
-                              <>
-                                <BiDuplicate
-                                  className='mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500'
-                                  aria-hidden='true'
-                                />
-                                Duplicate as Page
-                              </>
-                            }
-                            active={active}
-                            onClick={() => handleDuplicate('page')}
-                          />
-                        )}
-                      </Menu.Item>
-                    </div>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
-            </>
+            <Button
+              text='Duplicate'
+              variant='default'
+              size='sm'
+              disabled={isAnimating}
+              onClick={() => handleDuplicate('page')}
+            />
           ) : null}
         </div>
       </div>
