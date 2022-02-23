@@ -1,13 +1,15 @@
-import { ThemeForm } from 'components/account';
+import { CreateThemeForm, ManageThemeForm } from 'components/account';
 import { AccountLayout } from 'components/layout';
 import { withProtect } from 'middleware/app/withProtect';
 import { withRestrict } from 'middleware/app/withRestrict';
 import { withTheme } from 'middleware/app/withTheme';
 
 export default function AccountTheme({ theme }) {
+  console.log(theme);
   return (
     <AccountLayout>
-      <ThemeForm theme={theme} />
+      {!theme && <CreateThemeForm />}
+      {theme && <ManageThemeForm theme={theme} />}
     </AccountLayout>
   );
 }
@@ -36,12 +38,6 @@ export async function getServerSideProps(ctx) {
   }
 
   let theme = await withTheme(ctx.req.user.tenant_mongo_id);
-
-  if (!theme) {
-    return {
-      notFound: true,
-    };
-  }
 
   theme = JSON.parse(theme);
 

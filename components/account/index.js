@@ -9,7 +9,8 @@ import { SkeletonTeammateForm } from './SkeletonTeammateForm';
 import { CreateSubscriptionForm } from './CreateSubscriptionForm';
 import { ManageSubscriptionForm } from './ManageSubscriptionForm';
 import { SkeletonSubscriptionForm } from './SkeletonSubscriptionForm';
-import { ThemeForm } from './ThemeForm';
+import { ManageThemeForm } from './ManageThemeForm';
+import { CreateThemeForm } from './CreateThemeForm';
 
 export {
   ProfileForm,
@@ -23,5 +24,6 @@ export {
   CreateSubscriptionForm,
   ManageSubscriptionForm,
   SkeletonSubscriptionForm,
-  ThemeForm,
+  ManageThemeForm,
+  CreateThemeForm,
 };

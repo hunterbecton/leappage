@@ -52,19 +52,19 @@ const validationSchema = yup.object().shape({
   fontFamily: yup.string().required('Primary hover is required'),
 });
 
-export const ThemeForm = ({ theme }) => {
+export const CreateThemeForm = () => {
   const [isSending, setIsSending] = useState(false);
 
   const { user } = useAuth();
 
-  const { register, handleSubmit, setValue, watch, formState, reset, trigger } =
+  const { register, handleSubmit, setValue, watch, formState, trigger } =
     useForm({
       resolver: yupResolver(validationSchema),
       defaultValues: {
-        primary: theme.primary,
-        primaryLight: theme.primaryLight,
-        primaryHover: theme.primaryHover,
-        fontFamily: theme.fontFamily,
+        primary: '#3B82F6',
+        primaryLight: '#DBEAFE',
+        primaryHover: '#2563EB',
+        fontFamily: 'Inter',
       },
     });
 
@@ -76,13 +76,13 @@ export const ThemeForm = ({ theme }) => {
 
   const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
 
-  const handleUpdateTheme = async (newData) => {
+  const handleCreateTheme = async (newData) => {
     setIsSending(true);
     setIsAnimating(true);
 
     try {
-      const res = await fetch(`/api/theme/${theme.id}`, {
-        method: 'PATCH',
+      const res = await fetch(`/api/theme`, {
+        method: 'POST',
         credentials: 'include',
         headers: {
           Accept: 'application/json',
@@ -96,7 +96,7 @@ export const ThemeForm = ({ theme }) => {
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success('Theme updated.');
+        toast.success('Theme created.');
         refreshData();
       }
     } catch (error) {
@@ -112,7 +112,7 @@ export const ThemeForm = ({ theme }) => {
     const isValid = await trigger();
 
     if (isValid) {
-      handleUpdateTheme(newData);
+      handleCreateTheme(newData);
     }
   };
 
@@ -138,10 +138,10 @@ export const ThemeForm = ({ theme }) => {
               <div className='space-y-6 bg-white py-6 px-4 sm:p-6'>
                 <div>
                   <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                    Update Theme
+                    Create Theme
                   </h3>
                   <p className='mt-1 max-w-2xl text-sm text-gray-500'>
-                    Updating theme is restricted to team admins.
+                    Create theme is restricted to team admins.
                   </p>
                 </div>
                 <div className='grid grid-cols-3 gap-6'>
@@ -243,10 +243,10 @@ export const ThemeForm = ({ theme }) => {
               <div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
                 <Button
                   type='button'
-                  title='Update Theme'
+                  title='Create Theme'
                   disabled={isSending}
                   onClick={handleSubmit((data) => handleIsValid(data))}
-                  text='Update'
+                  text='Create'
                   formState={formState}
                 />
               </div>
