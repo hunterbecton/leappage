@@ -38,14 +38,14 @@ export const VisualEditor = ({ json }) => {
   // Enable editor on mount
   useEffect(() => {
     setIsEnabled(true);
-  }, []);
+  }, [setIsEnabled]);
 
   // Set shouldSave to true on mount and cleanup
   useEffect(() => {
     setShouldSave(false);
 
     return () => setShouldSave(false);
-  }, []);
+  }, [setShouldSave]);
 
   // Throw prompt when changes not saved
   useLeavePageConfirm(shouldSave);

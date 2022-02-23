@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useQuery } from 'react-query';
 
 import { useEditorStore } from 'store';
@@ -84,11 +85,14 @@ export const TestimonialTwoCard = ({ testimonial }) => {
               {content.quote}
             </p>
             <div className='inline-flex items-center'>
-              <img
-                alt={content.title}
-                src={content.profileImage}
-                className='h-12 w-12 flex-shrink-0 rounded-full border-2 border-gray-200 object-cover object-center'
-              />
+              <div className='relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full border-2 border-gray-200'>
+                <Image
+                  alt={content.title}
+                  src={content.profileImage}
+                  layout='fill'
+                  objectFit='cover'
+                />
+              </div>
               <span className='flex flex-grow flex-col pl-4'>
                 <span className='title-font text-sm font-medium uppercase tracking-wider text-gray-900'>
                   {content.name}
@@ -116,11 +120,14 @@ export const TestimonialTwoCard = ({ testimonial }) => {
               Quote not found.
             </p>
             <div className='inline-flex items-center'>
-              <img
-                alt='Image not found'
-                src='/images/not-found.png'
-                className='h-12 w-12 flex-shrink-0 rounded-full border-2 border-gray-200 object-cover object-center'
-              />
+              <div className='relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full border-2 border-gray-200'>
+                <Image
+                  alt='Image not found'
+                  src='/images/not-found.png'
+                  layout='fill'
+                  objectFit='cover'
+                />
+              </div>
               <span className='flex flex-grow flex-col pl-4'>
                 <span className='title-font text-sm font-medium uppercase tracking-wider text-gray-900'>
                   Not Found

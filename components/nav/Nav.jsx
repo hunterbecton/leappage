@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 import { classNames, restrict } from 'utils';
 import { useAuth } from 'hooks/useAuth';
+import Image from 'next/image';
 
 export const Nav = () => {
   const { user, logout } = useAuth();
@@ -45,11 +46,14 @@ export const Nav = () => {
                   <Link href='/'>
                     <a className='focus:outline-none'>
                       <span className='sr-only'>LeapPage</span>
-                      <img
-                        className='h-7 w-auto'
-                        src='/brand/logo-light.svg'
-                        alt='LeapPage Logo'
-                      />
+                      <div className='relative h-7 w-12'>
+                        <Image
+                          src='/brand/logo-light.svg'
+                          alt='LeapPage Logo'
+                          layout='fill'
+                          objectFit='contain'
+                        />
+                      </div>
                     </a>
                   </Link>
                 </div>
@@ -194,11 +198,14 @@ export const Nav = () => {
                         <Menu.Button className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800'>
                           <span className='sr-only'>Open user menu</span>
                           {user?.photoUrl && (
-                            <img
-                              className='h-8 w-8 rounded-full'
-                              src={user.photoUrl}
-                              alt={user.email}
-                            />
+                            <div className='relative h-8 w-8 overflow-hidden rounded-full'>
+                              <Image
+                                src={user.photoUrl}
+                                alt={user.email}
+                                layout='fill'
+                                objectFit='cover'
+                              />
+                            </div>
                           )}
                           {!user?.photoUrl && (
                             <span className='inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100'>

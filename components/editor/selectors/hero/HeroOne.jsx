@@ -3,6 +3,7 @@ import { BiPlus } from 'react-icons/bi';
 
 import { HeroOneSettings } from './HeroOneSettings';
 import { useEditorStore } from 'store';
+import Image from 'next/image';
 
 const defaultProps = {
   title: 'Landing Pages for Sales',
@@ -53,19 +54,21 @@ export const HeroOne = (props) => {
     <section ref={connect} className='w-full bg-white py-12 px-10 md:py-16'>
       <div className='mx-auto flex max-w-7xl flex-col items-center justify-center'>
         <div className='mb-8 flex w-full items-center justify-center space-x-4'>
-          <div className='flex h-20 w-20 items-center justify-center overflow-hidden'>
-            <img
-              className='w-full object-cover'
+          <div className='relative flex h-20 w-20 items-center justify-center overflow-hidden'>
+            <Image
               alt={logos[0].company}
               src={logos[0].src}
+              layout='fill'
+              objectFit='cover'
             />
           </div>
           <BiPlus className='h-6 w-6 text-gray-500' />
-          <div className='flex h-20 w-20 items-center justify-center overflow-hidden'>
-            <img
-              className='w-full object-cover'
+          <div className='relative flex h-20 w-20 items-center justify-center overflow-hidden'>
+            <Image
               alt={logos[1].company}
               src={logos[1].src}
+              layout='fill'
+              objectFit='cover'
             />
           </div>
         </div>

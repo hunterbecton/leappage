@@ -39,7 +39,8 @@ export default function PreviewTemplate({ json, template, theme }) {
 
   useEffect(() => {
     setIsEnabled(false);
-  }, []);
+  }, [setIsEnabled]);
+
   return (
     <>
       <NextSeo

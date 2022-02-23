@@ -37,7 +37,7 @@ function App({ Component, pageProps }) {
       router.events.off('routeChangeComplete', handleStop);
       router.events.off('routeChangeError', handleStop);
     };
-  }, [router]);
+  }, [router, setIsAnimating]);
 
   return (
     <AuthProvider>

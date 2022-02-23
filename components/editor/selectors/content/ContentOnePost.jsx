@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useQuery } from 'react-query';
 
 import { useEditorStore } from 'store';
@@ -67,11 +68,14 @@ export const ContentOnePost = ({ post }) => {
             rel='noopener noreferrer'
             className='relative block h-64 w-full overflow-hidden rounded'
           >
-            <img
-              alt={content.title}
-              className='h-full w-full scale-100 transform object-cover object-center transition duration-500 ease-out hover:scale-105'
-              src={content.feature}
-            />
+            <div className='h-full w-full scale-100 transform transition duration-500 ease-out hover:scale-105'>
+              <Image
+                src={content.feature}
+                alt={content.title}
+                layout='fill'
+                objectFit='cover'
+              />
+            </div>
           </a>
           <p className='text-xs font-bold uppercase text-gray-400'>
             {content.categoryInfo && content.categoryInfo.length > 0
@@ -91,11 +95,14 @@ export const ContentOnePost = ({ post }) => {
       {isError && isEnabled ? (
         <div className='relative col-span-12 mb-10 space-y-4 md:col-span-6 lg:col-span-4'>
           <div className='relative block h-64 w-full overflow-hidden rounded'>
-            <img
-              alt='Image not found'
-              className='h-full w-full scale-100 transform object-cover object-center transition duration-500 ease-out hover:scale-105'
-              src='/images/not-found.png'
-            />
+            <div className='h-full w-full scale-100 transform transition duration-500 ease-out hover:scale-105'>
+              <Image
+                src='/images/not-found.png'
+                alt='Image not found'
+                layout='fill'
+                objectFit='cover'
+              />
+            </div>
           </div>
           <p className='text-xs font-bold uppercase text-gray-400'>Not Found</p>
           <p className='block text-2xl font-medium leading-tight text-gray-700 transition hover:text-gray-900'>

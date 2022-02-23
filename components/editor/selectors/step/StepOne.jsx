@@ -2,6 +2,7 @@ import { useNode } from '@craftjs/core';
 
 import { StepOneSettings } from './StepOneSettings';
 import { Icon } from 'components/icon';
+import Image from 'next/image';
 
 const defaultProps = {
   src: 'https://dummyimage.com/1000x828/f3f4f6/1f2937.jpg',
@@ -110,11 +111,9 @@ export const StepOne = (props) => {
               )
             )}
           </div>
-          <img
-            className='mt-12 rounded-lg object-cover object-center md:mt-0 md:w-1/2 lg:w-3/5'
-            src={src}
-            alt='step'
-          />
+          <div className='relative mt-12 rounded-lg object-cover object-center md:mt-0 md:w-1/2 lg:w-3/5'>
+            <Image src={src} alt='Step' layout='fill' objectFit='cover' />
+          </div>
         </div>
       </div>
     </section>

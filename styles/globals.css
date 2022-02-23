@@ -26,6 +26,33 @@
     --primary-hover: #2563eb;
   }
 
+  .unset {
+    position: unset;
+  }
+
+  .p-img-4 {
+    @apply p-4 !important;
+  }
+
+  .p-img-2 {
+    @apply p-2 !important;
+  }
+
+  .unset-img-container {
+    width: 100%;
+  }
+
+  .unset-img-container > div {
+    position: unset !important;
+  }
+
+  .unset-img {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+  }
+
   .component-selected {
     @apply outline-offset-selected outline-dotted outline-2 outline-blue-400;
   }

@@ -30,13 +30,13 @@ export default function EditTemplate({ json, template, theme }) {
   // Set Template type on mount
   useEffect(() => {
     setTemplateType('template');
-  }, []);
+  }, [setTemplateType]);
 
   // Set form values on mount
   useEffect(() => {
     methods.setValue('title', template.title);
     methods.setValue('status', template.status);
-  }, [router]);
+  }, [router, methods, template.title, template.status]);
 
   return (
     <>

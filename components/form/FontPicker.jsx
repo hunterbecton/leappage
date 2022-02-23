@@ -5,6 +5,7 @@ import slugify from 'slugify';
 
 import { classNames } from 'utils';
 import { fonts } from 'data/fonts';
+import Image from 'next/image';
 
 export const FontPicker = ({ name, label, setValue, font, formState }) => {
   const { errors } = formState;
@@ -23,15 +24,17 @@ export const FontPicker = ({ name, label, setValue, font, formState }) => {
             </Listbox.Label>
             <div className='relative mt-1'>
               <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-4 pl-3 pr-10 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'>
-                <span className='flex'>
-                  <img
+                <div className='relative flex h-3 w-full overflow-hidden'>
+                  <Image
                     src={`/fonts/preview/${slugify(font, {
                       lower: false,
                     })}.svg`}
                     alt={font}
-                    className='h-3 w-auto'
+                    layout='fill'
+                    objectFit='contain'
+                    objectPosition='left center'
                   />
-                </span>
+                </div>
                 <span className='pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2'>
                   <BiFontFamily
                     className='h-5 w-5 text-gray-400'
@@ -61,13 +64,17 @@ export const FontPicker = ({ name, label, setValue, font, formState }) => {
                     >
                       {({ selected }) => (
                         <div className='flex items-center justify-between'>
-                          <img
-                            src={`/fonts/preview/${slugify(font, {
-                              lower: false,
-                            })}.svg`}
-                            alt={font}
-                            className='h-3 w-auto'
-                          />
+                          <div className='relative h-3 w-full overflow-hidden'>
+                            <Image
+                              src={`/fonts/preview/${slugify(font, {
+                                lower: false,
+                              })}.svg`}
+                              alt={font}
+                              layout='fill'
+                              objectFit='contain'
+                              objectPosition='left center'
+                            />
+                          </div>
                           {selected && (
                             <BiCheck
                               className='h-5 w-5 text-blue-600'

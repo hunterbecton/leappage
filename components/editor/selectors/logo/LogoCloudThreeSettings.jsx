@@ -26,8 +26,8 @@ export const LogoCloudThreeSettings = () => {
     const newLogo = {
       id: short.generate(),
       company: 'Canon',
-      src: 'https://storage.googleapis.com/mattermix-695d1.appspot.com/pagetoast/canon-logo.svg',
-      height: 1.25,
+      src: '/demo/demo-logo-1.svg',
+      height: 2.25,
     };
 
     setProp((props) => {

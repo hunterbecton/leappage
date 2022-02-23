@@ -34,6 +34,9 @@ module.exports = {
       minHeight: {
         editor: '100px',
       },
+      height: {
+        unset: 'unset',
+      },
     },
   },
   plugins: [

@@ -1,5 +1,6 @@
 {
   "name": "pagetoast-next",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -39,7 +39,7 @@ export default function Page({ json, page, theme }) {
 
   useEffect(() => {
     setIsEnabled(false);
-  }, []);
+  }, [setIsEnabled]);
 
   return (
     <>

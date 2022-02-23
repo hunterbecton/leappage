@@ -31,14 +31,14 @@ export default function EditPage({ json, page, theme }) {
   // Set Template type on mount
   useEffect(() => {
     setTemplateType('page');
-  }, []);
+  }, [setTemplateType]);
 
   // Set form values on mount
   useEffect(() => {
     methods.setValue('title', page.title);
     methods.setValue('status', page.status);
     methods.setValue('slug', page.slug);
-  }, [router]);
+  }, [router, methods, page.title, page.status, page.slug]);
 
   return (
     <>

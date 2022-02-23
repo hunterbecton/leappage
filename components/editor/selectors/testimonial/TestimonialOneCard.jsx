@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useQuery } from 'react-query';
 
 import { useEditorStore } from 'store';
@@ -61,11 +62,14 @@ export const TestimonialOneCard = ({ testimonial }) => {
       {isSuccess && (
         <div className='col-span-12 md:col-span-6 lg:col-span-4'>
           <div className='h-full text-center'>
-            <img
-              alt={content.title}
-              src={content.profileImage}
-              className='mb-6 inline-block h-20 w-20 rounded-full border-2 border-gray-200 bg-gray-100 object-cover object-center'
-            />
+            <div className='relative mb-6 inline-block h-20 w-20 overflow-hidden rounded-full border-2 border-gray-200 bg-gray-100'>
+              <Image
+                alt={content.title}
+                src={content.profileImage}
+                layout='fill'
+                objectFit='cover'
+              />
+            </div>
             <p className='leading-relaxed text-gray-900'>{content.quote}</p>
             <span className='bg-primary mt-6 mb-4 inline-block h-1 w-10 rounded'></span>
             <h2 className='title-font text-sm font-medium uppercase tracking-wider text-gray-900'>
@@ -80,11 +84,14 @@ export const TestimonialOneCard = ({ testimonial }) => {
       {isError && isEnabled ? (
         <div className='col-span-12 md:col-span-6 lg:col-span-4'>
           <div className='h-full text-center'>
-            <img
-              alt='Image not found'
-              src='/images/not-found.png'
-              className='mb-6 inline-block h-20 w-20 rounded-full border-2 border-gray-200 bg-gray-100 object-cover object-center'
-            />
+            <div className='relative mb-6 inline-block h-20 w-20 overflow-hidden rounded-full border-2 border-gray-200 bg-gray-100'>
+              <Image
+                alt='Image not found'
+                src='/images/not-found.png'
+                layout='fill'
+                objectFit='cover'
+              />
+            </div>
             <p className='leading-relaxed text-gray-900'>Quote not found.</p>
             <span className='bg-primary mt-6 mb-4 inline-block h-1 w-10 rounded'></span>
             <h2 className='title-font text-sm font-medium uppercase tracking-wider text-gray-900'>

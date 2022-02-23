@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useRef } from 'react';
+import { createRef, useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,7 +13,7 @@ import { classNames } from 'utils';
 import { ConfirmDeleteModal } from 'components/modal';
 import { Button } from 'components/button';
 import { Input } from 'components/form';
-import { useAuth } from 'hooks/useAuth';
+import Image from 'next/image';
 
 const handleFileSize = (files) => {
   let valid = true;
@@ -62,13 +62,9 @@ export const MediaForm = ({ media }) => {
 
   const [isDeleting, setIsDeleting] = useState();
 
-  const { user } = useAuth();
-
   const router = useRouter();
 
   const { id } = router.query;
-
-  const imageRef = useRef();
 
   const { register, unregister, handleSubmit, watch, setValue, formState } =
     useForm({
@@ -79,11 +75,15 @@ export const MediaForm = ({ media }) => {
       },
     });
 
-  const refreshImage = () => {
-    if (imageRef) {
-      imageRef.current.src = imageRef.current.src; // eslint-disable-line
-    }
+  const refreshData = () => {
+    router.replace(router.asPath);
   };
+
+  // const refreshImage = () => {
+  //   if (imageRef) {
+  //     imageRef.current.src = imageRef.current.src; // eslint-disable-line
+  //   }
+  // };
 
   // Register upload field
   useEffect(() => {
@@ -94,8 +94,8 @@ export const MediaForm = ({ media }) => {
   }, [register, unregister]);
 
   const files = watch('uploadFile');
-  const title = watch('title');
   const url = watch('url');
+  const title = watch('title');
 
   const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
 
@@ -141,7 +141,6 @@ export const MediaForm = ({ media }) => {
         toast.error(data.message);
       } else {
         setValue('uploadFile', '');
-        refreshImage();
         toast.success('Media updated.');
       }
     } catch (error) {
@@ -150,6 +149,7 @@ export const MediaForm = ({ media }) => {
     }
     setIsUpdating(false);
     setIsAnimating(false);
+    refreshData();
   };
 
   const handleDelete = async () => {
@@ -223,12 +223,15 @@ export const MediaForm = ({ media }) => {
                   </label>
                   <div className='relative mt-1 max-w-sm'>
                     <div className='aspect-w-10 aspect-h-7 relative block w-full overflow-hidden rounded-lg bg-gray-100'>
-                      <img
-                        ref={imageRef}
-                        src={url}
-                        alt={title}
-                        className='object-contain p-4'
-                      />
+                      <div className='absolute top-0 left-0 h-full w-full'>
+                        <Image
+                          src={url}
+                          alt={title}
+                          layout='fill'
+                          objectFit='contain'
+                          className='p-img-4'
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -254,11 +257,15 @@ export const MediaForm = ({ media }) => {
                               <BiX className='h-5 w-5' aria-hidden='true' />
                             </button>
                           </div>
-                          <img
-                            src={URL.createObjectURL(file)}
-                            alt={file.name}
-                            className='object-contain p-4'
-                          />
+                          <div className='absolute top-0 left-0 h-full w-full'>
+                            <Image
+                              src={URL.createObjectURL(file)}
+                              alt={file.name}
+                              layout='fill'
+                              objectFit='contain'
+                              className='p-img-4'
+                            />
+                          </div>
                         </div>
                       </li>
                     ))}

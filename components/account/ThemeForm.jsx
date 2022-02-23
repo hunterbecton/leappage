@@ -122,7 +122,7 @@ export const ThemeForm = ({ theme }) => {
     register('primaryLight');
     register('primaryHover');
     register('fontFamily');
-  }, []);
+  }, [register]);
 
   const watchPrimary = watch('primary');
   const watchPrimaryLight = watch('primaryLight');

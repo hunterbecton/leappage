@@ -271,9 +271,9 @@ export const Toolbar = () => {
       <div className='flex h-full flex-col'>
         {active.size > 0 && (
           <div className='flex-1 overflow-scroll p-4'>
-            <div className='mb-5 border-b border-gray-200'>
+            <div className='mb-5 border-b border-gray-200 p-2'>
               <div className='-ml-2 -mt-2 flex flex-wrap items-baseline'>
-                <h3 className='ml-2 mt-2 text-lg font-medium leading-6 text-gray-900'>
+                <h3 className='text-lg font-medium leading-6 text-gray-900'>
                   Component
                 </h3>
               </div>
@@ -285,9 +285,9 @@ export const Toolbar = () => {
           <div className='flex h-full flex-col'>
             <div className='flex-1 overflow-scroll p-4'>
               {restrict(['admin', 'editor'], user) ? (
-                <div className='mb-5 border-b border-gray-200'>
+                <div className='mb-5 border-b border-gray-200 p-2'>
                   <div className='-ml-2 -mt-2 flex flex-wrap items-baseline'>
-                    <h3 className='ml-2 mt-2 text-lg font-medium leading-6 text-gray-900'>
+                    <h3 className='text-lg font-medium leading-6 text-gray-900'>
                       {capitalize(templateType)}
                     </h3>
                   </div>

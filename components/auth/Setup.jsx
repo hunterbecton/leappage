@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { Container } from 'components/container';
 import { Checkbox, Input, InputRef } from 'components/form';
@@ -97,11 +98,14 @@ export const Setup = ({ tenant }) => {
   return (
     <Container customClassName='min-h-screen bg-gray-50 flex flex-col'>
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-        <img
-          className='mx-auto h-12 w-auto'
-          src='brand/logo-light-on-color.svg'
-          alt='Mattermix logo'
-        />
+        <div className='relative mx-auto h-12 w-auto overflow-hidden'>
+          <Image
+            src='/brand/logo-light-on-color.svg'
+            alt='LeapPage logo'
+            layout='fill'
+            objectFit='contain'
+          />
+        </div>
         <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
           Set Up Your Account
         </h2>
