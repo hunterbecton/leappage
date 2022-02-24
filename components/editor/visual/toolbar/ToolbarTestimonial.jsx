@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { useEditorStore } from 'store';
 import { Button } from 'components/button';
 import Image from 'next/image';
@@ -9,7 +11,7 @@ export const ToolbarTestimonial = ({
   prefix,
   type,
   id,
-  isGroup,
+  isGroup: defaultIsGroup,
   groupName,
   groupIndex,
   testimonial,
@@ -20,13 +22,18 @@ export const ToolbarTestimonial = ({
   );
   const setActiveFieldId = useEditorStore((state) => state.setActiveFieldId);
 
+  const isGroup = useEditorStore((state) => state.isGroup);
   const setIsGroup = useEditorStore((state) => state.setIsGroup);
+
   const setGroupName = useEditorStore((state) => state.setGroupName);
   const setGroupIndex = useEditorStore((state) => state.setGroupIndex);
 
+  useEffect(() => {
+    setIsGroup(defaultIsGroup);
+  }, []);
+
   const handleSelect = () => {
     if (isGroup) {
-      setIsGroup(true);
       setGroupName(groupName);
       setGroupIndex(groupIndex);
     }

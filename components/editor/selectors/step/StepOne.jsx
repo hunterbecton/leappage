@@ -45,7 +45,7 @@ const defaultProps = {
       },
     },
     {
-      id: 'jpfEMnu8JaBtx7Ue',
+      id: 'HgHnYnATcQ3HMEfQ',
       title: 'Finish',
       description: 'Send your first campaign and start gathering data.',
       icon: {

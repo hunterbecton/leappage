@@ -59,7 +59,7 @@ export const HeroOne = (props) => {
               alt={logos[0].company}
               src={logos[0].src}
               layout='fill'
-              objectFit='cover'
+              objectFit='contain'
             />
           </div>
           <BiPlus className='h-6 w-6 text-gray-500' />
@@ -68,7 +68,7 @@ export const HeroOne = (props) => {
               alt={logos[1].company}
               src={logos[1].src}
               layout='fill'
-              objectFit='cover'
+              objectFit='contain'
             />
           </div>
         </div>
