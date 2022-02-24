@@ -51,7 +51,7 @@ export const ContentTwoPost = ({ post }) => {
       {isLoading && (
         <div className='-my-8 animate-pulse select-none divide-y-2 divide-gray-100'>
           <div className='flex flex-wrap py-8 md:flex-nowrap'>
-            <div className='mb-6 flex flex-shrink-0 flex-col md:mb-0 md:w-64'>
+            <div className='mb-6 flex w-full flex-shrink-0 flex-col md:mb-0 md:w-64'>
               <span className='max-w-fit bg-gray-100 text-sm font-bold uppercase text-gray-100'>
                 Lorem Ipsum
               </span>
@@ -88,7 +88,7 @@ export const ContentTwoPost = ({ post }) => {
       {isSuccess && (
         <div className='-my-8 divide-y-2 divide-gray-100'>
           <div className='flex flex-wrap py-8 md:flex-nowrap'>
-            <div className='mb-6 flex flex-shrink-0 flex-col md:mb-0 md:w-64'>
+            <div className='mb-6 flex w-full flex-shrink-0 flex-col md:mb-0 md:w-64'>
               <span className='text-sm font-bold uppercase text-gray-400'>
                 {content.categoryInfo && content.categoryInfo.length > 0
                   ? content.categoryInfo[0].title
@@ -131,7 +131,7 @@ export const ContentTwoPost = ({ post }) => {
       {isError && isEnabled ? (
         <div className='-my-8 divide-y-2 divide-gray-100'>
           <div className='flex flex-wrap py-8 md:flex-nowrap'>
-            <div className='mb-6 flex flex-shrink-0 flex-col md:mb-0 md:w-64'>
+            <div className='mb-6 flex w-full flex-shrink-0 flex-col md:mb-0 md:w-64'>
               <span className='text-sm font-bold uppercase text-gray-400'>
                 Not Found
               </span>
