@@ -50,7 +50,7 @@ export const ContentOnePost = ({ post }) => {
   return (
     <>
       {isLoading && (
-        <div className='relative col-span-12 mb-10 animate-pulse select-none space-y-4 md:col-span-6 lg:col-span-4'>
+        <div className='selct-none relative col-span-12 mb-10 animate-pulse select-none space-y-4 md:col-span-6 lg:col-span-4'>
           <div className='relative block h-64 w-full overflow-hidden rounded bg-gray-100'></div>
           <p className='max-w-fit bg-gray-100 text-xs font-bold uppercase text-gray-100'>
             Lorem Ipsum
