@@ -1,6 +1,4 @@
-import mongoose from 'mongoose';
-
-import { dbConnect } from 'utils';
+import { dbConnect, checkValidMongoId } from 'utils';
 import Page from 'models/pageModel';
 
 dbConnect();
@@ -12,22 +10,18 @@ export const withPublishedPage = async (ctx) => {
     const { id } = ctx.params;
 
     // Get page pased on Mongo ID
-    if (mongoose.isValidObjectId(id)) {
+    if (checkValidMongoId(id)) {
       page = await Page.findOne({
         _id: id,
         status: 'published',
       });
     }
     // Get page passed on slug
-    else if (!mongoose.isValidObjectId(id)) {
+    else {
       page = await Page.findOne({
         slug: id,
         status: 'published',
       });
-    }
-    // Get page pased on slug
-    else {
-      return false;
     }
 
     if (!page) {

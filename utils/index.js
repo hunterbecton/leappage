@@ -16,3 +16,4 @@ export * from './restrict';
 export * from './cloneObject';
 export * from './renameKey';
 export * from './loadFont';
+export * from './checkValidMongoId';

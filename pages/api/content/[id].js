@@ -1,7 +1,6 @@
 import nc from 'next-connect';
-import mongoose from 'mongoose';
 
-import { dbConnect, filterObject } from 'utils';
+import { dbConnect, filterObject, checkValidMongoId } from 'utils';
 import Content from 'models/contentModel';
 import { withProtect } from 'middleware/api/withProtect';
 import { withRestrict } from 'middleware/api/withRestrict';
@@ -46,7 +45,7 @@ handler.patch(async (req, res, next) => {
   );
 
   // Remove category if not valid Mongoose Object ID
-  if (!mongoose.isValidObjectId(filteredBody.category)) {
+  if (!checkValidMongoId(filteredBody.category)) {
     delete filteredBody.category;
   }
 
