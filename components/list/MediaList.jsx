@@ -1,10 +1,10 @@
-import { MediaCard } from "components/card";
-import { Container } from "components/container";
+import { MediaCard } from 'components/card';
+import { Container } from 'components/container';
 
 export const MediaList = ({ items, href }) => {
   return (
-    <Container size="0">
-      <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+    <Container size='0'>
+      <ul className='grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6'>
         {items?.map((item) => (
           <MediaCard key={item.id} href={href} item={item} />
         ))}
@@ -15,5 +15,5 @@ export const MediaList = ({ items, href }) => {
 
 MediaList.defaultProps = {
   items: [],
-  href: "/media/",
+  href: '/media/',
 };

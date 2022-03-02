@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { NextSeo } from "next-seo";
-import { toast } from "react-toastify";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
+import { toast } from 'react-toastify';
 
-import { Empty } from "components/empty";
-import { PageHeading } from "components/heading";
-import { MainLayout } from "components/layout";
-import { TemplateTable } from "components/table";
-import { Pagination } from "components/pagination";
-import { useProgressStore } from "store";
-import { withProtect } from "middleware/app/withProtect";
-import { withTemplates } from "middleware/app/withTemplates";
-import { useAuth } from "hooks/useAuth";
-import { restrict } from "utils";
+import { Empty } from 'components/empty';
+import { PageHeading } from 'components/heading';
+import { MainLayout } from 'components/layout';
+import { TemplateTable } from 'components/table';
+import { Pagination } from 'components/pagination';
+import { useProgressStore } from 'store';
+import { withProtect } from 'middleware/app/withProtect';
+import { withTemplates } from 'middleware/app/withTemplates';
+import { useAuth } from 'hooks/useAuth';
+import { restrict } from 'utils';
 
 export default function AllTemplates({
   totalTemplates,
@@ -34,15 +34,15 @@ export default function AllTemplates({
 
     try {
       const body = {
-        title: "Untitled Template",
+        title: 'Untitled Template',
       };
 
       const res = await fetch(`/api/template`, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
       });
@@ -52,12 +52,12 @@ export default function AllTemplates({
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success("Template created.");
+        toast.success('Template created.');
         router.push(`/templates/edit/${data.template.id}`);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Error creating template.");
+      toast.error('Error creating template.');
     }
 
     setIsAnimating(false);
@@ -66,26 +66,26 @@ export default function AllTemplates({
 
   return (
     <>
-      <NextSeo title="LeapPage | Templates" noindex={true} nofollow={true} />
+      <NextSeo title='LeapPage | Templates' noindex={true} nofollow={true} />
       <MainLayout>
         <PageHeading
-          title="Templates"
+          title='Templates'
           withSubtitle={false}
-          withCta={restrict(["admin", "editor"], user)}
-          ctaText="Create Template"
+          withCta={restrict(['admin', 'editor'], user)}
+          ctaText='Create Template'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewTemplate()}
         />
         {templates.length === 0 && (
           <Empty
-            title="No Templates"
+            title='No Templates'
             subtitle={
-              restrict(["admin", "editor"], user)
-                ? "Create a new template below to get started"
-                : "Creation is restricted to team admins and editors"
+              restrict(['admin', 'editor'], user)
+                ? 'Create a new template below to get started'
+                : 'Creation is restricted to team admins and editors'
             }
-            withCta={restrict(["admin", "editor"], user)}
-            ctaOneText="Create Template"
+            withCta={restrict(['admin', 'editor'], user)}
+            ctaOneText='Create Template'
             ctaOneOnClick={() => createNewTemplate()}
             ctaOneIcon={null}
             withCtaTwo={false}
@@ -99,6 +99,7 @@ export default function AllTemplates({
               limit={24}
               quantity={totalTemplates}
               totalPages={totalPaginatedPages}
+              href='/href/'
             />
           </>
         )}
@@ -116,7 +117,7 @@ export async function getServerSideProps(ctx) {
   if (!parsedIndex) {
     return {
       redirect: {
-        destination: "/templates/1",
+        destination: '/templates/1',
         permanent: false,
       },
     };
@@ -127,7 +128,7 @@ export async function getServerSideProps(ctx) {
   if (!isProtected) {
     return {
       redirect: {
-        destination: "/login",
+        destination: '/login',
         permanent: false,
       },
     };
@@ -150,7 +151,7 @@ export async function getServerSideProps(ctx) {
   if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
     return {
       redirect: {
-        destination: "/templates/1",
+        destination: '/templates/1',
         permanent: false,
       },
     };
@@ -159,7 +160,7 @@ export async function getServerSideProps(ctx) {
   if (totalTemplates === 0 && parsedIndex > 1) {
     return {
       redirect: {
-        destination: "/templates/1",
+        destination: '/templates/1',
         permanent: false,
       },
     };

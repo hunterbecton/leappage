@@ -92,6 +92,7 @@ export default function AllTestimonials({
               limit={24}
               quantity={totalTestimonials}
               totalPages={totalPaginatedPages}
+              href='/testimonials/'
             />
           </>
         )}

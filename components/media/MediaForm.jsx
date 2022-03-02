@@ -1,4 +1,4 @@
-import { createRef, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -71,7 +71,7 @@ export const MediaForm = ({ media }) => {
       resolver: yupResolver(validationSchema),
       defaultValues: {
         title: media.title,
-        url: media.url,
+        url: media.size500 ? media.size500 : media.url,
       },
     });
 

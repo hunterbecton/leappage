@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { FallbackImage } from 'components/image';
 import Link from 'next/link';
 
 export const MediaCard = ({ item, href }) => {
@@ -8,8 +8,9 @@ export const MediaCard = ({ item, href }) => {
         <a className='focus:outline-none'>
           <div className='group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100'>
             <div className='absolute top-0 left-0 h-full w-full'>
-              <Image
-                src={item.url}
+              <FallbackImage
+                src={item.size500}
+                fallbackSrc={item.url}
                 alt={item.title}
                 layout='fill'
                 objectFit='contain'

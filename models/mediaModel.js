@@ -12,6 +12,18 @@ const mediaSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    size100: {
+      type: String,
+      default: '',
+    },
+    size200: {
+      type: String,
+      default: '',
+    },
+    size500: {
+      type: String,
+      default: '',
+    },
     tenant: {
       type: mongoose.Schema.Types.ObjectId,
       ref: Tenant,

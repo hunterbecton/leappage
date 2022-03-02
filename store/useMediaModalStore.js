@@ -5,4 +5,6 @@ export const useMediaModalStore = create((set) => ({
   setIsMediaModalOpen: (isMediaModalOpen) => set(() => ({ isMediaModalOpen })),
   activeImageName: null,
   setActiveImageName: (activeImageName) => set(() => ({ activeImageName })),
+  mediaSize: '500',
+  setMediaSize: (mediaSize) => set(() => ({ mediaSize })),
 }));

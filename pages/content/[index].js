@@ -92,6 +92,7 @@ export default function AllContent({
               limit={24}
               quantity={totalContents}
               totalPages={totalPaginatedPages}
+              href='/content/'
             />
           </>
         )}

@@ -92,6 +92,7 @@ export default function AllCategories({
               limit={24}
               quantity={totalCategories}
               totalPages={totalPaginatedPages}
+              href='/categories/'
             />
           </>
         )}

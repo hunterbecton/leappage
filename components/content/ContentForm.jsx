@@ -9,7 +9,6 @@ import { useProgressStore } from 'store';
 import { ConfirmDeleteModal } from 'components/modal';
 import { Button } from 'components/button';
 import { Input, TextArea, Dropdown, ImageInput } from 'components/form';
-import { useAuth } from 'hooks/useAuth';
 
 const validationSchema = yup.object().shape({
   title: yup.string().required('Title is required'),
@@ -20,8 +19,6 @@ const validationSchema = yup.object().shape({
 
 export const ContentForm = ({ content, categoryOptions }) => {
   const [isUpdating, setIsUpdating] = useState(false);
-
-  const { user } = useAuth();
 
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
@@ -165,6 +162,7 @@ export const ContentForm = ({ content, categoryOptions }) => {
                       register={methods.register}
                       formState={methods.formState}
                       src={featureImage}
+                      mediaSize='500'
                     />
                   </div>
                   <div className='col-span-6 lg:col-span-3'>

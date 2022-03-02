@@ -52,6 +52,7 @@ export default function AllMedia({
               limit={24}
               quantity={totalMedia}
               totalPages={totalPaginatedPages}
+              href='/media/'
             />
           </>
         )}

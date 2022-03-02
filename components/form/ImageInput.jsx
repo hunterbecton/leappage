@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { MediaModal } from 'components/modal/media';
 
 import { useMediaModalStore } from 'store';
@@ -7,15 +8,11 @@ import Image from 'next/image';
 export const ImageInput = ({
   name,
   label,
-  type,
-  disabled,
   helpText,
-  placeholder,
-  register,
   formState,
-  onBlur,
   readOnly,
   src,
+  mediaSize,
 }) => {
   const { errors } = formState;
 
@@ -25,6 +22,12 @@ export const ImageInput = ({
   const setActiveImageName = useMediaModalStore(
     (state) => state.setActiveImageName
   );
+  const setMediaSize = useMediaModalStore((state) => state.setMediaSize);
+
+  // Set initial media size
+  useEffect(() => {
+    setMediaSize(mediaSize);
+  }, []);
 
   const handleSelect = () => {
     setIsMediaModalOpen(true);
@@ -80,12 +83,8 @@ export const ImageInput = ({
 ImageInput.defaultProps = {
   helpText: false,
   variant: 'default',
-  placeholder: '',
   readOnly: false,
-  type: 'text',
-  register: () => null,
   formState: {
     errors: [],
   },
-  disabled: false,
 };

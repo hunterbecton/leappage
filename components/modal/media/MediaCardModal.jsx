@@ -8,11 +8,25 @@ export const MediaCardModal = ({ item }) => {
     (state) => state.setIsMediaModalOpen
   );
   const activeImageName = useMediaModalStore((state) => state.activeImageName);
+  const mediaSize = useMediaModalStore((state) => state.mediaSize);
 
   const { setValue } = useFormContext(); // retrieve all hook methods
 
+  const handleMediaSize = (size) => {
+    switch (size) {
+      case '100':
+        return item.size100 ? item.size100 : item.url;
+      case '200':
+        return item.size200 ? item.size200 : item.url;
+      case '500':
+        return item.size500 ? item.size500 : item.url;
+      default:
+        return item.size500 ? item.size500 : item.url;
+    }
+  };
+
   const handleSelect = () => {
-    setValue(activeImageName, item.url);
+    setValue(activeImageName, handleMediaSize(mediaSize));
     setIsMediaModalOpen(false);
   };
 
@@ -21,7 +35,7 @@ export const MediaCardModal = ({ item }) => {
       <div className='group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100'>
         <div className='absolute top-0 left-0 h-full w-full'>
           <Image
-            src={item.url}
+            src={item.size200 ? item.size200 : item.url}
             alt={item.title}
             layout='fill'
             objectFit='contain'

@@ -175,6 +175,7 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
                       register={methods.register}
                       formState={methods.formState}
                       src={profileImage}
+                      mediaSize='200'
                     />
                   </div>
                   <div className='col-span-6 lg:col-span-3'>
