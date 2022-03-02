@@ -4,6 +4,7 @@ import { MediaModal } from 'components/modal/media';
 import { useMediaModalStore } from 'store';
 import { Button } from 'components/button';
 import Image from 'next/image';
+import { FallbackImage } from 'components/image';
 
 export const ImageInput = ({
   name,
@@ -48,12 +49,13 @@ export const ImageInput = ({
           <div className='relative mt-1 max-w-sm'>
             <div className='aspect-w-10 aspect-h-7 relative block w-full overflow-hidden rounded-lg bg-gray-100'>
               <div className='absolute top-0 left-0 h-full w-full'>
-                <Image
+                <FallbackImage
                   src={src}
                   alt='Image input source'
                   layout='fill'
                   objectFit='contain'
                   className='p-img-4'
+                  fallbackSrc='/images/not-found.png'
                 />
               </div>
             </div>

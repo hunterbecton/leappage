@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -9,7 +9,6 @@ import { useProgressStore } from 'store';
 import { ConfirmDeleteModal } from 'components/modal';
 import { Button } from 'components/button';
 import { Input, TextArea, Dropdown, ImageInput } from 'components/form';
-import { useAuth } from 'hooks/useAuth';
 
 const validationSchema = yup.object().shape({
   title: yup.string().required('Title is required'),
@@ -29,8 +28,6 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
   const [isDeleting, setIsDeleting] = useState();
 
   const router = useRouter();
-
-  const { user } = useAuth();
 
   const { id } = router.query;
 
