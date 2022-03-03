@@ -37,6 +37,7 @@ export const HeroOneSettings = () => {
                 propKey='src'
                 type='image'
                 label='Logo'
+                defaultMediaSize='500'
               />
             </ToolbarGroup>
           ))}

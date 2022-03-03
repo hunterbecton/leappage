@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import { BiImage } from 'react-icons/bi';
-
 import { useEditorStore } from 'store';
+import { FallbackImage } from 'components/image';
+import { Button } from 'components/button';
 
 export const ToolbarImage = ({
   propKey,
@@ -15,6 +15,7 @@ export const ToolbarImage = ({
   isGroup: defaultIsGroup,
   groupName,
   groupIndex,
+  defaultMediaSize,
   ...props
 }) => {
   const setIsMediaModalOpen = useEditorStore(
@@ -24,15 +25,16 @@ export const ToolbarImage = ({
   const setActiveImageProp = useEditorStore(
     (state) => state.setActiveImageProp
   );
-
   const isGroup = useEditorStore((state) => state.isGroup);
   const setIsGroup = useEditorStore((state) => state.setIsGroup);
-
   const setGroupName = useEditorStore((state) => state.setGroupName);
   const setGroupIndex = useEditorStore((state) => state.setGroupIndex);
+  const setMediaSize = useEditorStore((state) => state.setMediaSize);
 
+  // Set default group and media size
   useEffect(() => {
     setIsGroup(defaultIsGroup);
+    setMediaSize(defaultMediaSize);
   }, []);
 
   const handleSelect = () => {
@@ -46,42 +48,38 @@ export const ToolbarImage = ({
   };
 
   return (
-    <div>
-      <label
-        htmlFor={propKey}
-        className='block text-xs font-medium text-gray-700'
-      >
-        {label}
-      </label>
-      <div className='mt-1 flex rounded-md shadow-sm'>
-        <div className='relative flex flex-grow items-stretch focus-within:z-10'>
-          <input
-            className='block w-full rounded-none rounded-l-md border-gray-300 text-xs focus:border-blue-500 focus:ring-blue-500'
-            type='text'
-            name={propKey}
-            value={value}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                onChange(e.target.value);
-              }
-            }}
-            onChange={(e) => {
-              onChange(e.target.value);
-            }}
-            onBlur={(e) => {
-              onChange(e.target.value);
-            }}
-            {...props}
-          />
-        </div>
-        <button
-          type='button'
-          className='relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-gray-50 p-2 text-xs font-medium text-gray-700 hover:bg-gray-100 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500'
-          onClick={handleSelect}
+    <>
+      <div>
+        <label
+          htmlFor={propKey}
+          className='block text-xs font-medium text-gray-700'
         >
-          <BiImage className='h-5 w-5 text-gray-400' aria-hidden='true' />
-        </button>
+          {label}
+        </label>
+        <div className='w-full'>
+          <div className='relative mt-1 max-w-sm'>
+            <div className='aspect-w-10 aspect-h-7 relative block w-full overflow-hidden rounded-lg bg-gray-100'>
+              <div className='absolute top-0 left-0 h-full w-full'>
+                <FallbackImage
+                  src={value}
+                  alt='Image input source'
+                  layout='fill'
+                  objectFit='contain'
+                  className='p-img-4'
+                  fallbackSrc='/images/not-found.png'
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <Button
+          customClassName='mt-4'
+          text='Select Image'
+          size='sm'
+          variant='ghost'
+          onClick={handleSelect}
+        />
       </div>
-    </div>
+    </>
   );
 };

@@ -25,4 +25,6 @@ export const useEditorStore = create((set) => ({
     set(() => ({ isTestimonialModalOpen })),
   shouldSave: false,
   setShouldSave: (shouldSave) => set(() => ({ shouldSave })),
+  mediaSize: '500',
+  setMediaSize: (mediaSize) => set(() => ({ mediaSize })),
 }));

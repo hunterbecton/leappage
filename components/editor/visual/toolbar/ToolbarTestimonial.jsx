@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { useEditorStore } from 'store';
 import { Button } from 'components/button';
 import Image from 'next/image';
+import { FallbackImage } from 'components/image';
 
 export const ToolbarTestimonial = ({
   onChange,
@@ -100,11 +101,12 @@ export const ToolbarTestimonial = ({
           <div className='border-1 flex flex-col overflow-hidden rounded border-gray-300 shadow'>
             <div className='flex-shrink-0'>
               <div className='relative h-48 w-full overflow-hidden'>
-                <Image
+                <FallbackImage
                   src={testimonial.profileImage}
                   alt={testimonial.name}
                   layout='fill'
                   objectFit='cover'
+                  fallbackSrc='/images/not-found.png'
                 />
               </div>
             </div>

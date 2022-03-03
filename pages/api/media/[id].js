@@ -54,19 +54,22 @@ handler.delete(async (req, res, next) => {
   }
 
   // Delete in GCS
-  if (media.url) {
-    await handleGoogleDelete(media.url, req.user.firebase.tenant);
-  }
 
-  if (media.size100) {
+  // Get ext to handle SVGs
+  const lastDot = media.url.lastIndexOf('.');
+  const ext = media.url.substring(lastDot + 1);
+
+  await handleGoogleDelete(media.url, req.user.firebase.tenant);
+
+  if (media.size100 && ext !== 'svg') {
     await handleGoogleDelete(media.size100, req.user.firebase.tenant);
   }
 
-  if (media.size200) {
+  if (media.size200 && ext !== 'svg') {
     await handleGoogleDelete(media.size200, req.user.firebase.tenant);
   }
 
-  if (media.size500) {
+  if (media.size500 && ext !== 'svg') {
     await handleGoogleDelete(media.size500, req.user.firebase.tenant);
   }
 

@@ -1,6 +1,7 @@
 import { useEditorStore } from 'store';
 import { useEditor } from '@craftjs/core';
-import Image from 'next/image';
+
+import { FallbackImage } from 'components/image';
 
 export const MediaCardModal = ({ item }) => {
   const { actions } = useEditor();
@@ -10,19 +11,36 @@ export const MediaCardModal = ({ item }) => {
   const isGroup = useEditorStore((state) => state.isGroup);
   const groupName = useEditorStore((state) => state.groupName);
   const groupIndex = useEditorStore((state) => state.groupIndex);
+  const mediaSize = useEditorStore((state) => state.mediaSize);
 
   const setIsMediaModalOpen = useEditorStore(
     (state) => state.setIsMediaModalOpen
   );
 
+  const handleMediaSize = (size) => {
+    switch (size) {
+      case '100':
+        return item.size100 ? item.size100 : item.url;
+      case '200':
+        return item.size200 ? item.size200 : item.url;
+      case '500':
+        return item.size500 ? item.size500 : item.url;
+      case 'full':
+        return item.url;
+      default:
+        return item.size500 ? item.size500 : item.url;
+    }
+  };
+
   const handleSelect = () => {
     if (isGroup) {
       actions.setProp(activeFieldId, (props) => {
-        props[groupName][groupIndex][activeImageProp] = item.url;
+        props[groupName][groupIndex][activeImageProp] =
+          handleMediaSize(mediaSize);
       });
     } else {
       actions.setProp(activeFieldId, (props) => {
-        props[activeImageProp] = item.url;
+        props[activeImageProp] = handleMediaSize(mediaSize);
       });
     }
     setIsMediaModalOpen(false);
@@ -32,12 +50,13 @@ export const MediaCardModal = ({ item }) => {
     <li className='relative'>
       <div className='group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100'>
         <div className='absolute top-0 left-0 h-full w-full'>
-          <Image
-            src={item.url}
+          <FallbackImage
+            src={item.size200 ? item.size200 : item.url}
             alt={item.title}
             layout='fill'
             objectFit='contain'
             className='p-img-2'
+            fallbackSrc='/images/not-found.png'
           />
         </div>
         <button

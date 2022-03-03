@@ -61,6 +61,7 @@ export const LogoCloudThreeSettings = () => {
                 propKey='src'
                 type='image'
                 label='Image'
+                defaultMediaSize='500'
               />
               <ToolbarItem
                 isGroup={true}

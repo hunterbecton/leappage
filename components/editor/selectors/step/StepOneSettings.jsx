@@ -1,6 +1,5 @@
 import { useNode } from '@craftjs/core';
 import short from 'short-uuid';
-import { BiNotification } from 'react-icons/bi';
 
 import {
   ToolbarSection,
@@ -45,7 +44,12 @@ export const StepOneSettings = () => {
       <div className='space-y-2'>
         <ToolbarSection title='Feature' props={['src']}>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='src' type='image' label='Image' />
+            <ToolbarItem
+              propKey='src'
+              type='image'
+              label='Image'
+              defaultMediaSize='full'
+            />
           </ToolbarGroup>
         </ToolbarSection>
         <ToolbarSection title='Steps' props={['steps']}>

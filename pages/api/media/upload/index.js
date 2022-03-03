@@ -83,9 +83,12 @@ handler.post(async (req, res, next) => {
   const media = await Media.create({
     title: req.file.originalname,
     url: `${publicFile}.${ext}`,
-    size100: `${publicFile}_100x100.${ext}`,
-    size200: `${publicFile}_200x200.${ext}`,
-    size500: `${publicFile}_500x500.${ext}`,
+    size100:
+      ext === 'svg' ? `${publicFile}.${ext}` : `${publicFile}_100x100.${ext}`,
+    size200:
+      ext === 'svg' ? `${publicFile}.${ext}` : `${publicFile}_200x200.${ext}`,
+    size500:
+      ext === 'svg' ? `${publicFile}.${ext}` : `${publicFile}_500x500.${ext}`,
     tenant: req.user.tenant_mongo_id,
   });
 

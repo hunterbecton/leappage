@@ -1,3 +1,4 @@
+import { FallbackImage } from 'components/image';
 import Image from 'next/image';
 import { useQuery } from 'react-query';
 
@@ -69,11 +70,12 @@ export const ContentOnePost = ({ post }) => {
             className='relative block h-64 w-full overflow-hidden rounded'
           >
             <div className='h-full w-full scale-100 transform transition duration-500 ease-out hover:scale-105'>
-              <Image
+              <FallbackImage
                 src={content.feature}
                 alt={content.title}
                 layout='fill'
                 objectFit='cover'
+                fallbackSrc='/images/not-found.png'
               />
             </div>
           </a>

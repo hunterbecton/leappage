@@ -1,4 +1,4 @@
-import { useNode } from "@craftjs/core";
+import { useNode } from '@craftjs/core';
 
 import {
   ToolbarText,
@@ -13,7 +13,7 @@ import {
   ToolbarFonts,
   ToolbarContent,
   ToolbarTestimonial,
-} from "components/editor/visual/toolbar";
+} from 'components/editor/visual/toolbar';
 
 export const ToolbarItem = ({
   isGroup = false,
@@ -27,6 +27,8 @@ export const ToolbarItem = ({
   index,
   content,
   testimonial,
+  mediaSize,
+  defaultMediaSize,
   ...props
 }) => {
   const {
@@ -84,7 +86,7 @@ export const ToolbarItem = ({
 
   return (
     <>
-      {type === "text" ? (
+      {type === 'text' ? (
         <ToolbarText
           {...props}
           propKey={propKey}
@@ -95,7 +97,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "area" ? (
+      {type === 'area' ? (
         <ToolbarTextArea
           {...props}
           propKey={propKey}
@@ -105,7 +107,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "textDropdown" ? (
+      {type === 'textDropdown' ? (
         <ToolbarTextDropdown
           {...props}
           propKey={propKey}
@@ -121,7 +123,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "color" ? (
+      {type === 'color' ? (
         <ToolbarColorPicker
           {...props}
           propKey={propKey}
@@ -132,7 +134,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "select" ? (
+      {type === 'select' ? (
         <ToolbarDropdown
           {...props}
           propKey={propKey}
@@ -143,7 +145,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "range" ? (
+      {type === 'range' ? (
         <ToolbarRange
           {...props}
           propKey={propKey}
@@ -154,7 +156,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "image" ? (
+      {type === 'image' ? (
         <ToolbarImage
           {...props}
           propKey={propKey}
@@ -167,9 +169,10 @@ export const ToolbarItem = ({
           isGroup={isGroup}
           groupName={groupName}
           groupIndex={groupIndex}
+          defaultMediaSize={defaultMediaSize}
         />
       ) : null}
-      {type === "toggle" ? (
+      {type === 'toggle' ? (
         <ToolbarToggle
           {...props}
           propKey={propKey}
@@ -180,7 +183,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "fonts" ? (
+      {type === 'fonts' ? (
         <ToolbarFonts
           {...props}
           propKey={propKey}
@@ -191,7 +194,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "icon" ? (
+      {type === 'icon' ? (
         <ToolbarIconDropdown
           {...props}
           propKey={propKey}
@@ -202,7 +205,7 @@ export const ToolbarItem = ({
           }
         />
       ) : null}
-      {type === "content" ? (
+      {type === 'content' ? (
         <ToolbarContent
           {...props}
           propKey={propKey}
@@ -215,7 +218,7 @@ export const ToolbarItem = ({
           content={content}
         />
       ) : null}
-      {type === "testimonial" ? (
+      {type === 'testimonial' ? (
         <ToolbarTestimonial
           {...props}
           propKey={propKey}

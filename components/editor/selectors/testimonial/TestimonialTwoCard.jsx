@@ -1,3 +1,4 @@
+import { FallbackImage } from 'components/image';
 import Image from 'next/image';
 import { useQuery } from 'react-query';
 
@@ -86,11 +87,12 @@ export const TestimonialTwoCard = ({ testimonial }) => {
             </p>
             <div className='inline-flex items-center'>
               <div className='relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full border-2 border-gray-200'>
-                <Image
+                <FallbackImage
                   alt={content.title}
                   src={content.profileImage}
                   layout='fill'
                   objectFit='cover'
+                  fallbackSrc='/images/not-found.png'
                 />
               </div>
               <span className='flex flex-grow flex-col pl-4'>

@@ -1,8 +1,8 @@
 import { useEditor } from '@craftjs/core';
-import Image from 'next/image';
 import short from 'short-uuid';
 
 import { useEditorStore } from 'store';
+import { FallbackImage } from 'components/image';
 
 export const ContentCardModal = ({ item }) => {
   const { actions } = useEditor();
@@ -56,12 +56,13 @@ export const ContentCardModal = ({ item }) => {
     <li className='relative'>
       <div className='group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100'>
         <div className='absolute top-0 left-0 h-full w-full'>
-          <Image
+          <FallbackImage
             src={item.feature}
             alt={item.title}
             layout='fill'
             objectFit='contain'
             className='p-img-2'
+            fallbackSrc='/images/not-found.png'
           />
         </div>
         <button
