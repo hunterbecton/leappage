@@ -2,6 +2,7 @@ import { useNode } from '@craftjs/core';
 import Image from 'next/image';
 
 import { LogoCloudOneSettings } from './LogoCloudOneSettings';
+import { FallbackImage } from 'components/image';
 
 const defaultProps = {
   logos: [
@@ -63,11 +64,12 @@ export const LogoCloudOne = (props) => {
               style={{ height: `${logo.height}rem` }}
               className='relative col-span-1 flex w-full items-center justify-center md:col-span-2 lg:col-span-1'
             >
-              <Image
+              <FallbackImage
                 src={logo.src}
                 alt={logo.company}
                 layout='fill'
                 objectFit='contain'
+                fallbackSrc='/images/not-found.png'
               />
             </div>
           ))}
