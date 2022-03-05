@@ -4,7 +4,7 @@ import short from 'short-uuid';
 import { useEditorStore } from 'store';
 import { FallbackImage } from 'components/image';
 
-export const TestimonialCardModal = ({ item }) => {
+export const EditorTestimonialCardModal = ({ item }) => {
   const { actions } = useEditor();
 
   const activeFieldId = useEditorStore((state) => state.activeFieldId);

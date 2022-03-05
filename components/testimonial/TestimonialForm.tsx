@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { object, SchemaOf, string } from 'yup';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
@@ -9,29 +9,35 @@ import { useProgressStore } from 'store';
 import { ConfirmDeleteModal } from 'components/modal';
 import { Button } from 'components/button';
 import { Input, TextArea, Dropdown, ImageInput } from 'components/form';
+import { TestimonialData, TestimonialProps } from './_models';
 
-const validationSchema = yup.object().shape({
-  title: yup.string().required('Title is required'),
-  quote: yup.string().required('Quote is required'),
-  profileImage: yup.string().required('Profile image is required'),
-  name: yup.string().required('Name is required'),
-  company: yup.string().required('Company is required'),
-  position: yup.string().required('Position is required'),
+const validationSchema: SchemaOf<TestimonialData> = object().shape({
+  title: string().required('Title is required'),
+  quote: string().required('Quote is required'),
+  profileImage: string().required('Profile image is required'),
+  name: string().required('Name is required'),
+  company: string().required('Company is required'),
+  position: string().required('Position is required'),
+  category: string(),
+  status: string(),
 });
 
-export const TestimonialForm = ({ testimonial, categoryOptions }) => {
+export const TestimonialForm: FC<TestimonialProps> = ({
+  testimonial,
+  categoryOptions,
+}) => {
   const [isUpdating, setIsUpdating] = useState(false);
 
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
 
-  const [isDeleting, setIsDeleting] = useState();
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const router = useRouter();
 
   const { id } = router.query;
 
-  const methods = useForm({
+  const methods = useForm<TestimonialData>({
     resolver: yupResolver(validationSchema),
     defaultValues: {
       title: testimonial.title,
@@ -44,8 +50,6 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
       status: testimonial.status,
     },
   });
-
-  const profileImage = methods.watch('profileImage');
 
   const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
 
@@ -140,9 +144,9 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
         isDeleting={isDeleting}
         handleConfirmDelete={() => handleDelete()}
       />
-      <FormProvider {...methods}>
-        <div className='mt-5 md:col-span-2 md:mt-0'>
-          <form>
+      <div className='mt-5 md:col-span-2 md:mt-0'>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(handleUpdate)}>
             <div className='shadow sm:overflow-hidden sm:rounded-md'>
               <div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
                 <div className='grid grid-cols-6 gap-6'>
@@ -151,8 +155,6 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
                       name='title'
                       label='Title'
                       placeholder={'Enter title'}
-                      register={methods.register}
-                      formState={methods.formState}
                     />
                   </div>
                   <div className='col-span-6'>
@@ -160,18 +162,12 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
                       name='quote'
                       label='Quote'
                       placeholder='Enter quote'
-                      register={methods.register}
-                      formState={methods.formState}
                     />
                   </div>
                   <div className='col-span-6'>
                     <ImageInput
                       name='profileImage'
                       label='Profile'
-                      placeholder={'Select profile image'}
-                      register={methods.register}
-                      formState={methods.formState}
-                      src={profileImage}
                       mediaSize='200'
                     />
                   </div>
@@ -179,18 +175,14 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
                     <Dropdown
                       name='status'
                       label='Status'
-                      register={methods.register}
                       options={statusOptions}
-                      formState={methods.formState}
                     />
                   </div>
                   <div className='col-span-6 lg:col-span-3'>
                     <Dropdown
                       name='category'
                       label='Category'
-                      register={methods.register}
                       options={categoryOptions}
-                      formState={methods.formState}
                     />
                   </div>
                   <div className='col-span-6 lg:col-span-3'>
@@ -198,8 +190,6 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
                       name='name'
                       label='Name'
                       placeholder={'Enter name'}
-                      register={methods.register}
-                      formState={methods.formState}
                     />
                   </div>
                   <div className='col-span-6 lg:col-span-3'>
@@ -207,8 +197,6 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
                       name='company'
                       label='Company'
                       placeholder={'Enter company'}
-                      register={methods.register}
-                      formState={methods.formState}
                     />
                   </div>
                   <div className='col-span-6 lg:col-span-3'>
@@ -216,8 +204,6 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
                       name='position'
                       label='Position'
                       placeholder={'Enter position'}
-                      register={methods.register}
-                      formState={methods.formState}
                     />
                   </div>
                 </div>
@@ -230,19 +216,20 @@ export const TestimonialForm = ({ testimonial, categoryOptions }) => {
                   variant='ghost'
                   disabled={isUpdating}
                   onClick={() => setIsConfirmDeleteModalOpen(true)}
+                  title='Delete testimonial'
                   text='Delete'
                 />
                 <Button
-                  type='button'
+                  type='submit'
                   disabled={isUpdating}
-                  onClick={methods.handleSubmit((data) => handleUpdate(data))}
+                  title='Update testimonial'
                   text='Update'
                 />
               </div>
             </div>
           </form>
-        </div>
-      </FormProvider>
+        </FormProvider>
+      </div>
     </>
   );
 };

@@ -1,33 +1,30 @@
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 
-import { TestimonialListModal } from 'components/editor/modal/testimonial/TestimonialListModal';
-import { SkeletonTestimonialListModal } from 'components/editor/modal/testimonial/SkeletonTestimonialListModal';
-import { Alert } from 'components/alert';
+import { EditorMediaListModal } from './EditorMediaListModal';
+import { EditorSkeletonMediaListModal } from './EditorSkeletonMediaListModal';
 import { Empty } from 'components/empty';
 import { Pagination } from 'components/pagination';
 import { useEditorStore } from 'store';
-import { toast } from 'react-toastify';
 
-export const TestimonialModal = () => {
+export const EditorMediaModal = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(24); // eslint-disable-line
   const [totalPages, setTotalPages] = useState(1);
   const [quantity, setQuantity] = useState(null);
 
-  const isTestimonialModalOpen = useEditorStore(
-    (state) => state.isTestimonialModalOpen
-  );
-  const setIsTestimonialModalOpen = useEditorStore(
-    (state) => state.setIsTestimonialModalOpen
+  const isMediaModalOpen = useEditorStore((state) => state.isMediaModalOpen);
+  const setIsMediaModalOpen = useEditorStore(
+    (state) => state.setIsMediaModalOpen
   );
 
   const cancelButtonRef = useRef(null);
 
-  const fetchTestimonialModal = async ({ queryKey }) => {
+  const fetchMediaModal = async ({ queryKey }) => {
     const res = await fetch(
-      `/api/testimonial/published?page=${queryKey[1]}&limit=${queryKey[2]}`,
+      `/api/media?page=${queryKey[1]}&limit=${queryKey[2]}`,
       {
         method: 'GET',
         credentials: 'include',
@@ -37,38 +34,33 @@ export const TestimonialModal = () => {
     const { success, data } = await res.json();
 
     if (!success) {
-      setIsTestimonialModalOpen(false);
-      const newError = new Error('Error fetching testimonial');
+      const newError = new Error(data.message);
       throw newError;
     }
 
-    setTotalPages(Math.ceil(data.totalTestimonials / queryKey[2]));
-    setQuantity(data.totalTestimonials);
+    setTotalPages(Math.ceil(data.totalMedia / queryKey[2]));
+    setQuantity(data.totalMedia);
 
-    return data.testimonials;
+    return data.media;
   };
 
   const {
-    data: testimonials,
+    data: medias,
     isLoading,
     isError,
     isSuccess,
-  } = useQuery(
-    ['testimonialModal', currentPage, limit],
-    fetchTestimonialModal,
-    {
-      onError: (error) => toast.error(error.message),
-    }
-  );
+  } = useQuery(['mediaModal', currentPage, limit], fetchMediaModal, {
+    onError: (error) => toast.error(error.message),
+  });
 
   return (
     <>
-      <Transition.Root show={isTestimonialModalOpen} as={Fragment}>
+      <Transition.Root show={isMediaModalOpen} as={Fragment}>
         <Dialog
           as='div'
           className='fixed inset-0 z-50 overflow-y-auto'
           initialFocus={cancelButtonRef}
-          onClose={setIsTestimonialModalOpen}
+          onClose={setIsMediaModalOpen}
         >
           <div className='flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0'>
             <Transition.Child
@@ -100,19 +92,19 @@ export const TestimonialModal = () => {
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
               <div className='inline-block w-full max-w-lg transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:p-6 sm:align-middle lg:max-w-xl'>
-                {isLoading && <SkeletonTestimonialListModal />}
+                {isLoading && <EditorSkeletonMediaListModal />}
                 {isSuccess && (
                   <>
-                    {testimonials?.length === 0 && (
+                    {medias?.length === 0 && (
                       <Empty
-                        title='No Testimonial'
-                        subtitle='Get started by creating a testimonial'
+                        title='No Media'
+                        subtitle='Get started by uploading a file'
                         withCta={false}
                       />
                     )}
-                    {testimonials?.length > 0 && (
+                    {medias?.length > 0 && (
                       <>
-                        <TestimonialListModal items={testimonials} />
+                        <EditorMediaListModal items={medias} />
                         <Pagination
                           currentPage={currentPage}
                           limit={limit}
@@ -129,7 +121,7 @@ export const TestimonialModal = () => {
                   <button
                     type='button'
                     className='mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:mt-0 sm:text-sm'
-                    onClick={() => setIsTestimonialModalOpen(false)}
+                    onClick={() => setIsMediaModalOpen(false)}
                     ref={cancelButtonRef}
                   >
                     Cancel
@@ -144,7 +136,7 @@ export const TestimonialModal = () => {
   );
 };
 
-TestimonialModal.defaultProps = {
-  isTestimonialModalOpen: false,
-  setIsTestimonialModalOpen: () => console.log('Handle open'),
+EditorMediaModal.defaultProps = {
+  isMediaModalOpen: false,
+  setIsMediaModalOpen: () => console.log('Handle open'),
 };

@@ -158,3 +158,29 @@ export interface Content {
   createdAt: Date;
   updatedAt: Date;
 }
+
+const TestimonialStatusObj = {
+  Drafted: 'drafted',
+  Preview: 'preview',
+  Published: 'published',
+} as const;
+
+export type TestimonialStatusType =
+  typeof TestimonialStatusObj[keyof typeof TestimonialStatusObj];
+
+export interface Testimonial {
+  id: string;
+  _id: string;
+  title: string;
+  quote: string;
+  profileImage: string;
+  name: string;
+  company: string;
+  position: string;
+  tenant: string;
+  category: string;
+  status: TestimonialStatusType;
+  __v: number;
+  createdAt: Date;
+  updatedAt: Date;
+}

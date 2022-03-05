@@ -1,18 +1,18 @@
-import { MediaCardModal } from 'components/editor/modal/media/MediaCardModal';
+import { EditorTestimonialCardModal } from './EditorTestimonialCardModal';
 import { Container } from 'components/container';
 
-export const MediaListModal = ({ items }) => {
+export const EditorTestimonialListModal = ({ items }) => {
   return (
     <Container size='none'>
       <ul className='grid grid-cols-2 gap-6 md:grid-cols-3'>
         {items?.map((item) => (
-          <MediaCardModal key={item.id} item={item} />
+          <EditorTestimonialCardModal key={item.id} item={item} />
         ))}
       </ul>
     </Container>
   );
 };
 
-MediaListModal.defaultProps = {
+EditorTestimonialListModal.defaultProps = {
   items: [],
 };

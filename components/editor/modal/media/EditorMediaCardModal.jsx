@@ -3,7 +3,7 @@ import { useEditor } from '@craftjs/core';
 
 import { FallbackImage } from 'components/image';
 
-export const MediaCardModal = ({ item }) => {
+export const EditorMediaCardModal = ({ item }) => {
   const { actions } = useEditor();
 
   const activeFieldId = useEditorStore((state) => state.activeFieldId);
