@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { object, string, SchemaOf } from 'yup';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
@@ -9,10 +9,10 @@ import { useProgressStore } from 'store';
 import { ConfirmDeleteModal } from 'components/modal';
 import { Button } from 'components/button';
 import { Input } from 'components/form';
-import { CategoryFormProps } from './_models';
+import { CategoryFormData, CategoryFormProps } from './_models';
 
-const validationSchema = yup.object().shape({
-  title: yup.string().required('Title is required'),
+const validationSchema: SchemaOf<CategoryFormData> = object().shape({
+  title: string().required('Title is required'),
 });
 
 export const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
@@ -27,7 +27,7 @@ export const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
 
   const { id } = router.query;
 
-  const methods = useForm({
+  const methods = useForm<CategoryFormData>({
     resolver: yupResolver(validationSchema),
     defaultValues: {
       title: category.title,
@@ -106,9 +106,9 @@ export const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
         isDeleting={isDeleting}
         handleConfirmDelete={() => handleDelete()}
       />
-      <FormProvider {...methods}>
-        <div className='mt-5 md:col-span-2 md:mt-0'>
-          <form>
+      <div className='mt-5 md:col-span-2 md:mt-0'>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(handleUpdate)}>
             <div className='shadow sm:overflow-hidden sm:rounded-md'>
               <div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
                 <div className='grid grid-cols-6 gap-6'>
@@ -117,8 +117,6 @@ export const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
                       name='title'
                       label='Title'
                       placeholder={'Enter title'}
-                      register={methods.register}
-                      formState={methods.formState}
                     />
                   </div>
                 </div>
@@ -135,17 +133,16 @@ export const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
                   text='Delete'
                 />
                 <Button
-                  type='button'
+                  type='submit'
                   disabled={isUpdating}
-                  onClick={methods.handleSubmit((data) => handleUpdate(data))}
                   title='Update category'
                   text='Update'
                 />
               </div>
             </div>
           </form>
-        </div>
-      </FormProvider>
+        </FormProvider>
+      </div>
     </>
   );
 };

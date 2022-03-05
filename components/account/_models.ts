@@ -25,7 +25,7 @@ export interface ManageTeamData {
 
 const DomainStatusObj = {
   Pending: 'pending',
-  Incomplete: 'incomplate',
+  Incomplete: 'incomplete',
   Inactive: 'inactive',
   Verified: 'verified',
 } as const;
