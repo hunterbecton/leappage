@@ -1,3 +1,1 @@
-import { Progress } from "./Progress";
-
-export { Progress };
+export * from './Progress';

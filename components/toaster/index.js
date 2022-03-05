@@ -1,3 +1,1 @@
-import { Toaster } from "./Toaster";
-
-export { Toaster };
+export * from './Toaster';

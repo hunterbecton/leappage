@@ -7,7 +7,7 @@ export const CategoryTable = ({ categories }) => {
   const { user } = useAuth();
 
   return (
-    <Container size='0'>
+    <Container size='none'>
       <div className='flex flex-col'>
         <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8'>

@@ -1,3 +1,1 @@
-import { TestimonialForm } from "./TestimonialForm";
-
-export { TestimonialForm };
+export * from './TestimonialForm';

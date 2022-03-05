@@ -3,7 +3,7 @@ import { Container } from 'components/container';
 
 export const MediaList = ({ items, href }) => {
   return (
-    <Container size='0'>
+    <Container size='none'>
       <ul className='grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6'>
         {items?.map((item) => (
           <MediaCard key={item.id} href={href} item={item} />

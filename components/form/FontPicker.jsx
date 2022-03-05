@@ -1,14 +1,22 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { BiFontFamily, BiCheck } from 'react-icons/bi';
 import slugify from 'slugify';
+import { useFormContext } from 'react-hook-form';
 
 import { classNames } from 'utils';
 import { fonts } from 'data/fonts';
 import Image from 'next/image';
 
-export const FontPicker = ({ name, label, setValue, font, formState }) => {
-  const { errors } = formState;
+export const FontPicker = ({ name, label }) => {
+  const { setValue, formState, watch, register } = useFormContext();
+
+  // Manually register on mount
+  useEffect(() => {
+    register(name);
+  }, []);
+
+  const font = watch(name);
 
   const handleChange = (newFont) => {
     setValue(name, newFont);
@@ -91,8 +99,10 @@ export const FontPicker = ({ name, label, setValue, font, formState }) => {
           </>
         )}
       </Listbox>
-      {errors[name] && (
-        <p className='mt-2 text-sm text-red-600'>{errors[name].message}</p>
+      {formState.errors[name] && (
+        <p className='mt-2 text-sm text-red-600'>
+          {formState.errors[name].message}
+        </p>
       )}
     </div>
   );

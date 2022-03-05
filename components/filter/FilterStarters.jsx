@@ -225,7 +225,7 @@ export const FilterStarters = () => {
               </Dialog>
             </Transition.Root>
 
-            <Container size='0'>
+            <Container size='none'>
               <div className='lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4'>
                 <aside>
                   <h2 className='sr-only'>Filters</h2>

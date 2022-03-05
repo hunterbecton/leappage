@@ -5,7 +5,6 @@ import { withRestrict } from 'middleware/app/withRestrict';
 import { withTheme } from 'middleware/app/withTheme';
 
 export default function AccountTheme({ theme }) {
-  console.log(theme);
   return (
     <AccountLayout>
       {!theme && <CreateThemeForm />}

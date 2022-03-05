@@ -1,3 +1,1 @@
-import { FilterStarters } from "./FilterStarters";
-
-export { FilterStarters };
+export * from './FilterStarters';

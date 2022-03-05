@@ -1,3 +1,1 @@
-import { Stat } from "./Stat";
-
-export { Stat };
+export * from './Stat';

@@ -1,4 +1,2 @@
-import { Icon } from "./Icon";
-import { iconList } from "./iconList";
-
-export { Icon, iconList };
+export * from './iconList';
+export * from './Icon';

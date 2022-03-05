@@ -1,19 +1,20 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BlockPicker } from 'react-color';
 import { usePopper } from 'react-popper';
 import { useClickAway } from 'react-use';
+import { useFormContext } from 'react-hook-form';
 
 import { Button } from 'components/button';
 
-export const ColorPicker = ({
-  name,
-  label,
-  color,
-  colors,
-  setValue,
-  formState,
-}) => {
-  const { errors } = formState;
+export const ColorPicker = ({ name, label, colors }) => {
+  const { formState, register, setValue, watch } = useFormContext();
+
+  // Manually register on mount
+  useEffect(() => {
+    register(name);
+  }, []);
+
+  const color = watch(name);
 
   const [referenceElement, setReferenceElement] = useState(null);
 
@@ -78,8 +79,10 @@ export const ColorPicker = ({
           </div>
         )}
       </div>
-      {errors[name] && (
-        <p className='mt-2 text-sm text-red-600'>{errors[name].message}</p>
+      {formState.errors[name] && (
+        <p className='mt-2 text-sm text-red-600'>
+          {formState.errors[name].message}
+        </p>
       )}
     </div>
   );
