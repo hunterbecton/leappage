@@ -5,11 +5,11 @@ export interface EmptyProps {
   title: string;
   subtitle: string;
   withCta: boolean;
-  withCtaTwo: boolean;
-  ctaOneText: string;
-  ctaOneIcon: ReactNode;
-  ctaOneOnClick: MouseEventHandler<HTMLButtonElement>;
-  ctaOneDisabled: boolean;
-  ctaTwoText: string;
-  ctaTwoOnClick: MouseEventHandler<HTMLButtonElement>;
+  withCtaTwo?: boolean;
+  ctaOneText?: string;
+  ctaOneIcon?: ReactNode;
+  ctaOneOnClick?: MouseEventHandler<HTMLButtonElement>;
+  ctaOneDisabled?: boolean;
+  ctaTwoText?: string;
+  ctaTwoOnClick?: MouseEventHandler<HTMLButtonElement>;
 }
