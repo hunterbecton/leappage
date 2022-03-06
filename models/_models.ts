@@ -1,5 +1,3 @@
-import mongoose from 'mongoose';
-
 export interface Tenant {
   id: string;
   _id: string;
@@ -157,6 +155,7 @@ export interface Content {
   __v: number;
   createdAt: Date;
   updatedAt: Date;
+  categoryInfo?: Category[];
 }
 
 const TestimonialStatusObj = {
@@ -180,6 +179,52 @@ export interface Testimonial {
   tenant: string;
   category: string;
   status: TestimonialStatusType;
+  __v: number;
+  createdAt: Date;
+  updatedAt: Date;
+  categoryInfo?: Category[];
+}
+
+const PageStatusObj = {
+  Drafted: 'drafted',
+  Preview: 'preview',
+  Published: 'published',
+} as const;
+
+export type PageStatusType = typeof PageStatusObj[keyof typeof PageStatusObj];
+
+export interface Page {
+  id: string;
+  _id: string;
+  title: string;
+  frame: string;
+  slug: string;
+  tenant: string;
+  user: string;
+  status: PageStatusType;
+  seoTitle?: string;
+  seoDescription?: string;
+  __v: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const TemplateStatusObj = {
+  Drafted: 'drafted',
+  Preview: 'preview',
+  Published: 'published',
+} as const;
+
+export type TemplateStatusType =
+  typeof TemplateStatusObj[keyof typeof TemplateStatusObj];
+
+export interface Template {
+  id: string;
+  _id: string;
+  title: string;
+  frame: string;
+  tenant: string;
+  status: PageStatusType;
   __v: number;
   createdAt: Date;
   updatedAt: Date;
