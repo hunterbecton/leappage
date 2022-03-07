@@ -1,7 +1,7 @@
 import { MouseEventHandler, ReactNode } from 'react';
 
 export interface EmptyProps {
-  icon: ReactNode;
+  icon?: ReactNode;
   title: string;
   subtitle: string;
   withCta: boolean;

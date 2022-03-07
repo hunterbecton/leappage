@@ -100,11 +100,11 @@
     to-fast-properties "^2.0.0"
 
 "@craftjs/core@^0.2.0-beta.0":
-  version "0.2.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@craftjs/core/-/core-0.2.0-beta.2.tgz#dcba469a14de3539a58e76b693fa950867d65bc1"
-  integrity sha512-pc9cFSOjDyOdhIc6DIzUWToB0n/RX2PeDN5oS4eIUp/HbFcM+l6F+jW9t+L9/N/Z9C6rKq5WLuHc7fR/P22yCw==
+  version "0.2.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@craftjs/core/-/core-0.2.0-beta.3.tgz#afd1a22ca53cda9107db1e79b3234c1e835bd052"
+  integrity sha512-XV9eXyC1HwO+/KXcM7MxjsjdlEIG8mAhaFXkyCfdcRnT3L8LKIWiCaSeBWU1e0c8q4YhE1ykZeoaqrRaP+TKnw==
   dependencies:
-    "@craftjs/utils" "^0.2.0-beta.2"
+    "@craftjs/utils" "^0.2.0-beta.3"
     "@types/react" "^17.0.5"
     debounce "^1.2.0"
     lodash "^4.17.20"
@@ -118,10 +118,22 @@
     "@craftjs/utils" "^0.2.0-beta.2"
     react-contenteditable "^3.3.3"
 
-"@craftjs/utils@^0.2.0-beta.0", "@craftjs/utils@^0.2.0-beta.2":
+"@craftjs/utils@^0.2.0-beta.0":
   version "0.2.0-beta.2"
   resolved "https://registry.yarnpkg.com/@craftjs/utils/-/utils-0.2.0-beta.2.tgz#1ca902c41758038350c0c13519d58aa6fc0d5757"
   integrity sha512-KQHaytQDuT8/QC3qpr/KCGyzL01P9QePpTQ3qsboS2ASGBoEhr6QvSFg+TfeuD7CcE93Ud5tf9uII68VlXcAYQ==
+  dependencies:
+    "@types/react" "^17.0.5"
+    immer "^9.0.6"
+    lodash "^4.17.20"
+    nanoid "^3.1.23"
+    shallowequal "^1.1.0"
+    tiny-invariant "^1.0.6"
+
+"@craftjs/utils@^0.2.0-beta.2", "@craftjs/utils@^0.2.0-beta.3":
+  version "0.2.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@craftjs/utils/-/utils-0.2.0-beta.3.tgz#ddb5424260d6afe58b82ac837abb30e209acde30"
+  integrity sha512-U7Glgu7guhe/Q9jlNNy9FqdYpTVdudbMabmlLrMIgD8JF71s7XvvCU1t2YXbzp7c3zw9CWkbXOl7cqaGWByS3w==
   dependencies:
     "@types/react" "^17.0.5"
     immer "^9.0.6"
@@ -2147,7 +2159,12 @@ cssnano-simple@3.0.0:
   dependencies:
     cssnano-preset-simple "^3.0.0"
 
-csstype@^3.0.2, csstype@^3.0.6:
+csstype@^3.0.2:
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.11.tgz#d66700c5eacfac1940deb4e3ee5642792d85cd33"
+  integrity sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==
+
+csstype@^3.0.6:
   version "3.0.10"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.10.tgz#2ad3a7bed70f35b965707c092e5f30b327c290e5"
   integrity sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==
@@ -4656,7 +4673,12 @@ nanoclone@^0.2.1:
   resolved "https://registry.yarnpkg.com/nanoclone/-/nanoclone-0.2.1.tgz#dd4090f8f1a110d26bb32c49ed2f5b9235209ed4"
   integrity sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==
 
-nanoid@^3.1.23, nanoid@^3.2.0:
+nanoid@^3.1.23:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.1.tgz#6347a18cac88af88f58af0b3594b723d5e99bb35"
+  integrity sha512-n6Vs/3KGyxPQd6uO0eH4Bv0ojGSUvuLlIHtC3Y0kEO23YRge8H9x1GCzLn28YX0H66pMkxuaeESFq4tKISKwdw==
+
+nanoid@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.2.0.tgz#62667522da6673971cca916a6d3eff3f415ff80c"
   integrity sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==

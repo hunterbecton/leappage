@@ -3,7 +3,7 @@ export interface PaginationProps {
   limit: number;
   quantity: number;
   totalPages: number;
-  href: string;
+  href?: string;
   isAsnyc?: boolean;
   setCurrentPage: (currentPage: number) => void;
 }

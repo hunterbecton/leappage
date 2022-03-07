@@ -8,7 +8,7 @@ export type IconVariantType =
 
 export interface IconProps {
   id: string;
-  variant: IconVariantType;
-  dropdownStyle: string;
-  renderStyle: string;
+  variant?: IconVariantType;
+  dropdownStyle?: string;
+  renderStyle?: string;
 }

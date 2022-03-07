@@ -7,7 +7,7 @@ export interface InputProps {
   disabled?: boolean;
   helpText?: string;
   placeholder: string;
-  onBlur?: () => FocusEvent<HTMLInputElement>;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
 }
 
@@ -18,7 +18,7 @@ export interface InputRefProps {
   disabled?: boolean;
   helpText?: string;
   placeholder: string;
-  onBlur?: () => FocusEvent<HTMLInputElement>;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
   ref: React.ForwardedRef<HTMLInputElement>;
 }
@@ -44,7 +44,6 @@ export interface TextAreaProps {
   disabled?: boolean;
   helpText?: string;
   placeholder?: string;
-  onBlur?: () => FocusEvent<HTMLInputElement>;
   readOnly?: boolean;
 }
 

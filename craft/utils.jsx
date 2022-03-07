@@ -2,7 +2,6 @@ import { createElement } from 'react';
 import { Editor, NodeProvider } from '@craftjs/core';
 import _ from 'lodash';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { Body } from 'components/editor/selectors/body';
 import {
