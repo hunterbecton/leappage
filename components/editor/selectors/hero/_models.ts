@@ -23,3 +23,9 @@ export interface HeroTwoProps {
   videoUrl: string;
   ctas: HeroCta[];
 }
+
+export interface HeroThreeProps {
+  title: string;
+  description: string;
+  ctas: HeroCta[];
+}

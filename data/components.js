@@ -15,7 +15,7 @@ import {
   TitleThree,
   TitleFour,
 } from 'components/editor/selectors/titles';
-import { HeroOne, HeroTwo } from 'components/editor/selectors/hero';
+import { HeroOne, HeroTwo, HeroThree } from 'components/editor/selectors/hero';
 import { LinkOne, LinkTwo } from 'components/editor/selectors/link';
 import { DividerOne } from 'components/editor/selectors/divider/DividerOne';
 
@@ -34,6 +34,13 @@ export const components = {
       img: '/components/hero/hero-two.jpg',
       width: 600,
       height: 218,
+    },
+    {
+      title: 'Hero Three',
+      component: <HeroThree />,
+      img: '/components/hero/hero-three.jpg',
+      width: 600,
+      height: 163,
     },
   ],
   titles: [
