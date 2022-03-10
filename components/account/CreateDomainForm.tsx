@@ -100,7 +100,7 @@ export const CreateDomainForm: FC = () => {
           <div className='space-y-6 bg-white py-6 px-4 sm:p-6'>
             <div>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Manage Domain
+                Manage domain
               </h3>
               <p className='mt-1 max-w-2xl text-sm text-gray-500'>
                 Managing custom domain is restricted to team admins.
@@ -113,7 +113,7 @@ export const CreateDomainForm: FC = () => {
                     icon={
                       <BiLink className='mx-auto h-12 w-12 text-gray-300' />
                     }
-                    title='No Custom Domain'
+                    title='No custom domain'
                     subtitle={
                       restrict(['admin', 'editor'], user)
                         ? 'Create a custom domain below to get started'
@@ -134,7 +134,7 @@ export const CreateDomainForm: FC = () => {
                 <div className='space-y-6 bg-white py-6 px-4 sm:p-6'>
                   <div>
                     <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                      Add Domain
+                      Add domain
                     </h3>
                     <p className='mt-1 max-w-2xl text-sm text-gray-500'>
                       Adding custom domain is restricted to team admins.
@@ -153,7 +153,7 @@ export const CreateDomainForm: FC = () => {
                 <div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
                   <Button
                     type='submit'
-                    title='Add Teammate'
+                    title='Add teammate'
                     disabled={isSending}
                     text='Add'
                   />

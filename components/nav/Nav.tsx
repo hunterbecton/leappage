@@ -256,7 +256,7 @@ export const Nav: FC = () => {
                                   'flex w-full px-4 py-2 text-sm text-gray-700'
                                 )}
                               >
-                                Sign Out
+                                Sign out
                               </button>
                             )}
                           </Menu.Item>

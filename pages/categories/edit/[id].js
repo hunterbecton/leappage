@@ -10,13 +10,13 @@ export default function CategoryPage({ category }) {
   return (
     <>
       <NextSeo
-        title='LeapPage | Edit Category'
+        title='LeapPage | Edit category'
         noindex={true}
         nofollow={true}
       />
       <MainLayout>
         <ContentLayout
-          title='Category Details'
+          title='Category details'
           description='Update or delete category'
         >
           <CategoryForm category={category} />

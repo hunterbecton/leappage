@@ -9,10 +9,10 @@ import { MediaForm } from 'components/media/MediaForm';
 export default function MediaPage({ media }) {
   return (
     <>
-      <NextSeo title='LeapPage | Edit Media' noindex={true} nofollow={true} />
+      <NextSeo title='LeapPage | Edit media' noindex={true} nofollow={true} />
       <MainLayout>
         <ContentLayout
-          title='Media Details'
+          title='Media details'
           description='Update or replace media file'
         >
           <MediaForm media={media} />

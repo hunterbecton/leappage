@@ -174,10 +174,7 @@ export const MediaForm: FC<MediaProps> = ({ media }) => {
                       readOnly={true}
                     />
                   </div>
-                </div>
-
-                <div className='grid grid-cols-3 gap-6'>
-                  <div className='col-span-3'>
+                  <div className='col-span-6'>
                     <label
                       htmlFor='image-preview'
                       className='block text-sm font-medium text-gray-700'
@@ -198,26 +195,26 @@ export const MediaForm: FC<MediaProps> = ({ media }) => {
                       </div>
                     </div>
                   </div>
+                  <div className='col-span-6'>
+                    <FileUpload label='Replace image' />
+                  </div>
                 </div>
-                <div>
-                  <FileUpload />
-                </div>
-                <div className='space-x-2 bg-gray-50 px-4 py-3 text-right sm:px-6'>
-                  <Button
-                    type='button'
-                    variant='ghost'
-                    disabled={isUpdating}
-                    onClick={() => setIsConfirmDeleteModalOpen(true)}
-                    title='Delete media'
-                    text='Delete'
-                  />
-                  <Button
-                    type='submit'
-                    disabled={isUpdating}
-                    title='Update media'
-                    text='Update'
-                  />
-                </div>
+              </div>
+              <div className='space-x-2 bg-gray-50 px-4 py-3 text-right sm:px-6'>
+                <Button
+                  type='button'
+                  variant='ghost'
+                  disabled={isUpdating}
+                  onClick={() => setIsConfirmDeleteModalOpen(true)}
+                  title='Delete media'
+                  text='Delete'
+                />
+                <Button
+                  type='submit'
+                  disabled={isUpdating}
+                  title='Update media'
+                  text='Update'
+                />
               </div>
             </div>
           </form>

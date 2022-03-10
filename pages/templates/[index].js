@@ -72,20 +72,20 @@ export default function AllTemplates({
           title='Templates'
           withSubtitle={false}
           withCta={restrict(['admin', 'editor'], user)}
-          ctaText='Create Template'
+          ctaText='Create template'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewTemplate()}
         />
         {templates.length === 0 && (
           <Empty
-            title='No Templates'
+            title='No templates'
             subtitle={
               restrict(['admin', 'editor'], user)
                 ? 'Create a new template below to get started'
                 : 'Creation is restricted to team admins and editors'
             }
             withCta={restrict(['admin', 'editor'], user)}
-            ctaOneText='Create Template'
+            ctaOneText='Create template'
             ctaOneOnClick={() => createNewTemplate()}
             ctaOneIcon={null}
             withCtaTwo={false}

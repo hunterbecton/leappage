@@ -69,16 +69,16 @@ export default function AllCategories({
           title='Categories'
           withSubtitle={false}
           withCta={true}
-          ctaText='Create Category'
+          ctaText='Create category'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewCategory()}
         />
         {totalCategories === 0 && (
           <Empty
-            title='No Categories'
-            subtitle='Create new category below to get startedv'
+            title='No categories'
+            subtitle='Create new category below to get started'
             withCta={true}
-            ctaOneText='Create Category'
+            ctaOneText='Create category'
             ctaOneOnClick={() => createNewCategory()}
             ctaOneIcon={null}
             withCtaTwo={false}

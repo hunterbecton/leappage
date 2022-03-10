@@ -395,7 +395,7 @@ export const Toolbar = () => {
                                   className='mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500'
                                   aria-hidden='true'
                                 />
-                                View Published
+                                View published
                               </>
                             </ToolbarMenuItem>
                           )}
@@ -417,7 +417,7 @@ export const Toolbar = () => {
                                 className='mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500'
                                 aria-hidden='true'
                               />
-                              View Preview
+                              View preview
                             </>
                           </ToolbarMenuItem>
                         )}
@@ -436,7 +436,7 @@ export const Toolbar = () => {
                                   className='mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500'
                                   aria-hidden='true'
                                 />
-                                Duplicate as Template
+                                Duplicate as template
                               </>
                             </ToolbarMenuItem>
                           )}
@@ -452,7 +452,7 @@ export const Toolbar = () => {
                                   className='mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500'
                                   aria-hidden='true'
                                 />
-                                Duplicate as Page
+                                Duplicate as page
                               </>
                             </ToolbarMenuItem>
                           )}
@@ -545,7 +545,7 @@ export const Toolbar = () => {
                                 className='mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500'
                                 aria-hidden='true'
                               />
-                              View Published
+                              View published
                             </>
                           </ToolbarMenuItem>
                         )}
@@ -566,7 +566,7 @@ export const Toolbar = () => {
                                 className='mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500'
                                 aria-hidden='true'
                               />
-                              View Preview
+                              View preview
                             </>
                           </ToolbarMenuItem>
                         )}

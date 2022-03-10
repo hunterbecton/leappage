@@ -62,7 +62,7 @@ export const Login: FC<LoginProps> = ({ tenant }) => {
           />
         </div>
         <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-          Sign In to Your Account
+          Sign in to your account
         </h2>
       </div>
 
@@ -108,7 +108,7 @@ export const Login: FC<LoginProps> = ({ tenant }) => {
                   disabled={isSigningIn}
                   customClassName='w-full flex justify-center'
                   title='Sign in'
-                  text='Sign In'
+                  text='Sign in'
                 />
               </div>
             </form>

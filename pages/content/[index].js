@@ -69,16 +69,16 @@ export default function AllContent({
           title='Content'
           withSubtitle={false}
           withCta={true}
-          ctaText='Create Content'
+          ctaText='Create content'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewContent()}
         />
         {contents.length === 0 && (
           <Empty
-            title='No Content'
+            title='No content'
             subtitle='Create new content below to get started'
             withCta={true}
-            ctaOneText='Create Content'
+            ctaOneText='Create content'
             ctaOneOnClick={() => createNewContent()}
             ctaOneIcon={null}
             withCtaTwo={false}

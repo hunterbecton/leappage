@@ -1,4 +1,4 @@
-import { FC, FocusEvent } from 'react';
+import { FC } from 'react';
 import { BiErrorCircle } from 'react-icons/bi';
 import { useFormContext } from 'react-hook-form';
 

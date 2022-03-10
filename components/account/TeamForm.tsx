@@ -109,7 +109,7 @@ export const TeamForm: FC<TeamProps> = ({ team }) => {
           <div className='space-y-6 bg-white py-6 px-4 sm:p-6'>
             <div>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Manage Team
+                Manage team
               </h3>
               <p className='mt-1 max-w-2xl text-sm text-gray-500'>
                 Managing teammates is restricted to team admins.
@@ -182,7 +182,7 @@ export const TeamForm: FC<TeamProps> = ({ team }) => {
                 <div className='space-y-6 bg-white py-6 px-4 sm:p-6'>
                   <div>
                     <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                      Add Teammate
+                      Add teammate
                     </h3>
                     <p className='mt-1 max-w-2xl text-sm text-gray-500'>
                       Adding teammates is restricted to team admins.
@@ -213,7 +213,7 @@ export const TeamForm: FC<TeamProps> = ({ team }) => {
                 <div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
                   <Button
                     type='submit'
-                    title='Add Teammate'
+                    title='Add teammate'
                     disabled={isSending}
                     onClick={() => handleModalOpen()}
                     text='Add'

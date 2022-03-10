@@ -59,3 +59,7 @@ export interface DropdownProps {
   disabled?: boolean;
   options: Option[];
 }
+
+export interface FileUploadProps {
+  label: string;
+}

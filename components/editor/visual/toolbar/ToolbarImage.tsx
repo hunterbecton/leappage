@@ -71,7 +71,7 @@ export const ToolbarImage: FC<ToolbarImageProps> = ({
         </div>
         <Button
           customClassName='mt-4'
-          text='Select Image'
+          text='Select image'
           size='sm'
           variant='ghost'
           title='Select image'

@@ -2,7 +2,11 @@ import { Login } from 'components/auth';
 import { withTenant } from 'middleware/app/withTenant';
 
 export default function LoginPage({ tenant }) {
-  return <Login tenant={tenant} />;
+  return (
+    <>
+      <Login tenant={tenant} />
+    </>
+  );
 }
 
 export async function getServerSideProps(ctx) {

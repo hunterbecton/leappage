@@ -41,7 +41,7 @@ export default function EditTemplate({ json, template, theme }) {
   return (
     <>
       <NextSeo
-        title='LeapPage | Edit Template'
+        title='LeapPage | Edit template'
         noindex={true}
         nofollow={true}
       />

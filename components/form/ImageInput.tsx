@@ -65,7 +65,7 @@ export const ImageInput: FC<ImageInputProps> = ({
         {!readOnly && (
           <Button
             customClassName='mt-4'
-            text='Select Image'
+            text='Select image'
             variant='ghost'
             title='Select image'
             onClick={handleSelect}

@@ -19,6 +19,10 @@ export const withTenant = async ({ req, res }) => {
       tenant = await Tenant.findOne({
         subdomain,
       });
+
+      if (!tenant) {
+        return false;
+      }
     }
     // Get Tenant based on custom domain
     else {
@@ -26,6 +30,10 @@ export const withTenant = async ({ req, res }) => {
       tenant = await Tenant.findOne({
         domain: host,
       });
+
+      if (!tenant) {
+        return false;
+      }
     }
 
     return JSON.stringify(tenant);

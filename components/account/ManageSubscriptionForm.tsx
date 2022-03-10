@@ -105,7 +105,7 @@ export const ManageSubscriptionForm: FC<ManageSubscriptionProps> = ({
           <div className='space-y-6 bg-white px-4 py-6 sm:p-6'>
             <div>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Manage Subscription
+                Manage subscription
               </h3>
               <p className='mt-1 max-w-2xl text-sm text-gray-500'>
                 Managing subscription is restricted to team admins.

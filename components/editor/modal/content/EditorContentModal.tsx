@@ -104,7 +104,7 @@ export const EditorContentModal: FC = () => {
                   <>
                     {contents?.length === 0 && (
                       <Empty
-                        title='No Content'
+                        title='No content'
                         subtitle='Get started by creating content'
                         withCta={false}
                       />

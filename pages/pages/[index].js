@@ -68,15 +68,15 @@ export default function AllPages({
           title='Pages'
           withSubtitle={false}
           withCta={true}
-          ctaText='Create Page'
+          ctaText='Create page'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewPage()}
         />
         {pages.length === 0 && (
           <Empty
-            title='No Pages'
+            title='No pages'
             subtitle='Create a new page below to get started'
-            ctaOneText='Create Page'
+            ctaOneText='Create page'
             ctaOneOnClick={() => createNewPage()}
             ctaOneIcon={null}
             withCtaTwo={false}

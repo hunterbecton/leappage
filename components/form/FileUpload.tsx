@@ -5,8 +5,9 @@ import Image from 'next/image';
 import { BiImageAdd, BiX } from 'react-icons/bi';
 
 import { classNames } from 'utils';
+import { FileUploadProps } from './_models';
 
-export const FileUpload: FC = () => {
+export const FileUpload: FC<FileUploadProps> = ({ label }) => {
   const { register, unregister, watch, setValue, formState } = useFormContext();
 
   // Manually register on mount
@@ -37,9 +38,7 @@ export const FileUpload: FC = () => {
 
   return (
     <>
-      <label className='block text-sm font-medium text-gray-700'>
-        {!!files?.length ? 'Preview Image' : 'Profile Image'}
-      </label>
+      <label className='block text-sm font-medium text-gray-700'>{label}</label>
       {!!files?.length && (
         <ul className='grid grid-cols-1'>
           {files?.map((file, i) => (
@@ -100,4 +99,8 @@ export const FileUpload: FC = () => {
       )}
     </>
   );
+};
+
+FileUpload.defaultProps = {
+  label: 'Profile image',
 };

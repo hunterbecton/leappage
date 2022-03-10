@@ -102,7 +102,7 @@ export const EditorMediaModal: FC = () => {
                   <>
                     {medias?.length === 0 && (
                       <Empty
-                        title='No Media'
+                        title='No media'
                         subtitle='Get started by uploading a file'
                         withCta={false}
                       />

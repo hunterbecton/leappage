@@ -101,7 +101,7 @@ ConfirmDeleteModal.defaultProps = {
   isConfirmDeleteModalOpen: false,
   setIsConfirmDeleteModalOpen: () => console.log('Handle open'),
   isDeleting: false,
-  title: 'Confirm Delete',
+  title: 'Confirm delete',
   text: 'Are you sure you want to delete this item? All of the data will be permanently removed from our servers forever. This action cannot be undone.',
   handleConfirmDelete: () => console.log('Handle delete'),
 };

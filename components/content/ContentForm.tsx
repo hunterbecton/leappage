@@ -179,8 +179,6 @@ export const ContentForm: FC<ContentFormProps> = ({
                     <Input name='url' label='URL' placeholder={'Enter URL'} />
                   </div>
                 </div>
-
-                <div className='grid grid-cols-6 gap-6'></div>
               </div>
               <div className='space-x-2 bg-gray-50 px-4 py-3 text-right sm:px-6'>
                 <Button

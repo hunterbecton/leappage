@@ -103,7 +103,7 @@ export const ProfileForm: FC<ProfileProps> = ({ currentUser }) => {
             <div className='space-y-6 bg-white py-6 px-4 sm:p-6'>
               <div>
                 <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                  Update Profile
+                  Update profile
                 </h3>
               </div>
 
@@ -117,7 +117,7 @@ export const ProfileForm: FC<ProfileProps> = ({ currentUser }) => {
                 </div>
 
                 <div className='col-span-3'>
-                  <FileUpload />
+                  <FileUpload label='Profile image' />
                 </div>
               </div>
             </div>

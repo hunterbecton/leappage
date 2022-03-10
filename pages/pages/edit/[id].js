@@ -42,7 +42,7 @@ export default function EditPage({ json, page, theme }) {
 
   return (
     <>
-      <NextSeo title='LeapPage | Edit Page' noindex={true} nofollow={true} />
+      <NextSeo title='LeapPage | Edit page' noindex={true} nofollow={true} />
       <Theme theme={theme} />
       <FormProvider {...methods}>
         <VisualEditor json={json} type='page' />

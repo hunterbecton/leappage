@@ -27,7 +27,7 @@ import {
   TestimonialTwo,
 } from 'components/editor/selectors/testimonial';
 import { LinkOne, LinkTwo } from 'components/editor/selectors/link';
-import { HeroOne, HeroTwo } from 'components/editor/selectors/hero';
+import { HeroOne, HeroTwo, HeroThree } from 'components/editor/selectors/hero';
 import { DividerOne } from 'components/editor/selectors/divider';
 import { useEditorStore } from 'store';
 import { Theme } from 'components/theme';
@@ -68,6 +68,7 @@ export default function PreviewPage({ json, page, theme }) {
           TestimonialTwo,
           HeroOne,
           HeroTwo,
+          HeroThree,
           LinkOne,
           LinkTwo,
           DividerOne,

@@ -28,6 +28,6 @@ export const ContentLayout: FC<ContentLayoutProps> = ({
 };
 
 ContentLayout.defaultProps = {
-  title: 'Media Details',
+  title: 'Media details',
   description: 'Update or replace media file',
 };

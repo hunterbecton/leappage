@@ -109,6 +109,6 @@ export const FontPicker = ({ name, label }) => {
 };
 
 FontPicker.defaultProps = {
-  label: 'Font Family',
+  label: 'Font family',
   font: 'Inter',
 };

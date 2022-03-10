@@ -10,10 +10,10 @@ import { withCategories } from 'middleware/app/withCategories';
 export default function ContentPage({ content, categoryOptions }) {
   return (
     <>
-      <NextSeo title='LeapPage | Edit Content' noindex={true} nofollow={true} />
+      <NextSeo title='LeapPage | Edit content' noindex={true} nofollow={true} />
       <MainLayout>
         <ContentLayout
-          title='Content Details'
+          title='Content details'
           description='Update or delete content'
         >
           <ContentForm content={content} categoryOptions={categoryOptions} />

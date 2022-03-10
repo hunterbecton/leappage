@@ -120,7 +120,7 @@ export const ManageThemeForm: FC<ManageThemeProps> = ({ theme }) => {
               <div className='space-y-6 bg-white py-6 px-4 sm:p-6'>
                 <div>
                   <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                    Update Theme
+                    Update theme
                   </h3>
                   <p className='mt-1 max-w-2xl text-sm text-gray-500'>
                     Updating theme is restricted to team admins.
@@ -155,7 +155,7 @@ export const ManageThemeForm: FC<ManageThemeProps> = ({ theme }) => {
                   <div className='col-span-3 md:col-span-1'>
                     <ColorPicker
                       name='primaryLight'
-                      label='Primary Light'
+                      label='Primary light'
                       colors={[
                         '#fee2e2',
                         '#ffedd5',
@@ -180,7 +180,7 @@ export const ManageThemeForm: FC<ManageThemeProps> = ({ theme }) => {
                   <div className='col-span-3 md:col-span-1'>
                     <ColorPicker
                       name='primaryHover'
-                      label='Primary Hover'
+                      label='Primary hover'
                       colors={[
                         '#dc2626',
                         '#ea580c',
@@ -203,14 +203,14 @@ export const ManageThemeForm: FC<ManageThemeProps> = ({ theme }) => {
                     />
                   </div>
                   <div className='col-span-3 md:col-span-1'>
-                    <FontPicker name='fontFamily' label='Font Family' />
+                    <FontPicker name='fontFamily' label='Font family' />
                   </div>
                 </div>
               </div>
               <div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
                 <Button
                   type='submit'
-                  title='Update Theme'
+                  title='Update theme'
                   disabled={isSending}
                   text='Update'
                 />

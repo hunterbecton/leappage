@@ -156,7 +156,7 @@ export const CreateThemeForm: FC = () => {
                     <div className='col-span-3 md:col-span-1'>
                       <ColorPicker
                         name='primaryLight'
-                        label='Primary Light'
+                        label='Primary light'
                         colors={[
                           '#fee2e2',
                           '#ffedd5',
@@ -181,7 +181,7 @@ export const CreateThemeForm: FC = () => {
                     <div className='col-span-3 md:col-span-1'>
                       <ColorPicker
                         name='primaryHover'
-                        label='Primary Hover'
+                        label='Primary hover'
                         colors={[
                           '#dc2626',
                           '#ea580c',
@@ -204,7 +204,7 @@ export const CreateThemeForm: FC = () => {
                       />
                     </div>
                     <div className='col-span-3 md:col-span-1'>
-                      <FontPicker name='fontFamily' label='Font Family' />
+                      <FontPicker name='fontFamily' label='Font family' />
                     </div>
                   </div>
                 </div>

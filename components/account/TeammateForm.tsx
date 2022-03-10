@@ -200,7 +200,7 @@ export const TeammateForm: FC<TeammateProps> = ({ teammate }) => {
                     <Dropdown name='role' label='Role' options={roleOptions} />
                   </div>
                   <div className='col-span-3'>
-                    <FileUpload />
+                    <FileUpload label='Profile image' />
                   </div>
                 </div>
               </div>

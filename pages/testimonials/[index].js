@@ -69,16 +69,16 @@ export default function AllTestimonials({
           title='Testimonials'
           withSubtitle={false}
           withCta={true}
-          ctaText='Create Testimonial'
+          ctaText='Create testimonial'
           ctaDisabled={isCreating}
           ctaOnClick={() => createNewTestimonial()}
         />
         {totalTestimonials === 0 && (
           <Empty
-            title='No Testimonials'
+            title='No testimonials'
             subtitle='Create new testimonial below to get started'
             withCta={true}
-            ctaOneText='Create Testimonial'
+            ctaOneText='Create testimonial'
             ctaOneOnClick={() => createNewTestimonial()}
             ctaOneIcon={null}
             withCtaTwo={false}

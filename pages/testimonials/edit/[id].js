@@ -11,13 +11,13 @@ export default function TestimonialPage({ testimonial, categoryOptions }) {
   return (
     <>
       <NextSeo
-        title='LeapPage | Edit Testimonial'
+        title='LeapPage | Edit testimonial'
         noindex={true}
         nofollow={true}
       />
       <MainLayout>
         <ContentLayout
-          title='Testimonial Details'
+          title='Testimonial details'
           description='Update or delete testimonial'
         >
           <TestimonialForm

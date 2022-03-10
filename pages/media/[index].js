@@ -28,16 +28,16 @@ export default function AllMedia({
           title='Media'
           withSubtitle={false}
           withCta={true}
-          ctaText='Upload File'
+          ctaText='Upload file'
           ctaDisabled={isOpen}
           ctaOnClick={() => setIsOpen(true)}
         />
         {totalMedia === 0 && (
           <Empty
-            title='No Media'
+            title='No media'
             subtitle='Get started by uploading a file'
             withCta={true}
-            ctaOneText='Upload File'
+            ctaOneText='Upload file'
             ctaOneOnClick={() => setIsOpen(true)}
             ctaOneIcon={null}
             ctaTwoText=''
