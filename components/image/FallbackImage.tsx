@@ -18,7 +18,7 @@ export const FallbackImage: FC<FallbackImageProps> = ({
   return (
     <Image
       {...rest}
-      src={imgSrc}
+      src={imgSrc ? imgSrc : '/images/not-found.png'}
       className={className}
       alt={alt}
       onError={() => {

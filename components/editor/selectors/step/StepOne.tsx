@@ -2,7 +2,7 @@ import { useNode } from '@craftjs/core';
 
 import { StepOneSettings } from './StepOneSettings';
 import { Icon } from 'components/icon';
-import Image from 'next/image';
+import { FallbackImage } from 'components/image';
 import { StepOneProps } from './_models';
 
 const defaultProps = {
@@ -113,7 +113,13 @@ export const StepOne = (props: Partial<StepOneProps>) => {
             )}
           </div>
           <div className='relative mt-12 rounded-lg object-cover object-center md:mt-0 md:w-1/2 lg:w-3/5'>
-            <Image src={src} alt='Step' layout='fill' objectFit='cover' />
+            <FallbackImage
+              src={src}
+              alt='Step'
+              layout='fill'
+              objectFit='cover'
+              fallbackSrc='/images/not-found.png'
+            />
           </div>
         </div>
       </div>

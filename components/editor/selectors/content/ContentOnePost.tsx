@@ -7,22 +7,43 @@ import { useEditorStore } from 'store';
 import { ContentPostProps } from './_models';
 
 export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
+  const isPublic = useEditorStore((state) => state.isPublic);
+
   const fetchPost = async () => {
-    const res = await fetch(`/api/content/published/${post.id}`, {
-      method: 'GET',
-      credentials: 'include',
-    });
+    if (isPublic) {
+      // Fetch public content for live pages
+      const res = await fetch(`/api/content/public/${post.id}`);
 
-    const { success, data } = await res.json();
+      const { success, data } = await res.json();
 
-    if (!success) {
-      throw Error(data.message);
+      if (!success) {
+        throw Error(data.message);
+      }
+
+      if (success && !data.content) {
+        throw Error('Content not found.');
+      }
+
+      return data.content;
+    } else {
+      // Fetch only published content when not in edit mode
+      const res = await fetch(`/api/content/${post.id}?status=published`, {
+        credentials: 'include',
+      });
+
+      const { success, data } = await res.json();
+
+      if (!success) {
+        throw Error(data.message);
+      }
+
+      if (success && !data.content) {
+        throw Error('Content not found.');
+      }
+
+      return data.content;
     }
-
-    return data.content;
   };
-
-  const isEnabled = useEditorStore((state) => state.isEnabled);
 
   const {
     data: content,
@@ -31,7 +52,7 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
     isSuccess,
   } = useQuery(post.id, fetchPost, {
     retry: 1,
-    refetchOnWindowFocus: isEnabled,
+    refetchOnWindowFocus: !isPublic,
   });
 
   return (
@@ -67,7 +88,7 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
           </a>
           <p className='text-xs font-bold uppercase text-gray-400'>
             {content.categoryInfo && content.categoryInfo.length > 0
-              ? content.categoryInfo[0].title
+              ? content.categoryInfo.title
               : 'Uncategorized'}
           </p>
           <a
@@ -80,7 +101,7 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
           </a>
         </div>
       )}
-      {isError && isEnabled ? (
+      {isError && !isPublic ? (
         <div className='relative col-span-12 mb-10 space-y-4 md:col-span-6 lg:col-span-4'>
           <div className='relative block h-64 w-full overflow-hidden rounded'>
             <div className='h-full w-full scale-100 transform transition duration-500 ease-out hover:scale-105'>

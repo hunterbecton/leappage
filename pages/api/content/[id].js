@@ -23,6 +23,41 @@ const handler = nc({
 // Protect routes
 handler.use(withProtect);
 
+handler.get(async (req, res, next) => {
+  const { id } = req.query;
+
+  let filteredQuery = filterObject(req.query, 'status');
+
+  // Ignore demo / placeholder data
+  if (id.startsWith('demo')) {
+    return res.status(200).json({
+      success: true,
+      data: {
+        content: {
+          id,
+          title: '4 Simple Tips for Leveraging the Power of Social Media',
+          description:
+            'The importance of customer reviews online for businesses can mean a surge in brand awareness and an overall increase in profit in the long run.',
+          categoryInfo: [{ title: 'Resource' }],
+          feature: 'https://dummyimage.com/672x512/f3f4f6/1f2937.jpg',
+          url: 'https://leappage.com',
+        },
+      },
+    });
+  }
+
+  let filter = { tenant: req.user.tenant_mongo_id, _id: id, ...filteredQuery };
+
+  const content = await Content.findOne(filter);
+
+  return res.status(200).json({
+    success: true,
+    data: {
+      content,
+    },
+  });
+});
+
 // Check subscription
 handler.use(withSubscription);
 

@@ -9,21 +9,45 @@ import { TestimonialCardProps } from './_models';
 export const TestimonialOneCard: FC<TestimonialCardProps> = ({
   testimonial,
 }) => {
-  const isEnabled = useEditorStore((state) => state.isEnabled);
+  const isPublic = useEditorStore((state) => state.isPublic);
 
   const fetchTestimonial = async () => {
-    const res = await fetch(`/api/testimonial/published/${testimonial.id}`, {
-      method: 'GET',
-      credentials: 'include',
-    });
+    if (isPublic) {
+      // Fetch only published content when not in edit mode
+      const res = await fetch(`/api/testimonial/public/${testimonial.id}`);
 
-    const { success, data } = await res.json();
+      const { success, data } = await res.json();
 
-    if (!success) {
-      throw Error(data.message);
+      if (!success) {
+        throw Error(data.message);
+      }
+
+      if (success && !data.testimonial) {
+        throw Error('Testimonial not found.');
+      }
+
+      return data.testimonial;
+    } else {
+      // Fetch only published content when not in edit mode
+      const res = await fetch(
+        `/api/testimonial/${testimonial.id}?status=published`,
+        {
+          credentials: 'include',
+        }
+      );
+
+      const { success, data } = await res.json();
+
+      if (!success) {
+        throw Error(data.message);
+      }
+
+      if (success && !data.testimonial) {
+        throw Error('Testimonial not found.');
+      }
+
+      return data.testimonial;
     }
-
-    return data.testimonial;
   };
 
   const {
@@ -33,7 +57,7 @@ export const TestimonialOneCard: FC<TestimonialCardProps> = ({
     isSuccess,
   } = useQuery(testimonial.id, fetchTestimonial, {
     retry: 1,
-    refetchOnWindowFocus: isEnabled,
+    refetchOnWindowFocus: !isPublic,
   });
 
   return (
@@ -79,7 +103,7 @@ export const TestimonialOneCard: FC<TestimonialCardProps> = ({
           </div>
         </div>
       )}
-      {isError && isEnabled ? (
+      {isError && !isPublic ? (
         <div className='col-span-12 md:col-span-6 lg:col-span-4'>
           <div className='h-full text-center'>
             <div className='relative mb-6 inline-block h-20 w-20 overflow-hidden rounded-full border-2 border-gray-200 bg-gray-100'>
@@ -90,7 +114,9 @@ export const TestimonialOneCard: FC<TestimonialCardProps> = ({
                 objectFit='cover'
               />
             </div>
-            <p className='leading-relaxed text-gray-900'>Quote not found.</p>
+            <p className='leading-relaxed text-gray-900'>
+              Testimonial not found.
+            </p>
             <span className='bg-primary mt-6 mb-4 inline-block h-1 w-10 rounded'></span>
             <h2 className='title-font text-sm font-medium uppercase tracking-wider text-gray-900'>
               Not Found

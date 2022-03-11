@@ -14,7 +14,7 @@ import { ContentFormData, ContentFormProps, StatusType } from './_models';
 const validationSchema: SchemaOf<ContentFormData> = object().shape({
   title: string().required('Title is required'),
   description: string().required('Description is required'),
-  url: string(),
+  url: string().required('URL is required'),
   feature: string().required('Feature image is required'),
   category: string(),
   status: mixed<StatusType>().oneOf(['drafted', 'preview', 'published']),

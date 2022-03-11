@@ -18,6 +18,44 @@ const handler = nc({
 // Protect routes
 handler.use(withProtect);
 
+// Get testimonial
+handler.get(async (req, res, next) => {
+  const { id } = req.query;
+
+  // Get items from req.query
+  const filteredQuery = filterObject(req.query, 'status');
+
+  // Ignore demo / placeholder data
+  if (id.startsWith('demo')) {
+    return res.status(200).json({
+      success: true,
+      data: {
+        testimonial: {
+          id: id,
+          title: 'Acme Inc. Testimonial',
+          quote: `The personalized sales pages we were able to create with LeapPage have made a great first impression on our leads. We've landed more demos and increased sales.`,
+          categoryInfo: [{ title: 'Resource' }],
+          name: 'Collins Lancaster',
+          position: 'Head of Sales',
+          company: 'Acme Inc.',
+          profileImage: 'https://dummyimage.com/300x300/f3f4f6/1f2937.jpg',
+        },
+      },
+    });
+  }
+
+  let filter = { tenant: req.user.tenant_mongo_id, _id: id, ...filteredQuery };
+
+  const testimonial = await Testimonial.findOne(filter);
+
+  return res.status(200).json({
+    success: true,
+    data: {
+      testimonial,
+    },
+  });
+});
+
 // Check subscription
 handler.use(withSubscription);
 

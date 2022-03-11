@@ -31,7 +31,7 @@ export default function AllContent({
 
     try {
       const body = {
-        title: 'Untitled Content',
+        title: 'Untitled content',
       };
 
       const res = await fetch(`/api/content`, {

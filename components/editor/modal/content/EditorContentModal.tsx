@@ -27,7 +27,7 @@ export const EditorContentModal: FC = () => {
 
   const fetchContentModal = async ({ queryKey }) => {
     const res = await fetch(
-      `/api/content/published?page=${queryKey[1]}&limit=${queryKey[2]}`,
+      `/api/content?status=published&page=${queryKey[1]}&limit=${queryKey[2]}`,
       {
         method: 'GET',
         credentials: 'include',
@@ -124,6 +124,7 @@ export const EditorContentModal: FC = () => {
                     )}
                   </>
                 )}
+                {isError && <p>Error</p>}
                 <div className='mt-5 sm:mt-6'>
                   <button
                     type='button'

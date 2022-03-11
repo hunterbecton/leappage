@@ -5,21 +5,42 @@ import { useEditorStore } from 'store';
 import { ContentPostProps } from './_models';
 
 export const ContentTwoPost: FC<ContentPostProps> = ({ post }) => {
-  const isEnabled = useEditorStore((state) => state.isEnabled);
+  const isPublic = useEditorStore((state) => state.isPublic);
 
   const fetchPost = async () => {
-    const res = await fetch(`/api/content/published/${post.id}`, {
-      method: 'GET',
-      credentials: 'include',
-    });
+    if (isPublic) {
+      // Fetch public content for live pages
+      const res = await fetch(`/api/content/public/${post.id}`);
 
-    const { success, data } = await res.json();
+      const { success, data } = await res.json();
 
-    if (!success) {
-      throw Error(data.message);
+      if (!success) {
+        throw Error(data.message);
+      }
+
+      if (success && !data.content) {
+        throw Error('Content not found.');
+      }
+
+      return data.content;
+    } else {
+      // Fetch only published content when not in edit mode
+      const res = await fetch(`/api/content/${post.id}?status=published`, {
+        credentials: 'include',
+      });
+
+      const { success, data } = await res.json();
+
+      if (!success) {
+        throw Error(data.message);
+      }
+
+      if (success && !data.content) {
+        throw Error('Content not found.');
+      }
+
+      return data.content;
     }
-
-    return data.content;
   };
 
   const {
@@ -29,7 +50,7 @@ export const ContentTwoPost: FC<ContentPostProps> = ({ post }) => {
     isSuccess,
   } = useQuery(post.id, fetchPost, {
     retry: 1,
-    refetchOnWindowFocus: isEnabled,
+    refetchOnWindowFocus: !isPublic,
   });
 
   return (
@@ -77,7 +98,7 @@ export const ContentTwoPost: FC<ContentPostProps> = ({ post }) => {
             <div className='mb-6 flex w-full flex-shrink-0 flex-col md:mb-0 md:w-64'>
               <span className='text-sm font-bold uppercase text-gray-400'>
                 {content.categoryInfo && content.categoryInfo.length > 0
-                  ? content.categoryInfo[0].title
+                  ? content.categoryInfo.title
                   : 'Uncategorized'}
               </span>
             </div>
@@ -114,7 +135,7 @@ export const ContentTwoPost: FC<ContentPostProps> = ({ post }) => {
           </div>
         </div>
       )}
-      {isError && isEnabled ? (
+      {isError && !isPublic ? (
         <div className='-my-8 divide-y-2 divide-gray-100'>
           <div className='flex flex-wrap py-8 md:flex-nowrap'>
             <div className='mb-6 flex w-full flex-shrink-0 flex-col md:mb-0 md:w-64'>

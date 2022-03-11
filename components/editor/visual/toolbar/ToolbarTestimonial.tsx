@@ -39,15 +39,22 @@ export const ToolbarTestimonial: FC<ToolbarTestimonialProps> = ({
   };
 
   const fetchTestimonial = async () => {
-    const res = await fetch(`/api/testimonial/published/${testimonial.id}`, {
-      method: 'GET',
-      credentials: 'include',
-    });
+    const res = await fetch(
+      `/api/testimonial/${testimonial.id}?status=published`,
+      {
+        method: 'GET',
+        credentials: 'include',
+      }
+    );
 
     const { success, data } = await res.json();
 
     if (!success) {
       throw Error(data.message);
+    }
+
+    if (success && !data.testimonial) {
+      throw Error('Testimonial not found.');
     }
 
     return data.testimonial;
@@ -98,8 +105,8 @@ export const ToolbarTestimonial: FC<ToolbarTestimonialProps> = ({
             <div className='flex-shrink-0'>
               <div className='relative h-48 w-full overflow-hidden'>
                 <FallbackImage
-                  src={testimonial.profileImage}
-                  alt={testimonial.name}
+                  src={content.profileImage}
+                  alt={content.name}
                   layout='fill'
                   objectFit='cover'
                   fallbackSrc='/images/not-found.png'
@@ -109,13 +116,12 @@ export const ToolbarTestimonial: FC<ToolbarTestimonialProps> = ({
             <div className='flex flex-1 flex-col justify-between bg-white p-4'>
               <div className='flex-1'>
                 <p className='text-xs font-bold uppercase text-gray-400'>
-                  {testimonial.categoryInfo &&
-                  testimonial.categoryInfo.length > 0
-                    ? testimonial.categoryInfo[0].title
+                  {content.categoryInfo && content.categoryInfo.length > 0
+                    ? content.categoryInfo.title
                     : 'Uncategorized'}
                 </p>
                 <p className='mt-2 block text-sm font-medium text-gray-700'>
-                  {testimonial.title}
+                  {content.title}
                 </p>
               </div>
             </div>

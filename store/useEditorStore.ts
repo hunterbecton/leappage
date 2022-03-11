@@ -4,6 +4,8 @@ import { EditorState } from './_model';
 export const useEditorStore = create<EditorState>((set) => ({
   isEnabled: true,
   setIsEnabled: (isEnabled) => set(() => ({ isEnabled })),
+  isPublic: false,
+  setIsPublic: (isPublic) => set(() => ({ isPublic })),
   isMediaModalOpen: false,
   setIsMediaModalOpen: (isMediaModalOpen) => set(() => ({ isMediaModalOpen })),
   activeFieldId: '',

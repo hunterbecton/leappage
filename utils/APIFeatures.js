@@ -61,6 +61,12 @@ class APIFeatures {
 
     return this;
   }
+
+  count() {
+    this.query = this.query.countDocuments();
+
+    return this;
+  }
 }
 
 module.exports = APIFeatures;

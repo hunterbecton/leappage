@@ -27,7 +27,7 @@ export const EditorTestimonialModal: FC = () => {
 
   const fetchTestimonialModal = async ({ queryKey }) => {
     const res = await fetch(
-      `/api/testimonial/published?page=${queryKey[1]}&limit=${queryKey[2]}`,
+      `/api/testimonial?status=published&page=${queryKey[1]}&limit=${queryKey[2]}`,
       {
         method: 'GET',
         credentials: 'include',
@@ -125,6 +125,7 @@ export const EditorTestimonialModal: FC = () => {
                     )}
                   </>
                 )}
+                {isError && <p>Error</p>}
                 <div className='mt-5 sm:mt-6'>
                   <button
                     type='button'

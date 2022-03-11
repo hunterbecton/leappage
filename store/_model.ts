@@ -10,6 +10,8 @@ export interface ComponentPanelState {
 export interface EditorState {
   isEnabled: boolean;
   setIsEnabled: (isEnabled: boolean) => void;
+  isPublic: boolean;
+  setIsPublic: (isPublic: boolean) => void;
   isMediaModalOpen: boolean;
   setIsMediaModalOpen: (isMediaModalOpen: boolean) => void;
   activeFieldId: string;

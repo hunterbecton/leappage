@@ -1,15 +1,19 @@
+import { FC, useEffect } from 'react';
 import { useEditor } from '@craftjs/core';
 import short from 'short-uuid';
 
 import { useEditorStore } from 'store';
 import { FallbackImage } from 'components/image';
-import { FC } from 'react';
 import { EditorContentCardModalProps } from './_models';
 
 export const EditorContentCardModal: FC<EditorContentCardModalProps> = ({
   item,
 }) => {
   const { actions } = useEditor();
+
+  useEffect(() => {
+    console.log(item);
+  }, [item]);
 
   const activeFieldId = useEditorStore((state) => state.activeFieldId);
   const groupName = useEditorStore((state) => state.groupName);

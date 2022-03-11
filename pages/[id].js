@@ -34,12 +34,13 @@ import { useEditorStore } from 'store';
 // import { deserializeNodes, renderNodesToJSX } from 'craft/utils';
 
 export default function Page({ json, page, theme }) {
-  const isEnabled = useEditorStore((state) => state.isEnabled);
-  const setIsEnabled = useEditorStore((state) => state.setIsEnabled);
+  const setIsPublic = useEditorStore((state) => state.setIsPublic);
 
   useEffect(() => {
-    setIsEnabled(false);
-  }, [setIsEnabled]);
+    setIsPublic(true);
+
+    return () => setIsPublic(false);
+  }, [setIsPublic]);
 
   return (
     <>
@@ -73,7 +74,7 @@ export default function Page({ json, page, theme }) {
           LinkTwo,
           DividerOne,
         }}
-        enabled={isEnabled}
+        enabled={false}
       >
         <Frame json={json} />
       </Editor>

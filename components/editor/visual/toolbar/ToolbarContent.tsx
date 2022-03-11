@@ -39,7 +39,7 @@ export const ToolbarContent: FC<ToolbarContentProps> = ({
   };
 
   const fetchPost = async () => {
-    const res = await fetch(`/api/content/published/${post.id}`, {
+    const res = await fetch(`/api/content/${post.id}?status=published`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -48,6 +48,10 @@ export const ToolbarContent: FC<ToolbarContentProps> = ({
 
     if (!success) {
       throw Error(data.message);
+    }
+
+    if (success && !data.content) {
+      throw Error('Content not found.');
     }
 
     return data.content;
@@ -110,7 +114,7 @@ export const ToolbarContent: FC<ToolbarContentProps> = ({
               <div className='flex-1'>
                 <p className='text-xs font-bold uppercase text-gray-400'>
                   {content.categoryInfo && content.categoryInfo.length > 0
-                    ? content.categoryInfo[0].title
+                    ? content.categoryInfo.title
                     : 'Uncategorized'}
                 </p>
                 <p className='mt-2 block text-sm font-medium text-gray-700'>
