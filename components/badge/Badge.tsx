@@ -77,7 +77,7 @@ export const Badge: FC<BadgeProps> = ({ type, text }) => {
       );
     case 'drafted':
       return (
-        <span className='inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium capitalize text-blue-800'>
+        <span className='inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium capitalize text-gray-800'>
           {text}
         </span>
       );
@@ -95,7 +95,7 @@ export const Badge: FC<BadgeProps> = ({ type, text }) => {
       );
     case 'categorized':
       return (
-        <span className='inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium capitalize text-blue-800'>
+        <span className='inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium capitalize text-gray-800'>
           {text}
         </span>
       );
