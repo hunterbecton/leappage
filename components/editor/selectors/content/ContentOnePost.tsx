@@ -1,6 +1,6 @@
 import { FallbackImage } from 'components/image';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useQuery } from 'react-query';
 
 import { useEditorStore } from 'store';
@@ -55,6 +55,10 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
     refetchOnWindowFocus: !isPublic,
   });
 
+  useEffect(() => {
+    console.log(content);
+  }, [content]);
+
   return (
     <>
       {isLoading && (
@@ -88,7 +92,7 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
           </a>
           <p className='text-xs font-bold uppercase text-gray-400'>
             {content.categoryInfo && content.categoryInfo.length > 0
-              ? content.categoryInfo.title
+              ? content.categoryInfo[0].title
               : 'Uncategorized'}
           </p>
           <a

@@ -114,7 +114,7 @@ export const ToolbarContent: FC<ToolbarContentProps> = ({
               <div className='flex-1'>
                 <p className='text-xs font-bold uppercase text-gray-400'>
                   {content.categoryInfo && content.categoryInfo.length > 0
-                    ? content.categoryInfo.title
+                    ? content.categoryInfo[0].title
                     : 'Uncategorized'}
                 </p>
                 <p className='mt-2 block text-sm font-medium text-gray-700'>

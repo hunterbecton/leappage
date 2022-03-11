@@ -98,7 +98,7 @@ export const ContentTwoPost: FC<ContentPostProps> = ({ post }) => {
             <div className='mb-6 flex w-full flex-shrink-0 flex-col md:mb-0 md:w-64'>
               <span className='text-sm font-bold uppercase text-gray-400'>
                 {content.categoryInfo && content.categoryInfo.length > 0
-                  ? content.categoryInfo.title
+                  ? content.categoryInfo[0].title
                   : 'Uncategorized'}
               </span>
             </div>

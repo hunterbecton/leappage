@@ -46,7 +46,10 @@ handler.get(async (req, res, next) => {
 
   let filter = { tenant: req.user.tenant_mongo_id, _id: id, ...filteredQuery };
 
-  const testimonial = await Testimonial.findOne(filter);
+  const testimonial = await Testimonial.findOne(filter).populate({
+    path: 'categoryInfo',
+    select: 'title',
+  });
 
   return res.status(200).json({
     success: true,
