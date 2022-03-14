@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+import * as Fathom from 'fathom-client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import '@stripe/stripe-js';
@@ -14,11 +15,27 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 const queryClient = new QueryClient();
 
+// Record a pageview when route changes
+Router.events.on('routeChangeComplete', () => {
+  Fathom.trackPageview();
+});
+
 function App({ Component, pageProps }) {
   const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
   const isAnimating = useProgressStore((state) => state.isAnimating);
 
   const router = useRouter();
+
+  // Initialize Fathom when the app loads
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      Fathom.load('BRJGSOKD', {
+        url: 'https://twentyseven-lucky.leappage.com/script.js',
+        includedDomains: ['*.leappage.com'],
+      });
+      Fathom.trackPageview();
+    }
+  }, []);
 
   useEffect(() => {
     const handleStart = () => {
