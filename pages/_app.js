@@ -31,7 +31,6 @@ function App({ Component, pageProps }) {
     if (process.env.NODE_ENV === 'production') {
       Fathom.load('BRJGSOKD', {
         url: 'https://twentyseven-lucky.leappage.com/script.js',
-        includedDomains: ['*.leappage.com'],
       });
       Fathom.trackPageview();
     }
