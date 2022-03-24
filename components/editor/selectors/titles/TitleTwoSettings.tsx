@@ -12,7 +12,7 @@ export const TitleTwoSettings: FC = () => {
         <ToolbarSection title='Text'>
           <ToolbarGroup full={true}>
             <ToolbarItem propKey='title' type='text' />
-            <ToolbarItem propKey='description' type='text' />
+            <ToolbarItem propKey='description' type='area' />
           </ToolbarGroup>
         </ToolbarSection>
       </div>

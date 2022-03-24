@@ -6,7 +6,7 @@ export const ToolbarTextArea: FC<ToolbarTextAreaProps> = ({
   value,
   onChange,
   label,
-  rows = 4,
+  rows = 5,
 }) => {
   return (
     <div>

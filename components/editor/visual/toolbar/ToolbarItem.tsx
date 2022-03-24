@@ -34,6 +34,7 @@ export const ToolbarItem = (props: Partial<ToolbarItemProps>) => {
     min,
     max,
     step,
+    rows,
   } = props;
 
   const {
@@ -109,6 +110,7 @@ export const ToolbarItem = (props: Partial<ToolbarItemProps>) => {
           onChange={(value) =>
             handleChange(value, propValue, propKey, index, onChange)
           }
+          rows={rows}
         />
       ) : null}
       {type === 'textDropdown' ? (

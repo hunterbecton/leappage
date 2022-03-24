@@ -7,8 +7,7 @@ import { HeroOneProps } from './_models';
 
 const defaultProps = {
   title: 'Landing Pages for Sales',
-  description: `Empower your sales team to create personalized landing pages for
-  leads and customers in order to drive more engagement and sales.`,
+  description: `Empower your sales team to create personalized landing pages for leads and customers in order to drive more engagement and sales.`,
   ctas: [
     {
       id: 'EuN9jaZ8xvNimytz',

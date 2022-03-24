@@ -59,7 +59,8 @@ export const LinkOneSettings: FC = () => {
                 groupName='links'
                 groupIndex={i}
                 propKey='description'
-                type='text'
+                type='area'
+                rows={3}
               />
               <ToolbarItem
                 isGroup={true}

@@ -6,8 +6,7 @@ import { HeroTwoProps } from './_models';
 
 const defaultProps = {
   title: 'Landing Pages for Sales',
-  description: `Empower your sales team to create personalized landing pages for
-  leads and customers in order to drive more engagement and sales.`,
+  description: `Empower your sales team to create personalized landing pages for leads and customers in order to drive more engagement and sales.`,
   videoUrl: 'https://www.youtube.com/watch?v=3PZ65s2qLTE',
   ctas: [
     {

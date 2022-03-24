@@ -166,4 +166,5 @@ export interface ToolbarItemProps {
   min: number;
   max: number;
   step: number;
+  rows: number;
 }

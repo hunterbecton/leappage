@@ -13,7 +13,7 @@ export const TitleThreeSettings: FC = () => {
           <ToolbarGroup full={true}>
             <ToolbarItem propKey='subtitle' type='text' />
             <ToolbarItem propKey='title' type='text' />
-            <ToolbarItem propKey='description' type='text' />
+            <ToolbarItem propKey='description' type='area' />
           </ToolbarGroup>
         </ToolbarSection>
       </div>

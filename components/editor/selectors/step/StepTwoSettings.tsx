@@ -61,7 +61,8 @@ export const StepTwoSettings: FC = () => {
                 groupName='steps'
                 groupIndex={i}
                 propKey='description'
-                type='text'
+                type='area'
+                rows={3}
               />
               <ToolbarItem
                 isGroup={true}
