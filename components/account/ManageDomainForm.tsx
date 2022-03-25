@@ -48,7 +48,7 @@ export const ManageDomainForm: FC<ManageDomainProps> = ({
       if (!success) {
         toast.error(data.message);
       } else {
-        router.push(`https://${tenant.subdomain}.leappage.com`);
+        router.push(`https://${tenant.subdomain}.leappage.com/account/domain`);
       }
     } catch (error) {
       console.log(error);
