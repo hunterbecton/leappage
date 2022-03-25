@@ -48,8 +48,7 @@ export const ManageDomainForm: FC<ManageDomainProps> = ({
       if (!success) {
         toast.error(data.message);
       } else {
-        toast.success('Domain deleted.');
-        refreshData();
+        router.push(`https://${tenant.subdomain}.leappage.com`);
       }
     } catch (error) {
       console.log(error);
