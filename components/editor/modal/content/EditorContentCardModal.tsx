@@ -11,10 +11,6 @@ export const EditorContentCardModal: FC<EditorContentCardModalProps> = ({
 }) => {
   const { actions } = useEditor();
 
-  useEffect(() => {
-    console.log(item);
-  }, [item]);
-
   const activeFieldId = useEditorStore((state) => state.activeFieldId);
   const groupName = useEditorStore((state) => state.groupName);
   const groupIndex = useEditorStore((state) => state.groupIndex);

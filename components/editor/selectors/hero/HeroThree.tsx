@@ -10,12 +10,12 @@ const defaultProps = {
     {
       id: 'EuN9jaZ8xvNimytz',
       text: 'Book Call',
-      link: 'https://leappage.com',
+      link: '#',
     },
     {
       id: 'v2CEj7Bo7pT9hegY',
       text: 'Watch Demo',
-      link: 'https://leappage.com',
+      link: '#',
     },
   ],
 };

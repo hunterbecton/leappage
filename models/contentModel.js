@@ -13,7 +13,7 @@ const contentSchema = new mongoose.Schema(
     url: {
       type: String,
       trim: true,
-      default: 'https://leappage.com',
+      default: '',
     },
     status: {
       type: String,

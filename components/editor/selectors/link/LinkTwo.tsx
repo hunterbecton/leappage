@@ -9,7 +9,7 @@ const defaultProps = {
     {
       id: 'EZaJdTBNFnyM6Ghz',
       ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      ctaLink: '#',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',
@@ -18,7 +18,7 @@ const defaultProps = {
     {
       id: 'XtV2KttCQNeMcrG3',
       ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      ctaLink: '#',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',
@@ -27,7 +27,7 @@ const defaultProps = {
     {
       id: 'v3a7VyYirHgiKqUf',
       ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      ctaLink: '#',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',

@@ -40,7 +40,7 @@ handler.get(async (req, res, next) => {
             'The importance of customer reviews online for businesses can mean a surge in brand awareness and an overall increase in profit in the long run.',
           categoryInfo: [{ title: 'Resource' }],
           feature: 'https://dummyimage.com/672x512/f3f4f6/1f2937.jpg',
-          url: 'https://leappage.com',
+          url: '#',
         },
       },
     });

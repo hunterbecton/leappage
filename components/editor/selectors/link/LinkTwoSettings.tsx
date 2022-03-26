@@ -27,7 +27,7 @@ export const LinkTwoSettings: FC = () => {
     const newLink = {
       id: short.generate(),
       ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      ctaLink: '#',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',

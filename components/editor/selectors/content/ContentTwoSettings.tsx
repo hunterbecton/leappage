@@ -32,7 +32,7 @@ export const ContentTwoSettings: FC = () => {
       title: '4 Simple Tips for Leveraging the Power of Social Media',
       categoryInfo: [{ title: 'Resource' }],
       feature: 'https://dummyimage.com/672x512/f3f4f6/1f2937.jpg',
-      url: 'https://leappage.com',
+      url: '#',
     };
 
     setProp((props) => {

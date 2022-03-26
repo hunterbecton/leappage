@@ -55,10 +55,6 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
     refetchOnWindowFocus: !isPublic,
   });
 
-  useEffect(() => {
-    console.log(content);
-  }, [content]);
-
   return (
     <>
       {isLoading && (

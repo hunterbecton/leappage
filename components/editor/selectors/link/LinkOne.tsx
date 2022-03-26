@@ -11,7 +11,7 @@ const defaultProps = {
       title: 'Custom Link',
       description: 'View your custom link for discussed service plan.',
       ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      ctaLink: '#',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',
@@ -22,7 +22,7 @@ const defaultProps = {
       title: 'Custom Link',
       description: 'View your custom link for discussed service plan.',
       ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      ctaLink: '#',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',
@@ -33,7 +33,7 @@ const defaultProps = {
       title: 'Custom Link',
       description: 'View your custom link for discussed service plan.',
       ctaText: 'Custom Link',
-      ctaLink: 'https://leappage.com',
+      ctaLink: '#',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',
