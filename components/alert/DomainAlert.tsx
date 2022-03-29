@@ -21,7 +21,10 @@ export const DomainAlert: FC<DomainAlertProps> = ({ isSubdomain, tenant }) => {
                   <li className='py-1'>
                     Add a <code className='bg-yellow-200/60 p-1'>CNAME</code>{' '}
                     record with host{' '}
-                    <code className='bg-yellow-200/60 p-1'>@</code> pointing to{' '}
+                    <code className='bg-yellow-200/60 p-1'>
+                      {tenant.domain.split('.')[0]}
+                    </code>{' '}
+                    pointing to{' '}
                     <code className='bg-yellow-200/60 p-1'>
                       {tenant.subdomain}.leappage.com
                     </code>

@@ -18,7 +18,9 @@ export const ManageDomainForm: FC<ManageDomainProps> = ({
 }) => {
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
+
   const [isDeleting, setIsDeleting] = useState(false);
+
   const [isSubdomain, setIsSubdomain] = useState(
     tenant.domain.match(/\./g).length <= 1 ? false : true
   );
@@ -28,10 +30,6 @@ export const ManageDomainForm: FC<ManageDomainProps> = ({
   const { user } = useAuth();
 
   const router = useRouter();
-
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
 
   const handleDeleteDomain = async () => {
     setIsDeleting(true);

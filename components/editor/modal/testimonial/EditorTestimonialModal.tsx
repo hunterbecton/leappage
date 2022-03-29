@@ -105,7 +105,7 @@ export const EditorTestimonialModal: FC = () => {
                   <>
                     {testimonials?.length === 0 && (
                       <Empty
-                        title='No Testimonial'
+                        title='No testimonial'
                         subtitle='Get started by creating a testimonial'
                         withCta={false}
                       />
