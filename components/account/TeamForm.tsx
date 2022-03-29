@@ -212,7 +212,7 @@ export const TeamForm: FC<TeamProps> = ({ team }) => {
                 </div>
                 <div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
                   <Button
-                    type='submit'
+                    type='button'
                     title='Add teammate'
                     disabled={isSending}
                     onClick={() => handleModalOpen()}
