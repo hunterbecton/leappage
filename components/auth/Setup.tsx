@@ -107,7 +107,7 @@ export const Setup: FC<SetupProps> = ({ tenant }) => {
           />
         </div>
         <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-          Set Up Your Account
+          Set up your account
         </h2>
       </div>
 
@@ -140,7 +140,7 @@ export const Setup: FC<SetupProps> = ({ tenant }) => {
               <div>
                 <Input
                   name='passwordConfirm'
-                  label='Confirm Password'
+                  label='Confirm password'
                   type='password'
                   placeholder='Confirm password'
                 />
@@ -156,7 +156,7 @@ export const Setup: FC<SetupProps> = ({ tenant }) => {
                   disabled={isSending}
                   customClassName='w-full flex justify-center'
                   title='Set up'
-                  text='Set Up'
+                  text='Set up'
                 />
               </div>
             </form>
