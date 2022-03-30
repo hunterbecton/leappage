@@ -67,7 +67,7 @@ export const MediaForm: FC<MediaProps> = ({ media }) => {
     resolver: yupResolver(validationSchema),
     defaultValues: {
       title: media.title,
-      url: media.size500 ? media.size500 : media.url,
+      url: media.url,
     },
   });
 
