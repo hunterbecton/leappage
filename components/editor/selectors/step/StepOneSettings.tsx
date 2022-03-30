@@ -45,13 +45,19 @@ export const StepOneSettings: FC = () => {
       <div className='space-y-2'>
         <ToolbarSection title='Feature'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='src' type='image' defaultMediaSize='full' />
+            <ToolbarItem
+              label='Image'
+              propKey='src'
+              type='image'
+              defaultMediaSize='full'
+            />
           </ToolbarGroup>
         </ToolbarSection>
         <ToolbarSection title='Steps'>
           {nodeSteps.map((nodeStep, i: number) => (
             <ToolbarGroup key={nodeStep.id} full={true}>
               <ToolbarItem
+                label='Title'
                 isGroup={true}
                 groupName='steps'
                 groupIndex={i}
@@ -59,6 +65,7 @@ export const StepOneSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='Description'
                 isGroup={true}
                 groupName='steps'
                 groupIndex={i}

@@ -50,6 +50,7 @@ export const StepTwoSettings: FC = () => {
           {nodeSteps.map((nodeStep, i: number) => (
             <ToolbarGroup key={nodeStep.id} full={true}>
               <ToolbarItem
+                label='Title'
                 isGroup={true}
                 groupName='steps'
                 groupIndex={i}
@@ -57,6 +58,7 @@ export const StepTwoSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='Description'
                 isGroup={true}
                 groupName='steps'
                 groupIndex={i}

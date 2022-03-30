@@ -20,14 +20,19 @@ export const HeroThreeSettings: FC = () => {
       <div className='space-y-2'>
         <ToolbarSection title='Text'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='title' type='text' />
-            <ToolbarItem propKey='description' type='area' />
+            <ToolbarItem label='Title' propKey='title' type='text' />
+            <ToolbarItem
+              label='Description'
+              propKey='description'
+              type='area'
+            />
           </ToolbarGroup>
         </ToolbarSection>
         <ToolbarSection title='CTA'>
           {nodeCtas.map((nodeCta, i: number) => (
             <ToolbarGroup key={nodeCta.id} full={true}>
               <ToolbarItem
+                label='CTA'
                 isGroup={true}
                 groupName='ctas'
                 groupIndex={i}
@@ -35,6 +40,7 @@ export const HeroThreeSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='URL'
                 isGroup={true}
                 groupName='ctas'
                 groupIndex={i}

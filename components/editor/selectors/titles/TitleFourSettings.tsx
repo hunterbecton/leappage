@@ -11,8 +11,8 @@ export const TitleFourSettings: FC = () => {
       <div className='space-y-2'>
         <ToolbarSection title='Text'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='subtitle' type='text' />
-            <ToolbarItem propKey='title' type='text' />
+            <ToolbarItem label='Subtitle' propKey='subtitle' type='text' />
+            <ToolbarItem label='Title' propKey='title' type='text' />
           </ToolbarGroup>
         </ToolbarSection>
       </div>

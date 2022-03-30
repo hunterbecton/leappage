@@ -11,7 +11,7 @@ export const TitleOneSettings: FC = () => {
       <div className='space-y-2'>
         <ToolbarSection title='Text'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='title' type='text' />
+            <ToolbarItem label='Title' propKey='title' type='text' />
           </ToolbarGroup>
         </ToolbarSection>
       </div>

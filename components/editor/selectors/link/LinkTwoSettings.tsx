@@ -27,7 +27,7 @@ export const LinkTwoSettings: FC = () => {
     const newLink = {
       id: short.generate(),
       ctaText: 'Custom Link',
-      ctaLink: '#',
+      ctaLink: '',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',
@@ -46,6 +46,7 @@ export const LinkTwoSettings: FC = () => {
           {nodeLinks.map((nodeLink, i) => (
             <ToolbarGroup key={nodeLink.id} full={true}>
               <ToolbarItem
+                label='CTA'
                 isGroup={true}
                 groupName='links'
                 groupIndex={i}
@@ -53,6 +54,7 @@ export const LinkTwoSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='URL'
                 isGroup={true}
                 groupName='links'
                 groupIndex={i}

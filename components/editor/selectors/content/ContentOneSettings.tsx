@@ -32,7 +32,7 @@ export const ContentOneSettings: FC = () => {
       title: '4 Simple Tips for Leveraging the Power of Social Media',
       categoryInfo: [{ title: 'Resource' }],
       feature: 'https://dummyimage.com/672x512/f3f4f6/1f2937.jpg',
-      url: '#',
+      url: '',
     };
 
     setProp((props) => {
@@ -45,13 +45,13 @@ export const ContentOneSettings: FC = () => {
       <div className='space-y-2'>
         <ToolbarSection title='Text'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='title' type='text' />
+            <ToolbarItem label='Title' propKey='title' type='text' />
           </ToolbarGroup>
         </ToolbarSection>
         <ToolbarSection title='CTA'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='ctaText' type='text' />
-            <ToolbarItem propKey='ctaLink' type='text' />
+            <ToolbarItem label='CTA' propKey='ctaText' type='text' />
+            <ToolbarItem label='URL' propKey='ctaLink' type='text' />
           </ToolbarGroup>
         </ToolbarSection>
         <ToolbarSection title='Content'>

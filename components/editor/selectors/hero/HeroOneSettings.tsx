@@ -24,6 +24,7 @@ export const HeroOneSettings: FC = () => {
           {nodeLogos.map((nodeLogo, i: number) => (
             <ToolbarGroup key={nodeLogo.id} full={true}>
               <ToolbarItem
+                label='Company'
                 isGroup={true}
                 groupName='logos'
                 groupIndex={i}
@@ -31,6 +32,7 @@ export const HeroOneSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='Logo'
                 isGroup={true}
                 groupName='logos'
                 groupIndex={i}
@@ -43,14 +45,19 @@ export const HeroOneSettings: FC = () => {
         </ToolbarSection>
         <ToolbarSection title='Text'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='title' type='text' />
-            <ToolbarItem propKey='description' type='area' />
+            <ToolbarItem label='Title' propKey='title' type='text' />
+            <ToolbarItem
+              label='Description'
+              propKey='description'
+              type='area'
+            />
           </ToolbarGroup>
         </ToolbarSection>
         <ToolbarSection title='CTA'>
           {nodeCtas.map((nodeCta, i: number) => (
             <ToolbarGroup key={nodeCta.id} full={true}>
               <ToolbarItem
+                label='CTA'
                 isGroup={true}
                 groupName='ctas'
                 groupIndex={i}
@@ -58,6 +65,7 @@ export const HeroOneSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='URL'
                 isGroup={true}
                 groupName='ctas'
                 groupIndex={i}

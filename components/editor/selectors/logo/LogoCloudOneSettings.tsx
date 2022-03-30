@@ -43,6 +43,7 @@ export const LogoCloudOneSettings: FC = () => {
           {nodeLogos.map((nodeLogo, i: number) => (
             <ToolbarGroup key={nodeLogo.id} full={true}>
               <ToolbarItem
+                label='Company'
                 isGroup={true}
                 groupName='logos'
                 groupIndex={i}
@@ -50,6 +51,7 @@ export const LogoCloudOneSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='Logo'
                 isGroup={true}
                 groupName='logos'
                 groupIndex={i}
@@ -58,6 +60,7 @@ export const LogoCloudOneSettings: FC = () => {
                 defaultMediaSize='500'
               />
               <ToolbarItem
+                label='Height'
                 isGroup={true}
                 groupName='logos'
                 groupIndex={i}

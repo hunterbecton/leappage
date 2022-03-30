@@ -41,13 +41,14 @@ export const LogoCloudTwoSettings: FC = () => {
       <div className='space-y-2'>
         <ToolbarSection title='Text'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='subtitle' type='text' />
+            <ToolbarItem label='Subtitle' propKey='subtitle' type='text' />
           </ToolbarGroup>
         </ToolbarSection>
         <ToolbarSection title='Logos'>
           {nodeLogos.map((nodeLogo, i: number) => (
             <ToolbarGroup key={nodeLogo.id} full={true}>
               <ToolbarItem
+                label='Company'
                 isGroup={true}
                 groupName='logos'
                 groupIndex={i}
@@ -55,6 +56,7 @@ export const LogoCloudTwoSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='Logo'
                 isGroup={true}
                 groupName='logos'
                 groupIndex={i}
@@ -63,6 +65,7 @@ export const LogoCloudTwoSettings: FC = () => {
                 defaultMediaSize='500'
               />
               <ToolbarItem
+                label='Height'
                 isGroup={true}
                 groupName='logos'
                 groupIndex={i}

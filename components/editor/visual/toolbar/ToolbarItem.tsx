@@ -35,6 +35,7 @@ export const ToolbarItem = (props: Partial<ToolbarItemProps>) => {
     max,
     step,
     rows,
+    label,
   } = props;
 
   const {
@@ -100,6 +101,7 @@ export const ToolbarItem = (props: Partial<ToolbarItemProps>) => {
           onChange={(value) =>
             handleChange(value, propValue, propKey, index, onChange)
           }
+          label={label}
         />
       ) : null}
       {type === 'area' ? (
@@ -111,6 +113,7 @@ export const ToolbarItem = (props: Partial<ToolbarItemProps>) => {
             handleChange(value, propValue, propKey, index, onChange)
           }
           rows={rows}
+          label={label}
         />
       ) : null}
       {type === 'textDropdown' ? (
@@ -161,6 +164,7 @@ export const ToolbarItem = (props: Partial<ToolbarItemProps>) => {
           min={min}
           max={max}
           step={step}
+          label={label}
         />
       ) : null}
       {type === 'image' ? (
@@ -173,6 +177,7 @@ export const ToolbarItem = (props: Partial<ToolbarItemProps>) => {
           groupName={groupName}
           groupIndex={groupIndex}
           defaultMediaSize={defaultMediaSize}
+          label={label}
         />
       ) : null}
       {type === 'toggle' ? (
@@ -183,6 +188,7 @@ export const ToolbarItem = (props: Partial<ToolbarItemProps>) => {
           onChange={(value) =>
             handleChange(value, propValue, propKey, index, onChange)
           }
+          label={label}
         />
       ) : null}
       {type === 'fonts' ? (

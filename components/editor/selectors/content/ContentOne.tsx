@@ -7,7 +7,7 @@ import { ContentProps } from './_models';
 const defaultProps = {
   title: 'Learning Resources',
   ctaText: 'View More Content',
-  ctaLink: '#',
+  ctaLink: '',
   posts: [
     {
       arrayId: 'BPakrhjjgPWzhg62',
@@ -17,7 +17,7 @@ const defaultProps = {
         'The importance of customer reviews online for businesses can mean a surge in brand awareness and an overall increase in profit in the long run.',
       categoryInfo: [{ title: 'Resource' }],
       feature: 'https://dummyimage.com/672x512/f3f4f6/1f2937.jpg',
-      url: '#',
+      url: '',
     },
     {
       arrayId: 'vb4rsEgtiipZiUpp',
@@ -27,7 +27,7 @@ const defaultProps = {
         'The importance of customer reviews online for businesses can mean a surge in brand awareness and an overall increase in profit in the long run.',
       categoryInfo: [{ title: 'Resource' }],
       feature: 'https://dummyimage.com/672x512/f3f4f6/1f2937.jpg',
-      url: '#',
+      url: '',
     },
     {
       arrayId: 'gdfyRv4gLhuz6EHY',
@@ -37,7 +37,7 @@ const defaultProps = {
         'The importance of customer reviews online for businesses can mean a surge in brand awareness and an overall increase in profit in the long run.',
       categoryInfo: [{ title: 'Resource' }],
       feature: 'https://dummyimage.com/672x512/f3f4f6/1f2937.jpg',
-      url: '#',
+      url: '',
     },
   ],
 };

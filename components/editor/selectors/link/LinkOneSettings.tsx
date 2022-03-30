@@ -29,7 +29,7 @@ export const LinkOneSettings: FC = () => {
       title: 'Custom Link',
       description: 'View your custom link for discussed service plan.',
       ctaText: 'Custom Link',
-      ctaLink: '#',
+      ctaLink: '',
       icon: {
         id: 'biou2LvQzWiAPZCVYwfo5U',
         name: 'Link Alt',
@@ -48,6 +48,7 @@ export const LinkOneSettings: FC = () => {
           {nodeLinks.map((nodeLink, i: number) => (
             <ToolbarGroup key={nodeLink.id} full={true}>
               <ToolbarItem
+                label='Title'
                 isGroup={true}
                 groupName='links'
                 groupIndex={i}
@@ -55,6 +56,7 @@ export const LinkOneSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='Description'
                 isGroup={true}
                 groupName='links'
                 groupIndex={i}
@@ -70,6 +72,7 @@ export const LinkOneSettings: FC = () => {
                 type='icon'
               />
               <ToolbarItem
+                label='CTA'
                 isGroup={true}
                 groupName='links'
                 groupIndex={i}
@@ -77,6 +80,7 @@ export const LinkOneSettings: FC = () => {
                 type='text'
               />
               <ToolbarItem
+                label='URL'
                 isGroup={true}
                 groupName='links'
                 groupIndex={i}

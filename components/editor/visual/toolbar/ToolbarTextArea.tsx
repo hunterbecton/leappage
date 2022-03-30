@@ -19,7 +19,7 @@ export const ToolbarTextArea: FC<ToolbarTextAreaProps> = ({
       <div className='relative mt-1'>
         <textarea
           rows={rows}
-          className='block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+          className='block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-blue-500 focus:ring-blue-500'
           name={propKey}
           value={value}
           onChange={(e) => onChange(e.target.value)}

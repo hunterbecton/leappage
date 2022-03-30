@@ -11,8 +11,9 @@ export const DividerOneSettings: FC = () => {
       <div className='space-y-2'>
         <ToolbarSection title='Divider'>
           <ToolbarGroup full={true}>
-            <ToolbarItem propKey='enabled' type='toggle' />
+            <ToolbarItem label='Line' propKey='enabled' type='toggle' />
             <ToolbarItem
+              label='Height'
               propKey='paddingY'
               type='range'
               min={1}
