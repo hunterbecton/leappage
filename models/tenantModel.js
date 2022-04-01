@@ -56,7 +56,6 @@ const tenantSchema = new mongoose.Schema(
     domain: {
       type: String,
       trim: true,
-      default: null,
       index: {
         unique: true,
         partialFilterExpression: { domain: { $type: 'string' } },
