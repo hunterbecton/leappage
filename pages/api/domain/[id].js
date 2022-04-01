@@ -49,7 +49,7 @@ handler.patch(async (req, res, next) => {
       {
         tenant: req.user.tenant_mongo_id,
       },
-      { domain: null },
+      { domain: undefined },
       { new: true, runValidators: true }
     );
 
