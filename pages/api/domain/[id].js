@@ -43,28 +43,19 @@ handler.patch(async (req, res, next) => {
     }
   );
 
-  // Throw error if status is error
-  if (response.status === 204) {
-    const tenant = await Tenant.findOneAndUpdate(
-      {
-        tenant: req.user.tenant_mongo_id,
-      },
-      { domain: undefined },
-      { new: true, runValidators: true }
-    );
+  const tenant = await Tenant.findById(req.user.tenant_mongo_id);
 
-    // Return updated tenant
-    return res.status(200).json({
-      success: true,
-      data: {
-        tenant,
-      },
-    });
-  } else {
-    const { message } = await response.json();
+  tenant.domain = undefined;
 
-    throw new Error(message);
-  }
+  await tenant.save();
+
+  // Return updated tenant
+  return res.status(200).json({
+    success: true,
+    data: {
+      tenant,
+    },
+  });
 });
 
 export default handler;
