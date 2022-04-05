@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import lz from 'lzutf8';
 import { NextSeo } from 'next-seo';
 import { Frame, Editor } from '@craftjs/core';
+import * as Fathom from 'fathom-client';
 // import ReactDOMServer from 'react-dom/server';
 // import parse from 'html-react-parser';
 
@@ -35,6 +36,16 @@ import { useEditorStore } from 'store';
 
 export default function Page({ json, page, theme }) {
   const setIsPublic = useEditorStore((state) => state.setIsPublic);
+
+  // Initialize Fathom when the app loads
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      Fathom.load('ACPBVJGZ', {
+        url: 'https://boundless-fine.leappage.com/script.js',
+      });
+      Fathom.trackPageview();
+    }
+  }, []);
 
   useEffect(() => {
     setIsPublic(true);
