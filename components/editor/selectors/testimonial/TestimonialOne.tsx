@@ -58,7 +58,10 @@ export const TestimonialOne = (props: Partial<TestimonialProps>) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 px-10 md:py-16'>
+    <section
+      ref={connect}
+      className='w-full bg-white py-6 px-4 sm:py-12 sm:px-10 md:py-16'
+    >
       <div className='mx-auto flex max-w-7xl flex-wrap'>
         <div className='grid w-full grid-cols-12 gap-6'>
           {testimonials.map((testimonial) => (

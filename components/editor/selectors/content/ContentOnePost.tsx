@@ -58,7 +58,7 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
   return (
     <>
       {isLoading && (
-        <div className='selct-none relative col-span-12 mb-10 animate-pulse select-none space-y-4 md:col-span-6 lg:col-span-4'>
+        <div className='selct-none relative col-span-12 animate-pulse select-none space-y-4 sm:col-span-6 lg:col-span-4'>
           <div className='relative block h-64 w-full overflow-hidden rounded bg-gray-100'></div>
           <p className='max-w-fit bg-gray-100 text-xs font-bold uppercase text-gray-100'>
             Lorem Ipsum
@@ -69,7 +69,7 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
         </div>
       )}
       {isSuccess && (
-        <div className='relative col-span-12 mb-10 space-y-4 md:col-span-6 lg:col-span-4'>
+        <div className='relative col-span-12 space-y-4 sm:col-span-6 lg:col-span-4'>
           <a
             href={content.url}
             target='_blank'
@@ -102,7 +102,7 @@ export const ContentOnePost: FC<ContentPostProps> = ({ post }) => {
         </div>
       )}
       {isError && !isPublic ? (
-        <div className='relative col-span-12 mb-10 space-y-4 md:col-span-6 lg:col-span-4'>
+        <div className='relative col-span-12 space-y-4 sm:col-span-6 lg:col-span-4'>
           <div className='relative block h-64 w-full overflow-hidden rounded'>
             <div className='h-full w-full scale-100 transform transition duration-500 ease-out hover:scale-105'>
               <Image

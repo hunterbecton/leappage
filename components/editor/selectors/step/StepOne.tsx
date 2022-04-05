@@ -73,7 +73,10 @@ export const StepOne = (props: Partial<StepOneProps>) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 px-10 md:py-16'>
+    <section
+      ref={connect}
+      className='w-full bg-white py-6 px-4 sm:py-12 sm:px-10 md:py-16'
+    >
       <div className='mx-auto flex max-w-7xl flex-wrap'>
         <div className='flex w-full flex-wrap'>
           <div className='md:w-1/2 md:py-6 md:pr-10 lg:w-2/5'>

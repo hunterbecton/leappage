@@ -36,7 +36,10 @@ export const HeroThree = (props: Partial<HeroThreeProps>) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 px-10 md:py-16'>
+    <section
+      ref={connect}
+      className='w-full bg-white py-6 px-4 sm:py-12 sm:px-10 md:py-16'
+    >
       <div className='mx-auto flex max-w-7xl flex-col items-center justify-center'>
         <div className='w-full text-center lg:w-2/3'>
           <h1 className='title-font mb-4 text-3xl font-medium text-gray-900 sm:text-4xl'>

@@ -38,7 +38,10 @@ export const HeroTwo = (props: Partial<HeroTwoProps>) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 px-10 md:py-16'>
+    <section
+      ref={connect}
+      className='w-full bg-white py-6 px-4 sm:py-12 sm:px-10 md:py-16'
+    >
       <div className='mx-auto grid max-w-7xl grid-cols-12 gap-6'>
         <div className='order-2 col-span-12 self-center text-left lg:order-1 lg:col-span-6'>
           <h1 className='title-font mb-4 text-3xl font-medium text-gray-900 sm:text-4xl'>

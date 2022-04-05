@@ -56,7 +56,7 @@ export const LogoCloudOne = (props: Partial<LogoOneProps>) => {
 
   return (
     <section ref={connect} className='bg-gray-100'>
-      <div className='mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8'>
+      <div className='mx-auto max-w-screen-xl py-6 px-4 sm:py-12 sm:px-6 lg:px-8'>
         <div className='grid grid-cols-2 items-center justify-items-center gap-8 md:grid-cols-6 lg:grid-cols-5'>
           {logos.map((logo) => (
             <div

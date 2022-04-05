@@ -58,7 +58,10 @@ export const ContentOne = (props: Partial<ContentProps>) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 px-10 md:py-16'>
+    <section
+      ref={connect}
+      className='w-full bg-white py-6 px-4 sm:py-12 sm:px-10 md:py-16'
+    >
       <div className='mx-auto max-w-7xl'>
         <div className='mb-8 flex w-full items-center justify-between border-b border-gray-200 pb-5'>
           <h2 className='text-3xl font-bold text-gray-800'>{title}</h2>

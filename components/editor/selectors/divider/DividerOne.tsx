@@ -26,7 +26,7 @@ export const DividerOne = (props: Partial<DividerProps>) => {
   return (
     <div
       ref={connect}
-      className='w-full bg-white px-10'
+      className='w-full bg-white px-4 sm:px-10'
       style={{ paddingTop: `${paddingY}rem`, paddingBottom: `${paddingY}rem` }}
     >
       <div className='mx-auto max-w-2xl'>

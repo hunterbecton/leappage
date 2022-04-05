@@ -62,12 +62,15 @@ export const StepTwo = (props: Partial<StepTwoProps>) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 px-10 md:py-16'>
+    <section
+      ref={connect}
+      className='w-full bg-white py-6 px-4 sm:py-12 sm:px-10 md:py-16'
+    >
       <div className='mx-auto flex max-w-7xl flex-wrap'>
         {steps.map((step, i) => (
           <div
             key={step.id}
-            className='relative mx-auto flex pt-10 pb-20 sm:items-center md:w-2/3'
+            className='relative mx-auto flex w-full pt-10 pb-20 sm:items-center md:w-2/3'
           >
             <div className='absolute inset-0 flex h-full w-6 items-center justify-center'>
               <div className='pointer-events-none h-full w-1 bg-gray-200'></div>

@@ -26,7 +26,7 @@ export const TitleThree = (props: Partial<TitleThreeProps>) => {
   }));
 
   return (
-    <div ref={connect} className='w-full bg-white px-10 py-4'>
+    <div ref={connect} className='w-full bg-white px-4 py-4 sm:px-10'>
       <div className='mx-auto flex max-w-3xl flex-col text-center'>
         <h2 className='title-font text-primary mb-1 text-xs font-bold uppercase tracking-widest'>
           {subtitle}

@@ -53,7 +53,7 @@ export const LogoCloudTwo = (props: Partial<LogoTwoProps>) => {
   return (
     <section
       ref={connect}
-      className='box-border bg-white px-5 py-12 text-gray-800 xl:my-0'
+      className='box-border bg-white py-6 px-4 text-gray-800 sm:px-5 sm:py-12 xl:my-0'
     >
       <div className='grid grid-cols-2 items-center justify-items-center gap-8 md:grid-cols-6 lg:grid-cols-5'>
         <span className='mb-5 box-border block w-full text-center text-xs font-bold uppercase text-gray-400 lg:mb-0 lg:inline lg:w-auto'>

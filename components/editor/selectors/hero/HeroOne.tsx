@@ -50,7 +50,10 @@ export const HeroOne = (props: Partial<HeroOneProps>) => {
   }));
 
   return (
-    <section ref={connect} className='w-full bg-white py-12 px-10 md:py-16'>
+    <section
+      ref={connect}
+      className='w-full bg-white py-6 px-4 sm:py-12 sm:px-10 md:py-16'
+    >
       <div className='mx-auto flex max-w-7xl flex-col items-center justify-center'>
         <div className='mb-8 flex w-full items-center justify-center space-x-4'>
           <div className='relative flex h-20 w-20 items-center justify-center overflow-hidden'>
