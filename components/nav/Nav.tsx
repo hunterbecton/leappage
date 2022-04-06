@@ -186,6 +186,23 @@ export const Nav: FC = () => {
                         )}
                       </Menu>
                     ) : null}
+                    <Link href='/analytics'>
+                      <a
+                        className={classNames(
+                          router.pathname.includes('/analytics')
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white'
+                        )}
+                        aria-current={
+                          router.pathname.includes('/analytics')
+                            ? 'page'
+                            : undefined
+                        }
+                      >
+                        Analytics
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -371,6 +388,21 @@ export const Nav: FC = () => {
                   </Link>
                 </>
               ) : null}
+              <Link href='/analytics'>
+                <a
+                  className={classNames(
+                    router.pathname.includes('/analytics')
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'block rounded-md px-3 py-2 text-base font-medium'
+                  )}
+                  aria-current={
+                    router.pathname.includes('/analytics') ? 'page' : undefined
+                  }
+                >
+                  Analytics
+                </a>
+              </Link>
             </div>
           </Disclosure.Panel>
         </>

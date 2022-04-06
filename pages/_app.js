@@ -10,7 +10,7 @@ import { Progress } from 'components/progress';
 import { AuthProvider } from 'hooks/useAuth';
 import { useProgressStore } from 'store';
 
-import '../styles/globals.css';
+import 'styles/globals.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const queryClient = new QueryClient();
