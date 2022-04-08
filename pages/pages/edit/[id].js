@@ -9,6 +9,8 @@ import { NextSeo } from 'next-seo';
 import { VisualEditor } from 'components/editor/visual';
 import { withProtect } from 'middleware/app/withProtect';
 import { withPage } from 'middleware/app/withPage';
+import { withPageAsAdmin } from 'middleware/app/withPageAsAdmin';
+import { withRestrict } from 'middleware/app/withRestrict';
 import { withTheme } from 'middleware/app/withTheme';
 import { useEditorStore } from 'store';
 import { Theme } from 'components/theme';
@@ -63,23 +65,51 @@ export async function getServerSideProps(ctx) {
     };
   }
 
-  let page = await withPage(ctx);
+  const isAdminOrEditor = await withRestrict(ctx, 'admin', 'editor');
 
-  if (!page) {
+  // Get pages if admin or editor
+  if (isAdminOrEditor) {
+    let page = await withPageAsAdmin(ctx);
+
+    if (!page) {
+      return {
+        notFound: true,
+      };
+    }
+
+    page = JSON.parse(page);
+
+    const json = lz.decompress(lz.decodeBase64(page.frame));
+
+    let theme = await withTheme(ctx.req.user.tenant_mongo_id);
+
+    theme = JSON.parse(theme);
+
     return {
-      notFound: true,
+      props: { json, page, theme },
     };
   }
 
-  page = JSON.parse(page);
+  // Get only pages user owns
+  if (!isAdminOrEditor) {
+    let page = await withPage(ctx);
 
-  const json = lz.decompress(lz.decodeBase64(page.frame));
+    if (!page) {
+      return {
+        notFound: true,
+      };
+    }
 
-  let theme = await withTheme(ctx.req.user.tenant_mongo_id);
+    page = JSON.parse(page);
 
-  theme = JSON.parse(theme);
+    const json = lz.decompress(lz.decodeBase64(page.frame));
 
-  return {
-    props: { json, page, theme },
-  };
+    let theme = await withTheme(ctx.req.user.tenant_mongo_id);
+
+    theme = JSON.parse(theme);
+
+    return {
+      props: { json, page, theme },
+    };
+  }
 }

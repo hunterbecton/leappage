@@ -1,21 +1,29 @@
 import { FC, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useQuery } from 'react-query';
+import { useRouter } from 'next/router';
 
-import { FathomAllSiteData, SiteAnalyticsProps } from './_models';
+import { FathomAllSiteData, PageAnalyticsProps } from './_models';
 import {
   AnalyticsSimpleCard,
   SkeletonAnalyticsSimpleCard,
 } from 'components/analytics';
 
-export const SiteAnalytics: FC<SiteAnalyticsProps> = ({ title }) => {
+export const PageAnalytics: FC<PageAnalyticsProps> = ({ title }) => {
+  const router = useRouter();
+
+  const { pathname } = router.query;
+
   const [last, setLast] = useState<number>(30);
 
-  const fetchSiteAnalytics = async ({ queryKey }) => {
-    const res = await fetch(`/api/analytics/site?last=${queryKey[1]}`, {
-      method: 'GET',
-      credentials: 'include',
-    });
+  const fetchPageAnalytics = async ({ queryKey }) => {
+    const res = await fetch(
+      `/api/analytics/page/${pathname}?last=${queryKey[1]}`,
+      {
+        method: 'GET',
+        credentials: 'include',
+      }
+    );
 
     const { success, data } = await res.json();
 
@@ -28,13 +36,13 @@ export const SiteAnalytics: FC<SiteAnalyticsProps> = ({ title }) => {
   };
 
   const {
-    data: siteAnalytics,
+    data: pageAnalytics,
     isLoading,
     isError,
     isSuccess,
   } = useQuery<FathomAllSiteData, Error>(
-    ['siteAnalytics', last],
-    fetchSiteAnalytics,
+    [`all${pathname}`, last],
+    fetchPageAnalytics,
     {
       onError: (error) => toast.error(error.message),
     }
@@ -56,17 +64,17 @@ export const SiteAnalytics: FC<SiteAnalyticsProps> = ({ title }) => {
             <AnalyticsSimpleCard
               name='Visitors'
               type='visitors'
-              value={siteAnalytics.visits}
+              value={pageAnalytics.visits}
             />
             <AnalyticsSimpleCard
               name='Views'
               type='views'
-              value={siteAnalytics.pageviews}
+              value={pageAnalytics.pageviews}
             />
             <AnalyticsSimpleCard
               name='Avg time on page'
               type='duration'
-              value={siteAnalytics.avg_duration}
+              value={pageAnalytics.avg_duration}
             />
           </>
         )}
@@ -75,6 +83,6 @@ export const SiteAnalytics: FC<SiteAnalyticsProps> = ({ title }) => {
   );
 };
 
-SiteAnalytics.defaultProps = {
+PageAnalytics.defaultProps = {
   title: 'Last 30 days',
 };

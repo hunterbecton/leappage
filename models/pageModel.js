@@ -43,6 +43,13 @@ const pageSchema = new mongoose.Schema(
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
+// Populate user
+pageSchema.virtual('userInfo', {
+  ref: User,
+  foreignField: '_id',
+  localField: 'user',
+});
+
 const Page = mongoose.models.Page || mongoose.model('Page', pageSchema);
 
 export default Page;

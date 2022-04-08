@@ -22,37 +22,6 @@ handler.use(withProtect);
 // Check subscription
 handler.use(withSubscription);
 
-// Restrict routes
-handler.use(withRestrict('admin', 'editor'));
-
-// Create Testimonial
-handler.post(async (req, res, next) => {
-  // Get items from req.body
-  const filteredBody = filterObject(
-    req.body,
-    'title',
-    'quote',
-    'profileImage',
-    'name',
-    'company',
-    'position',
-    'category'
-  );
-
-  // Create Testimonial in MongoDB
-  const testimonial = await Testimonial.create({
-    ...filteredBody,
-    tenant: req.user.tenant_mongo_id,
-  });
-
-  return res.status(200).json({
-    success: true,
-    data: {
-      testimonial,
-    },
-  });
-});
-
 // Get testimonials
 handler.get(async (req, res, next) => {
   let filter = { tenant: req.user.tenant_mongo_id };
@@ -92,6 +61,37 @@ handler.get(async (req, res, next) => {
     data: {
       testimonials,
       totalTestimonials,
+    },
+  });
+});
+
+// Restrict routes
+handler.use(withRestrict('admin', 'editor'));
+
+// Create Testimonial
+handler.post(async (req, res, next) => {
+  // Get items from req.body
+  const filteredBody = filterObject(
+    req.body,
+    'title',
+    'quote',
+    'profileImage',
+    'name',
+    'company',
+    'position',
+    'category'
+  );
+
+  // Create Testimonial in MongoDB
+  const testimonial = await Testimonial.create({
+    ...filteredBody,
+    tenant: req.user.tenant_mongo_id,
+  });
+
+  return res.status(200).json({
+    success: true,
+    data: {
+      testimonial,
     },
   });
 });

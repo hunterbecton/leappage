@@ -32,3 +32,14 @@ export interface PageHeadingProps {
   ctaOnClick: MouseEventHandler<HTMLButtonElement>;
   containerSize: SizeType;
 }
+
+export interface PageHeadingWithLabelProps {
+  title: string;
+  label: string;
+  withCta: boolean;
+  ctaDisabled: boolean;
+  ctaVariant: ButtonVariantType;
+  ctaText: string;
+  ctaOnClick: MouseEventHandler<HTMLButtonElement>;
+  containerSize: SizeType;
+}

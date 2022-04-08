@@ -95,6 +95,8 @@ export const Toolbar = () => {
   const handleSave = async () => {
     const isValid = await trigger();
 
+    const isAdminOrEditor = restrict(['admin', 'editor'], user);
+
     if (isValid) {
       setIsAnimating(true);
 
@@ -121,7 +123,12 @@ export const Toolbar = () => {
           };
         }
 
-        const res = await fetch(`/api/${templateType}/${pageId}`, {
+        const fetchPath =
+          isAdminOrEditor && templateType === 'page'
+            ? `/api/${templateType}/admin/${pageId}`
+            : `/api/${templateType}/${pageId}`;
+
+        const res = await fetch(fetchPath, {
           method: 'PATCH',
           credentials: 'include',
           headers: {
@@ -155,7 +162,14 @@ export const Toolbar = () => {
     setIsDeleting(true);
 
     try {
-      const res = await fetch(`/api/${templateType}/${pageId}`, {
+      const isAdminOrEditor = restrict(['admin', 'editor'], user);
+
+      const fetchPath =
+        isAdminOrEditor && templateType === 'page'
+          ? `/api/${templateType}/admin/${pageId}`
+          : `/api/${templateType}/${pageId}`;
+
+      const res = await fetch(fetchPath, {
         method: 'DELETE',
         credentials: 'include',
       });

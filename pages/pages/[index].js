@@ -9,8 +9,10 @@ import { MainLayout } from 'components/layout';
 import { PageTable } from 'components/table';
 import { Pagination } from 'components/pagination';
 import { useProgressStore } from 'store';
+import { withRestrict } from 'middleware/app/withRestrict';
 import { withProtect } from 'middleware/app/withProtect';
 import { withPages } from 'middleware/app/withPages';
+import { withPagesAsAdmin } from 'middleware/app/withPagesAsAdmin';
 
 export default function AllPages({
   totalPages,
@@ -125,39 +127,83 @@ export async function getServerSideProps(ctx) {
     };
   }
 
-  let allPagesInfo = await withPages(ctx);
+  const isAdminOrEditor = await withRestrict(ctx, 'admin', 'editor');
 
-  if (!allPagesInfo) {
+  // Show all pages if admin or editor
+  if (isAdminOrEditor) {
+    let allPagesInfo = await withPagesAsAdmin(ctx);
+
+    if (!allPagesInfo) {
+      return {
+        notFound: true,
+      };
+    }
+
+    allPagesInfo = JSON.parse(allPagesInfo);
+
+    const { totalPages, pages } = allPagesInfo;
+
+    const totalPaginatedPages = Math.ceil(totalPages / 24);
+
+    if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
+      return {
+        redirect: {
+          destination: '/pages/1',
+          permanent: false,
+        },
+      };
+    }
+
+    if (totalPages === 0 && parsedIndex > 1) {
+      return {
+        redirect: {
+          destination: '/pages/1',
+          permanent: false,
+        },
+      };
+    }
+
     return {
-      notFound: true,
+      props: { totalPages, pages, totalPaginatedPages, parsedIndex },
     };
   }
 
-  allPagesInfo = JSON.parse(allPagesInfo);
+  // Only get pages user owns
+  if (!isAdminOrEditor) {
+    let allPagesInfo = await withPages(ctx);
 
-  const { totalPages, pages } = allPagesInfo;
+    if (!allPagesInfo) {
+      return {
+        notFound: true,
+      };
+    }
 
-  const totalPaginatedPages = Math.ceil(totalPages / 24);
+    allPagesInfo = JSON.parse(allPagesInfo);
 
-  if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
+    const { totalPages, pages } = allPagesInfo;
+
+    const totalPaginatedPages = Math.ceil(totalPages / 24);
+
+    if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
+      return {
+        redirect: {
+          destination: '/pages/1',
+          permanent: false,
+        },
+      };
+    }
+
+    if (totalPages === 0 && parsedIndex > 1) {
+      return {
+        redirect: {
+          destination: '/pages/1',
+          permanent: false,
+        },
+      };
+    }
+
     return {
-      redirect: {
-        destination: '/pages/1',
-        permanent: false,
-      },
+      props: { totalPages, pages, totalPaginatedPages, parsedIndex },
     };
   }
-
-  if (totalPages === 0 && parsedIndex > 1) {
-    return {
-      redirect: {
-        destination: '/pages/1',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { totalPages, pages, totalPaginatedPages, parsedIndex },
-  };
 }

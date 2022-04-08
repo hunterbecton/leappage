@@ -3,7 +3,7 @@ import Page from 'models/pageModel';
 
 dbConnect();
 
-export const withPages = async (ctx) => {
+export const withPagesAsAdmin = async (ctx) => {
   try {
     const { index } = ctx.params;
 
@@ -13,7 +13,6 @@ export const withPages = async (ctx) => {
 
     let filter = {
       tenant: ctx.req.user.tenant_mongo_id,
-      user: ctx.req.user.uid,
     };
 
     const totalPages = await Page.countDocuments(filter);

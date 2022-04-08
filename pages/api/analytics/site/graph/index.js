@@ -55,7 +55,7 @@ handler.get(async (req, res, next) => {
     new Date().setDate(new Date().getDate() - last)
   ).toISOString();
 
-  let fetchRoute = `https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=ACPBVJGZ&aggregates=visits,uniques,pageviews,avg_duration&filters=${filters}&date_from=${thirtyDaysAgo}&date_to=${now}&date_grouping=day`;
+  let fetchRoute = `https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=ACPBVJGZ&aggregates=visits,uniques,pageviews,avg_duration&filters=${filters}&date_from=${thirtyDaysAgo}&date_to=${now}&date_grouping=day&sort_by=timestamp:asc`;
 
   const response = await fetch(fetchRoute, {
     method: 'GET',

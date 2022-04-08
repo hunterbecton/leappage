@@ -16,7 +16,7 @@ export const Pagination: FC<PaginationProps> = ({
   const router = useRouter();
 
   return (
-    <Container size='sm'>
+    <Container size='sm' customClassName='w-full'>
       <nav
         className='mt-5 flex items-center justify-between border-t border-gray-200 bg-white py-3'
         aria-label='Pagination'

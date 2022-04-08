@@ -1,12 +1,15 @@
+import { FC, useEffect } from 'react';
 import Link from 'next/link';
 
 import { Container } from 'components/container';
-import { formatDate } from 'utils';
 import { Badge } from 'components/badge';
-import { FC } from 'react';
+import { formatDate } from 'utils';
 import { PageTableProps } from './_models';
 
 export const PageTable: FC<PageTableProps> = ({ pages }) => {
+  useEffect(() => {
+    console.log(pages);
+  }, []);
   return (
     <Container size='none'>
       <div className='flex flex-col'>
@@ -26,13 +29,13 @@ export const PageTable: FC<PageTableProps> = ({ pages }) => {
                       scope='col'
                       className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
                     >
-                      Created
+                      Updated
                     </th>
                     <th
                       scope='col'
                       className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
                     >
-                      Updated
+                      Created by
                     </th>
                     <th
                       scope='col'
@@ -40,8 +43,8 @@ export const PageTable: FC<PageTableProps> = ({ pages }) => {
                     >
                       Status
                     </th>
-                    <th scope='col' className='relative px-6 py-3'>
-                      <span className='sr-only'>Edit</span>
+                    <th scope='col' className='px-6 py-3'>
+                      <span className='sr-only'>Options</span>
                     </th>
                   </tr>
                 </thead>
@@ -52,15 +55,22 @@ export const PageTable: FC<PageTableProps> = ({ pages }) => {
                         {page.title}
                       </td>
                       <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
-                        {formatDate(page.createdAt)}
+                        {formatDate(page.updatedAt)}
                       </td>
                       <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
-                        {formatDate(page.updatedAt)}
+                        {page.userInfo[0]?.name || 'Unknown'}
                       </td>
                       <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
                         <Badge text={page.status} type={page.status} />
                       </td>
-                      <td className='whitespace-nowrap px-6 py-4 text-right text-sm font-medium'>
+                      <td className='space-x-4 whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500'>
+                        <Link
+                          href={`/analytics/${page.slug ? page.slug : page.id}`}
+                        >
+                          <a className='text-blue-600 hover:text-blue-900'>
+                            Analytics
+                          </a>
+                        </Link>
                         <Link href={`/pages/edit/${page.id}`}>
                           <a className='text-blue-600 hover:text-blue-900'>
                             Edit

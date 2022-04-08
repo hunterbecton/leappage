@@ -207,6 +207,7 @@ export interface Page {
   __v: number;
   createdAt: Date;
   updatedAt: Date;
+  userInfo?: User[];
 }
 
 const TemplateStatusObj = {

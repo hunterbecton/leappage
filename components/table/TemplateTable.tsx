@@ -26,13 +26,13 @@ export const TemplateTable: FC<TemplateTableProps> = ({ templates }) => {
                       scope='col'
                       className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
                     >
-                      Created
+                      Updated
                     </th>
                     <th
                       scope='col'
                       className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
                     >
-                      Updated
+                      Created
                     </th>
                     <th
                       scope='col'
@@ -52,10 +52,10 @@ export const TemplateTable: FC<TemplateTableProps> = ({ templates }) => {
                         {template.title}
                       </td>
                       <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
-                        {formatDate(template.createdAt)}
+                        {formatDate(template.updatedAt)}
                       </td>
                       <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
-                        {formatDate(template.updatedAt)}
+                        {formatDate(template.createdAt)}
                       </td>
                       <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
                         <Badge text={template.status} type={template.status} />
