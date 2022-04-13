@@ -1,4 +1,5 @@
 export interface HeroCta {
+  enabled: boolean;
   id: string;
   text: string;
   link: string;

@@ -57,6 +57,14 @@ export const HeroOneSettings: FC = () => {
           {nodeCtas.map((nodeCta, i: number) => (
             <ToolbarGroup key={nodeCta.id} full={true}>
               <ToolbarItem
+                label='Enabled'
+                isGroup={true}
+                groupName='ctas'
+                groupIndex={i}
+                propKey='enabled'
+                type='toggle'
+              />
+              <ToolbarItem
                 label='CTA'
                 isGroup={true}
                 groupName='ctas'

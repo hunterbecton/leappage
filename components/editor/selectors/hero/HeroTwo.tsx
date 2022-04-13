@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player';
 
 import { HeroTwoSettings } from './HeroTwoSettings';
 import { HeroTwoProps } from './_models';
+import { classNames } from 'utils';
 
 const defaultProps = {
   title: 'Landing Pages for Sales',
@@ -10,11 +11,13 @@ const defaultProps = {
   videoUrl: 'https://www.youtube.com/watch?v=3PZ65s2qLTE',
   ctas: [
     {
+      enabled: true,
       id: 'EuN9jaZ8xvNimytz',
       text: 'Book Call',
       link: '',
     },
     {
+      enabled: true,
       id: 'v2CEj7Bo7pT9hegY',
       text: 'Watch Demo',
       link: '',
@@ -37,6 +40,15 @@ export const HeroTwo = (props: Partial<HeroTwoProps>) => {
     active: node.events.selected,
   }));
 
+  const handleUndefinedCtaEnabled = (enabled: boolean | undefined) => {
+    // Set true for undefined values on older hero components
+    if (enabled === undefined) {
+      return true;
+    } else {
+      return enabled;
+    }
+  };
+
   return (
     <section
       ref={connect}
@@ -52,27 +64,25 @@ export const HeroTwo = (props: Partial<HeroTwoProps>) => {
           </p>
           <div className='flex'>
             {ctas.map((cta, i) =>
-              i + 1 === ctas.length ? (
+              handleUndefinedCtaEnabled(cta.enabled) ? (
                 <a
                   key={cta.id}
                   href={cta.link}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='ml-4 inline-flex rounded border-0 bg-gray-100 py-2 px-6 text-lg text-gray-700 transition hover:bg-gray-200 focus:outline-none'
+                  className={classNames(
+                    i === 0
+                      ? 'bg-primary hover:bg-primary-hover  text-white'
+                      : '',
+                    i === 1
+                      ? 'ml-4 bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      : '',
+                    'inline-flex rounded border-0 py-2 px-6 text-lg transition focus:outline-none'
+                  )}
                 >
                   {cta.text}
                 </a>
-              ) : (
-                <a
-                  key={cta.id}
-                  href={cta.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='bg-primary hover:bg-primary-hover inline-flex rounded border-0 py-2 px-6 text-lg text-white transition focus:outline-none'
-                >
-                  {cta.text}
-                </a>
-              )
+              ) : null
             )}
           </div>
         </div>
