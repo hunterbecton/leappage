@@ -168,7 +168,7 @@ export const TestimonialForm: FC<TestimonialProps> = ({
                     <ImageInput
                       name='profileImage'
                       label='Profile'
-                      mediaSize='200'
+                      mediaSize='500'
                     />
                   </div>
                   <div className='col-span-6 lg:col-span-3'>

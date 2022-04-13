@@ -158,7 +158,7 @@ export const ContentForm: FC<ContentFormProps> = ({
                     <ImageInput
                       name='feature'
                       label='Feature'
-                      mediaSize='500'
+                      mediaSize='1200'
                     />
                   </div>
                   <div className='col-span-6 lg:col-span-3'>

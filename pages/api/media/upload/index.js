@@ -89,6 +89,10 @@ handler.post(async (req, res, next) => {
       ext === 'svg' ? `${publicFile}.${ext}` : `${publicFile}_200x200.${ext}`,
     size500:
       ext === 'svg' ? `${publicFile}.${ext}` : `${publicFile}_500x500.${ext}`,
+    size900:
+      ext === 'svg' ? `${publicFile}.${ext}` : `${publicFile}_900x900.${ext}`,
+    size1200:
+      ext === 'svg' ? `${publicFile}.${ext}` : `${publicFile}_1200x1200.${ext}`,
     tenant: req.user.tenant_mongo_id,
   });
 

@@ -1,6 +1,6 @@
 import { FallbackImage } from 'components/image';
 import Image from 'next/image';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useQuery } from 'react-query';
 
 import { useEditorStore } from 'store';

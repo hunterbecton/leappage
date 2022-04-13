@@ -23,6 +23,10 @@ export const MediaCardModal: FC<MediaCardModalProps> = ({ item }) => {
         return item.size200 ? item.size200 : item.url;
       case '500':
         return item.size500 ? item.size500 : item.url;
+      case '900':
+        return item.size900 ? item.size900 : item.url;
+      case '1200':
+        return item.size1200 ? item.size1200 : item.url;
       case 'full':
         return item.url;
       default:

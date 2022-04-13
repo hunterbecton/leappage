@@ -115,6 +115,8 @@ export interface Media {
   size100: string;
   size200: string;
   size500: string;
+  size900: string;
+  size1200: string;
   tenant: string;
   __v: number;
   createdAt: Date;

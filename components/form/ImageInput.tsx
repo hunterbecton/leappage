@@ -18,6 +18,8 @@ export const ImageInput: FC<ImageInputProps> = ({
 
   const src = watch(name);
 
+  console.log(src);
+
   const setIsMediaModalOpen = useMediaModalStore(
     (state) => state.setIsMediaModalOpen
   );
