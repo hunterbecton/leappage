@@ -1,12 +1,46 @@
+import { FC } from 'react';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 import { Container } from 'components/container';
-import { formatDate } from 'utils';
+import { formatDate, restrict } from 'utils';
 import { Badge } from 'components/badge';
-import { FC } from 'react';
 import { TemplateTableProps } from './_models';
+import { useAuth } from 'hooks/useAuth';
+import { useProgressStore } from 'store';
 
 export const TemplateTable: FC<TemplateTableProps> = ({ templates }) => {
+  const { user } = useAuth();
+
+  const router = useRouter();
+
+  const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
+  const isAnimating = useProgressStore((state) => state.isAnimating);
+
+  const handleDuplicate = async (templateId: string) => {
+    setIsAnimating(true);
+
+    try {
+      const res = await fetch(`/api/template/${templateId}`, {
+        method: 'POST',
+        credentials: 'include',
+      });
+
+      const { success, data } = await res.json();
+
+      if (success) {
+        toast.success('Template duplicated.');
+        router.push(`/pages/edit/${data.page.id}`);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Error duplicating template.');
+    } finally {
+      setIsAnimating(false);
+    }
+  };
+
   return (
     <Container size='none'>
       <div className='flex flex-col'>
@@ -40,9 +74,15 @@ export const TemplateTable: FC<TemplateTableProps> = ({ templates }) => {
                     >
                       Status
                     </th>
-                    <th scope='col' className='relative px-6 py-3'>
-                      <span className='sr-only'>Edit</span>
-                    </th>
+                    {restrict(['admin', 'editor'], user) ? (
+                      <th scope='col' className='relative px-6 py-3'>
+                        <span className='sr-only'>Edit</span>
+                      </th>
+                    ) : (
+                      <th scope='col' className='relative px-6 py-3'>
+                        <span className='sr-only'>Duplicate</span>
+                      </th>
+                    )}
                   </tr>
                 </thead>
                 <tbody className='divide-y divide-gray-200 bg-white'>
@@ -61,11 +101,22 @@ export const TemplateTable: FC<TemplateTableProps> = ({ templates }) => {
                         <Badge text={template.status} type={template.status} />
                       </td>
                       <td className='whitespace-nowrap px-6 py-4 text-right text-sm font-medium'>
-                        <Link href={`/templates/edit/${template.id}`}>
-                          <a className='text-blue-600 hover:text-blue-900'>
-                            Edit
-                          </a>
-                        </Link>
+                        {restrict(['admin', 'editor'], user) ? (
+                          <Link href={`/templates/edit/${template.id}`}>
+                            <a className='text-blue-600 hover:text-blue-900'>
+                              Edit
+                            </a>
+                          </Link>
+                        ) : (
+                          <button
+                            type='button'
+                            onClick={() => handleDuplicate(template.id)}
+                            disabled={isAnimating}
+                            className='text-blue-600 hover:text-blue-900'
+                          >
+                            Duplicate
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

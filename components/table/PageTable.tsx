@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 
 import { Container } from 'components/container';
@@ -7,9 +7,6 @@ import { formatDate } from 'utils';
 import { PageTableProps } from './_models';
 
 export const PageTable: FC<PageTableProps> = ({ pages }) => {
-  useEffect(() => {
-    console.log(pages);
-  }, []);
   return (
     <Container size='none'>
       <div className='flex flex-col'>

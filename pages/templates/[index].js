@@ -11,6 +11,8 @@ import { Pagination } from 'components/pagination';
 import { useProgressStore } from 'store';
 import { withProtect } from 'middleware/app/withProtect';
 import { withTemplates } from 'middleware/app/withTemplates';
+import { withPublishedTemplates } from 'middleware/app/withPublishedTemplates';
+import { withRestrict } from 'middleware/app/withRestrict';
 import { useAuth } from 'hooks/useAuth';
 import { restrict } from 'utils';
 
@@ -134,39 +136,82 @@ export async function getServerSideProps(ctx) {
     };
   }
 
-  let allTemplatesInfo = await withTemplates(ctx);
+  const isAdminOrEditor = await withRestrict(ctx, 'admin', 'editor');
 
-  if (!allTemplatesInfo) {
+  if (isAdminOrEditor) {
+    let allTemplatesInfo = await withTemplates(ctx);
+
+    if (!allTemplatesInfo) {
+      return {
+        notFound: true,
+      };
+    }
+
+    allTemplatesInfo = JSON.parse(allTemplatesInfo);
+
+    const { totalTemplates, templates } = allTemplatesInfo;
+
+    const totalPaginatedPages = Math.ceil(totalTemplates / 24);
+
+    if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
+      return {
+        redirect: {
+          destination: '/templates/1',
+          permanent: false,
+        },
+      };
+    }
+
+    if (totalTemplates === 0 && parsedIndex > 1) {
+      return {
+        redirect: {
+          destination: '/templates/1',
+          permanent: false,
+        },
+      };
+    }
+
     return {
-      notFound: true,
+      props: { totalTemplates, templates, totalPaginatedPages, parsedIndex },
     };
   }
 
-  allTemplatesInfo = JSON.parse(allTemplatesInfo);
+  // Only get published templates for users
+  if (!isAdminOrEditor) {
+    let allTemplatesInfo = await withPublishedTemplates(ctx);
 
-  const { totalTemplates, templates } = allTemplatesInfo;
+    if (!allTemplatesInfo) {
+      return {
+        notFound: true,
+      };
+    }
 
-  const totalPaginatedPages = Math.ceil(totalTemplates / 24);
+    allTemplatesInfo = JSON.parse(allTemplatesInfo);
 
-  if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
+    const { totalTemplates, templates } = allTemplatesInfo;
+
+    const totalPaginatedPages = Math.ceil(totalTemplates / 24);
+
+    if (parsedIndex > totalPaginatedPages && totalPaginatedPages > 0) {
+      return {
+        redirect: {
+          destination: '/templates/1',
+          permanent: false,
+        },
+      };
+    }
+
+    if (totalTemplates === 0 && parsedIndex > 1) {
+      return {
+        redirect: {
+          destination: '/templates/1',
+          permanent: false,
+        },
+      };
+    }
+
     return {
-      redirect: {
-        destination: '/templates/1',
-        permanent: false,
-      },
+      props: { totalTemplates, templates, totalPaginatedPages, parsedIndex },
     };
   }
-
-  if (totalTemplates === 0 && parsedIndex > 1) {
-    return {
-      redirect: {
-        destination: '/templates/1',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { totalTemplates, templates, totalPaginatedPages, parsedIndex },
-  };
 }

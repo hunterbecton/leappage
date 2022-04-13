@@ -9,6 +9,7 @@ import { NextSeo } from 'next-seo';
 import { VisualEditor } from 'components/editor/visual';
 import { withProtect } from 'middleware/app/withProtect';
 import { withTemplate } from 'middleware/app/withTemplate';
+import { withRestrict } from 'middleware/app/withRestrict';
 import { withTheme } from 'middleware/app/withTheme';
 import { useEditorStore } from 'store';
 import { Theme } from 'components/theme';
@@ -60,6 +61,17 @@ export async function getServerSideProps(ctx) {
     return {
       redirect: {
         destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  const isPermitted = await withRestrict(ctx, 'admin', 'editor');
+
+  if (!isPermitted) {
+    return {
+      redirect: {
+        destination: '/templates/1',
         permanent: false,
       },
     };

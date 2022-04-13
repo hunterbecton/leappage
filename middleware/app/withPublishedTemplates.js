@@ -3,7 +3,7 @@ import Template from 'models/templateModel';
 
 dbConnect();
 
-export const withTemplates = async (ctx) => {
+export const withPublishedTemplates = async (ctx) => {
   try {
     const { index } = ctx.params;
 
@@ -11,7 +11,7 @@ export const withTemplates = async (ctx) => {
     const limit = 24;
     const skip = (page - 1) * limit;
 
-    let filter = { tenant: ctx.req.user.tenant_mongo_id };
+    let filter = { tenant: ctx.req.user.tenant_mongo_id, status: 'published' };
 
     const totalTemplates = await Template.countDocuments(filter);
 
