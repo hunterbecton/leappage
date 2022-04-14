@@ -95,7 +95,7 @@ export const HeroOne = (props: Partial<HeroOneProps>) => {
           <p className='mb-8 text-base leading-relaxed text-gray-500'>
             {description}
           </p>
-          <div className='flex justify-center'>
+          <div className='flex justify-center space-x-4 '>
             {ctas.map((cta, i) =>
               handleUndefinedCtaEnabled(cta.enabled) ? (
                 <a
@@ -108,7 +108,7 @@ export const HeroOne = (props: Partial<HeroOneProps>) => {
                       ? 'bg-primary hover:bg-primary-hover  text-white'
                       : '',
                     i === 1
-                      ? 'ml-4 bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       : '',
                     'inline-flex rounded border-0 py-2 px-6 text-lg transition focus:outline-none'
                   )}
