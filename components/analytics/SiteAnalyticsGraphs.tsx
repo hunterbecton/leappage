@@ -39,13 +39,7 @@ export const SiteAnalyticsGraphs: FC = () => {
         uniques: uniques ? parseInt(uniques) : 0,
         pageviews: pageviews ? parseInt(pageviews) : 0,
         avg_duration: avg_duration ? parseInt(avg_duration) : 0,
-        date: date
-          ? new Date(date).toLocaleDateString('en-US', {
-              month: 'short',
-              day: '2-digit',
-              year: 'numeric',
-            })
-          : null,
+        date,
       })
     );
 

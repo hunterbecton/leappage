@@ -17,3 +17,4 @@ export * from './cloneObject';
 export * from './renameKey';
 export * from './loadFont';
 export * from './checkValidMongoId';
+export * from './getDateArray';

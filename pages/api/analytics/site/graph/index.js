@@ -1,7 +1,7 @@
 import nc from 'next-connect';
 import fetch from 'node-fetch';
 
-import { dbConnect, filterObject } from 'utils';
+import { dbConnect, filterObject, getDateArray } from 'utils';
 import Tenant from 'models/tenantModel';
 import { withProtect } from 'middleware/api/withProtect';
 import { withSubscription } from 'middleware/api/withSubscription';
@@ -66,9 +66,50 @@ handler.get(async (req, res, next) => {
 
   const data = await response.json();
 
+  const dateArray = getDateArray(thirtyDaysAgo, now);
+
+  // Remove time from dateArray
+  const formatedDateArray = dateArray.map(
+    (date) => new Date(date).toISOString().split('T')[0]
+  );
+
+  const insert = (arr, index, newItem) => [
+    // part of the array before the specified index
+    ...arr.slice(0, index),
+    // inserted item
+    newItem,
+    // part of the array after the specified index
+    ...arr.slice(index),
+  ];
+
+  let newData = [];
+
+  // Go through dateArray and see if date exists in data
+  formatedDateArray.forEach((date, i) => {
+    const found = data.some((el) => el.date === date);
+
+    // Add empty data point if not found
+    if (!found) {
+      newData.splice(i, 0, {
+        visits: null,
+        uniques: null,
+        pageviews: null,
+        avg_duration: null,
+        date,
+      });
+    }
+    // Add data to newDate if found
+    else {
+      // Get index of data at date found
+      let dataIndex = data.map((stat) => stat.date).indexOf(date);
+
+      newData.splice(i, 0, data[dataIndex]);
+    }
+  });
+
   return res.status(200).json({
     success: true,
-    data,
+    data: newData,
   });
 });
 
